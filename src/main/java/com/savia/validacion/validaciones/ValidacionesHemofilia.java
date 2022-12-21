@@ -1,9 +1,5 @@
 package com.savia.validacion.validaciones;
 
-import com.savia.validacion.model.TblReadHemofiliaPasoModel;
-import com.savia.validacion.valueobject.Message;
-import org.springframework.http.ResponseEntity;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,6 +28,7 @@ public class ValidacionesHemofilia {
             return "ok";
         }
     }
+    //------------------------------------------------------------------------------------------------------
     public String validacionV7(Map<String,String> parametros){
         Calendar fechaMayorVariable= Calendar.getInstance();
         Calendar fecNacimientoUsuario= new GregorianCalendar();
@@ -86,6 +83,65 @@ public class ValidacionesHemofilia {
                             " menor a 1919-01-31 ";
         }
         else{
+            return "ok";
+        }
+    }
+    //--------------------------------------------------------------------------
+    public String validacionV8(Map<String,String> parametros){
+        /*fila 23*/
+        if (parametros.get("sexoUsuario").equals("M")&&parametros.get("tipoDeficienciaDiagnosticada").equals("2")){
+            return "ERROR(B4557) Esta ingresando sexo Paciente: M pero en la variable 23 es igual 2 ";
+        }else{
+            return "ok";
+        }
+    }
+    //-------------------------------------------------------------------------------
+    public  String  validacionV11(Map<String,String> parametros){
+        /*fila 27-88 and 163-166*/
+        if(parametros.get("codigoEapb").matches("EPSS34|" +
+                "ESS024|ESS062|ESS091|ESS118|ESS207|EPS037|EPSI01|EPSI03|EPSI04|EPSI05|EPSI06|EPS005|" +
+                "EPS008|EPS010|EPS012|EPS016|EPS017|EPS018|EPS022|EPS025|EPS001|EPS002|CCF055|CCF102|" +
+                "CCF023|CCF024|CCF033|EPSS40|EPS044|EPS045|EPSS41|EPS046")&&
+                parametros.get("sgsss").toUpperCase().matches("C|S")==false)
+        {
+            return "ERROR Esta ingresando en la variable 11: "+parametros.get("codigoEapb")+" Pero en la variable 10: " +
+                    "No es C o S";
+        }
+        /*fila 89-162*/
+        if(parametros.get("codigoEapb").matches("05000|" +
+                "08000|08001|11001|13000|13001|15000|17000|18000|19000|20000|23000|25000|27000|41000|" +
+                "44000|47000|47001|50000|52000|54000|63000|66000|68000|70000|73000|76000|76109|81000|" +
+                "85000|86000|88000|91000|94000|95000|97000|99000")&&
+                parametros.get("sgsss").toUpperCase().matches("N|S")==false)
+        {
+            return "ERROR Esta ingresando en la variable 11: "+parametros.get("codigoEapb")+" Pero en la variable 10: " +
+                    "No es N o S";
+        }
+        /*fila 167-168*/
+        if(parametros.get("codigoEapb").matches("EAS016|EAS027")&&
+                parametros.get("sgsss").toUpperCase().matches("C")==false)
+        {
+            return "ERROR Esta ingresando en la variable 11: "+parametros.get("codigoEapb")+" Pero en la variable 10: " +
+                    "No es C";
+        }
+        /*fila 169-175 and 180-189*/
+        if(parametros.get("codigoEapb").matches("EMP015|EMP017|" +
+                "EMP019|EMP023|EMP025|EMP028|EMP029|RES006|RES007|RES008|RES009|RES011|RES012|RES014|" +
+                "REUE04|REUE05|REUE09")&&
+                parametros.get("sgsss").toUpperCase().matches("E")==false)
+        {
+            return "ERROR Esta ingresando en la variable 11: "+parametros.get("codigoEapb")+" Pero en la variable 10: " +
+                    "No es E";
+        }
+        /*fila 176-179 */
+        if(parametros.get("codigoEapb").matches("RES001|RES002|" +
+                "RES003|RES004")&&
+                parametros.get("sgsss").toUpperCase().matches("P")==false)
+        {
+            return "ERROR Esta ingresando en la variable 11: "+parametros.get("codigoEapb")+" Pero en la variable 10: " +
+                    "No es P";
+        }else
+        {
             return "ok";
         }
     }
