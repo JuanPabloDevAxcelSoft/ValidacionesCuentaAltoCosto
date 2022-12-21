@@ -12,22 +12,26 @@ import java.util.List;
 
 @RestController
 public class ValidadorController {
+
     @Autowired
-    HemofiliaReadService hemofiliaService;
+    private HemofiliaReadService hemofiliaService;
+
     @Autowired
-    ValidacionService validacionService;
+    private ValidacionService validacionService;
+
     @GetMapping("/validacion")
-    public ResponseEntity<Message> validacionEnfermedad(@RequestParam("idPaciente") int idPaciente
-     ,@RequestParam("idEnfermedad") int idEnfermedad){
-        return validacionService.resultValidacion(idPaciente,idEnfermedad);
+    public ResponseEntity<Message> validacionEnfermedad(@RequestParam("idPaciente") int idPaciente,
+            @RequestParam("idEnfermedad") int idEnfermedad) {
+        return validacionService.resultValidacion(idPaciente, idEnfermedad);
     }
+
     @GetMapping("/all/validacion")
-    public List<TblReadHemofiliaPasoModel> allHemofilia(){
+    public List<TblReadHemofiliaPasoModel> allHemofilia() {
         return hemofiliaService.listHemofiliaModels();
     }
 
     @GetMapping("/validacion/{id_hemofilia}")
-    public ResponseEntity<Message> oneHemofilia(@PathVariable("id_hemofilia") Integer id_hemofilia){
+    public ResponseEntity<Message> oneHemofilia(@PathVariable("id_hemofilia") Integer id_hemofilia) {
         return hemofiliaService.hemofiliaModelOne(id_hemofilia);
     }
 }
