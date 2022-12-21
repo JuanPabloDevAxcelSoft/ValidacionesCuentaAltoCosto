@@ -50,6 +50,11 @@ public class TblReadValidacionModel implements Serializable {
     private String buscarElemento;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "clase_validacion")
+    private String claseValidacion;
+    @Basic(optional = false)
+    @NotNull
     private boolean estado;
     @Basic(optional = false)
     @NotNull
@@ -60,15 +65,24 @@ public class TblReadValidacionModel implements Serializable {
     public TblReadValidacionModel() {
     }
 
-    public TblReadValidacionModel(Integer idValidacion, String nombreValidacion, int enfermedad, String parametros, int secuenciaValidacion, String buscarElemento, boolean estado, Date fechaIngreso) {
+    public TblReadValidacionModel(Integer idValidacion, String nombreValidacion, int enfermedad, String parametros, int secuenciaValidacion, String buscarElemento, String claseValidacion, boolean estado, Date fechaIngreso) {
         this.idValidacion = idValidacion;
         this.nombreValidacion = nombreValidacion;
         this.enfermedad = enfermedad;
         this.parametros = parametros;
         this.secuenciaValidacion = secuenciaValidacion;
         this.buscarElemento = buscarElemento;
+        this.claseValidacion = claseValidacion;
         this.estado = estado;
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public String getClaseValidacion() {
+        return claseValidacion;
+    }
+
+    public void setClaseValidacion(String claseValidacion) {
+        this.claseValidacion = claseValidacion;
     }
 
     public String getBuscarElemento() {

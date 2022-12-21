@@ -6,7 +6,6 @@ import com.savia.validacion.reflector.Reflector;
 import com.savia.validacion.repository.TblReadValidacionRepository;
 import com.savia.validacion.service.HemofiliaReadService;
 import com.savia.validacion.service.ValidacionService;
-import com.savia.validacion.validaciones.ValidacionesHemofilia;
 import com.savia.validacion.valueobject.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +38,6 @@ public class ValidacionServiceImpl implements ValidacionService {
                 case 1:
                     {
                         objectPasciente= hemofiliaReadService.oneElement(idPaciente);
-                        claseValidaciones=new ValidacionesHemofilia();
                         break;
                     }
                 default:
@@ -62,6 +60,20 @@ public class ValidacionServiceImpl implements ValidacionService {
                         for (int j = 0; j < parametrosTbl.length; j++) {
                             parame.put(parametrosTbl[j],result.get(parametrosTbl[j]).toString());
                         }
+                        //Sacar clase validaciones generico
+                        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+                        try {
+                            Class<?> clazz = classLoader.loadClass(listValidacion.get(i).getClaseValidacion());
+                            claseValidaciones =  clazz.newInstance();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (InstantiationException e) {
+                            e.printStackTrace();
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
+
+
                         /*
                         //Sacar el objeto para validar
                         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
