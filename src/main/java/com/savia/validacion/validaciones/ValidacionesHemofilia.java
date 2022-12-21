@@ -1,10 +1,6 @@
 package com.savia.validacion.validaciones;
 
 
-import com.savia.validacion.model.TblReadHemofiliaPasoModel;
-import com.savia.validacion.valueobject.Message;
-import org.springframework.http.ResponseEntity;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -227,6 +223,47 @@ public class ValidacionesHemofilia {
         {
             return "ERROR(B900) Esta ingresando en Variable 17 : '<=2'" +
                             " pero en la variable 8 no ingreso 'F'";
+        }
+        else
+        {
+            return "ok";
+        }
+    }
+    //--------------------------------------------------------------------------------
+    //cambia en el tiempo
+    public String validacionV18(Map<String,String> parametros){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar fechaV7 = Calendar.getInstance();
+        Calendar fechaVariable1 = Calendar.getInstance();
+        Calendar fechaVariable2 = Calendar.getInstance();
+        try {
+            fechaV7.setTime(simpleDateFormat.parse(parametros.get("fechaNacimientoUsuario")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        fechaVariable1.set(2010,00,31 );
+        fechaVariable2.set(1952,00,31);
+        /*fila 204-205*/
+        if ((parametros.get("usuarioProgramaPlanificacion").equals("3")) && (fechaV7.before(fechaVariable1)||fechaV7.after(fechaVariable2)))
+        {
+            return"ERROR(B1845) Esta ingresando en Variable 18 : '3'" +
+                    " pero en la variable 7 no ingreso un dato mayor a '2010-01-31' " +
+                    "o menor a '1952-01-31'";
+        }
+        /*fila 206*/
+        if (parametros.get("usuarioProgramaPlanificacion").equals("55")&&
+                parametros.get("novedades").equals("11")==false)
+        {
+            return"ERROR(B2381) Esta ingresando en Variable 18 : '55'" +
+                    "pero  la variable 64 no es: '11' ";
+        }
+
+        fechaVariable1.set(2012,00,31 );
+        /*fila 207-208*/
+        if (parametros.get("usuarioProgramaPlanificacion").matches("0|2")&&fechaV7.after(fechaVariable1))
+        {
+            return"ERROR(B5802) Esta ingresando en Variable 18 : '0|2'" +
+                    " pero en la variable 7 no ingreso un dato o menor a '2012-01-31'";
         }
         else
         {
