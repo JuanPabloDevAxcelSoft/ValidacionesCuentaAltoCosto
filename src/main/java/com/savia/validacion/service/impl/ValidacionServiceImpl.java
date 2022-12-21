@@ -72,8 +72,6 @@ public class ValidacionServiceImpl implements ValidacionService {
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
                         }
-
-
                         /*
                         //Sacar el objeto para validar
                         ClassLoader classLoader = ClassLoader.getSystemClassLoader();

@@ -36,8 +36,6 @@ public class ReflectorImpl implements Reflector {
                     System.out.println(e.getMessage());
                     return null;
                 }
-            }else {
-                return null;
             }
         }
         return null;

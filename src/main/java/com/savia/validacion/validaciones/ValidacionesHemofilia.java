@@ -1,5 +1,10 @@
 package com.savia.validacion.validaciones;
 
+
+import com.savia.validacion.model.TblReadHemofiliaPasoModel;
+import com.savia.validacion.valueobject.Message;
+import org.springframework.http.ResponseEntity;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -145,4 +150,88 @@ public class ValidacionesHemofilia {
             return "ok";
         }
     }
+    //--------------------------------------------------------------------------------
+    public String validacionV16(Map<String,String> parametros){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar fechaV17 = Calendar.getInstance();
+        Calendar fechaVariable = Calendar.getInstance();
+        try {
+            fechaV17.setTime(simpleDateFormat.parse(parametros.get("fechaAfilicionEps")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            fechaVariable.setTime(simpleDateFormat.parse(parametros.get("fechaCorte")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        /*fila 195*/
+        if (fechaV17.after(fechaVariable))
+        {
+            return "ERROR(B899) Esta ingresando en Variable 16 una fecha" +
+                            " mayor a la variable 66";
+        }
+        /*fila 196*/
+        try {
+            fechaVariable.setTime(simpleDateFormat.parse(parametros.get("fechaNacimientoUsuario")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (fechaV17.before(fechaVariable))
+        {
+            return "ERROR(B899) Esta ingresando en Variable 16 una fecha" +
+                            " menor a la variable 7";
+        }
+        else{
+            return "ok";
+        }
+    }
+    //--------------------------------------------------------------------------------
+    public String validacionV17(Map<String,String> parametros){
+        /*fila 198*/
+        if(parametros.get("estadoGestacionUsuario").equals("3")&&
+                parametros.get("sexoUsuario").equals("M")==false)
+        {
+            return "ERROR(B1566) Esta ingresando en Variable 17 : '3'" +
+                            " pero en la variable 8 no ingreso 'M'";
+        }
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar fechaV7 = Calendar.getInstance();
+        Calendar fechaVariable1 = Calendar.getInstance();
+        Calendar fechaVariable2 = Calendar.getInstance();
+        try {
+            fechaV7.setTime(simpleDateFormat.parse(parametros.get("fechaNacimientoUsuario")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        fechaVariable1.set(1962,00,31 );
+        fechaVariable2.set(2013,00,31 );
+        /*fila 199-200*/
+        if (parametros.get("estadoGestacionUsuario").equals("1")&&fechaV7.before(fechaVariable1)||
+                fechaV7.after(fechaVariable2))
+        {
+            return"ERROR(B1844) Esta ingresando en Variable 17 : '1'" +
+                            " pero en la variable 7 no ingreso un dato mayor a '1962-01-31' o menor" +
+                            " a 2013-01-31";
+        }
+        /*fila 201*/
+        if (parametros.get("estadoGestacionUsuario").equals("55")&&
+                parametros.get("novedades").equals("11")==false)
+        {
+            return"ERROR(B2380) Esta ingresando en Variable 17 : '55'" +
+                            "pero  la variable 64 no es: '11' ";
+        }
+        /*fila 202*/
+        if(Integer.parseInt(parametros.get("estadoGestacionUsuario"))<=2&&
+                parametros.get("sexoUsuario").equals("F")==false)
+        {
+            return "ERROR(B900) Esta ingresando en Variable 17 : '<=2'" +
+                            " pero en la variable 8 no ingreso 'F'";
+        }
+        else
+        {
+            return "ok";
+        }
+    }
+    //--------------------------------------------------------------------------------
 }
