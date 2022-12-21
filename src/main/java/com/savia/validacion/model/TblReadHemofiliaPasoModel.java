@@ -7,9 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
- import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -404,7 +402,38 @@ public class TblReadHemofiliaPasoModel implements Serializable {
     public TblReadHemofiliaPasoModel() {
     }
 
-    public TblReadHemofiliaPasoModel(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacionUsuario, String numeroIdentificacionUsuario, Date fechaNacimientoUsuario, String sexoUsuario, short ocupacionUsuario, String sgsss, String codigoEapb, short codigoPertenenciaEtnica, short grupoPoblacional, short municipioResidencia, String numeroTelefonicoUsuario, Date fechaAfilicionEps, String estadoGestacionUsuario, String usuarioProgramaPlanificacion, short edadUsuarioConsulta, String motivoPruebaDiagnostico, Date fechaDiagnostico, long codigoValidoHabilitacionIps, String tipoDeficienciaDiagnosticada, String clasificacionSeveridadNivelFactor, double actividadCoagulanteFactor, String antecedentesFamiliaresAsociadosHemofilia, String factorRecibidoPrimerTratamiento, String esquemaPrimerTratamiento, Date fechaInicioPrimerTratamiento, short factorRecibidoActualTratamieno, String esquemaActualTratamiento, double pesoUsuario, double dosis, String frecuenciaSemana, int numeroDosisTotalesPeriodo, long numeroAplicacionesTotalesPeriodo, String modalidadAplicacionTratamiento, String viaAdministracion, String cum1, String cum2, String cum3, String cum4, long codigoHabilitacionEps, String hermartrosis, short hemorragiailioPsoas, short numeroHermatrosisEspontaneasUltimoAno, short numeroHermatrosisTraumaticasUltimoAno, short hemorragiaMuscular, short hemorragiaIntracraneal, short hemorragiaCuello, short hemorragiaOral, short hemorragiaOtrasLocalizaciones, short hemorragiaOtrasDiferentesHematrosisEspontaneas, short hemorragiaOtrasDiferentesHematrosisTraumaticas, short hemorragiaAsociadaProcesosDiferentesHematrosis, String presenciaInhibidorFechaCorte, Date fechaDeterminacionTitulosInhibidor, String recibidoItiUsuario, String recibioItiPeriodo, short tiempoUsuarioIti, String artropatiaHemofilicaCronica, short numArticulacionesComprometidas, String usuarioInfectadoVhc, String usuarioInfectadoVhb, String usuarioInfectadoVih, String pseudotumores, String fracturas, String anafilaxis, String factorAnacfiliactica, short reemplazoArticularesVida, short reemplazoArticularesPeriodo, String profesionalAtencionUsuario, short consultasPresencialesHematologo, short consultasPresencialesOrtopedista, short intervencionProfesionalEnfermeria, short consultasOdontologo, short consultaNutricionista, short intervencionTrabajoSocial, short consultaFisiatria, short consultaPsicologia, short intervencionQuimicoFarmaceutico, short intervencionFisioterapia, String primerNombreMedicoPrincipal, String segundoNombreMedicoPrincipal, String primerApellidoMedicoPrincipal, String segundoApellidoMedicoPrincipal, short numeroAtencionesServicioUrgenciasHemofilia, short numeroEventosHospitalariosHemofilia, double costoTotalUnidadesFactor, double costosAgentePuente, double costosCoagulopatia, double costosIncapacidadesCoagulopatia, String novedades, String causaMuerte, Date fechaMuerte, int bdua, Date fechaCorte) {
+    public TblReadHemofiliaPasoModel(String primerNombre, String segundoNombre, String primerApellido,
+            String segundoApellido, String tipoIdentificacionUsuario, String numeroIdentificacionUsuario,
+            Date fechaNacimientoUsuario, String sexoUsuario, short ocupacionUsuario, String sgsss, String codigoEapb,
+            short codigoPertenenciaEtnica, short grupoPoblacional, short municipioResidencia,
+            String numeroTelefonicoUsuario, Date fechaAfilicionEps, String estadoGestacionUsuario,
+            String usuarioProgramaPlanificacion, short edadUsuarioConsulta, String motivoPruebaDiagnostico,
+            Date fechaDiagnostico, long codigoValidoHabilitacionIps, String tipoDeficienciaDiagnosticada,
+            String clasificacionSeveridadNivelFactor, double actividadCoagulanteFactor,
+            String antecedentesFamiliaresAsociadosHemofilia, String factorRecibidoPrimerTratamiento,
+            String esquemaPrimerTratamiento, Date fechaInicioPrimerTratamiento, short factorRecibidoActualTratamieno,
+            String esquemaActualTratamiento, double pesoUsuario, double dosis, String frecuenciaSemana,
+            int numeroDosisTotalesPeriodo, long numeroAplicacionesTotalesPeriodo, String modalidadAplicacionTratamiento,
+            String viaAdministracion, String cum1, String cum2, String cum3, String cum4, long codigoHabilitacionEps,
+            String hermartrosis, short hemorragiailioPsoas, short numeroHermatrosisEspontaneasUltimoAno,
+            short numeroHermatrosisTraumaticasUltimoAno, short hemorragiaMuscular, short hemorragiaIntracraneal,
+            short hemorragiaCuello, short hemorragiaOral, short hemorragiaOtrasLocalizaciones,
+            short hemorragiaOtrasDiferentesHematrosisEspontaneas, short hemorragiaOtrasDiferentesHematrosisTraumaticas,
+            short hemorragiaAsociadaProcesosDiferentesHematrosis, String presenciaInhibidorFechaCorte,
+            Date fechaDeterminacionTitulosInhibidor, String recibidoItiUsuario, String recibioItiPeriodo,
+            short tiempoUsuarioIti, String artropatiaHemofilicaCronica, short numArticulacionesComprometidas,
+            String usuarioInfectadoVhc, String usuarioInfectadoVhb, String usuarioInfectadoVih, String pseudotumores,
+            String fracturas, String anafilaxis, String factorAnacfiliactica, short reemplazoArticularesVida,
+            short reemplazoArticularesPeriodo, String profesionalAtencionUsuario, short consultasPresencialesHematologo,
+            short consultasPresencialesOrtopedista, short intervencionProfesionalEnfermeria, short consultasOdontologo,
+            short consultaNutricionista, short intervencionTrabajoSocial, short consultaFisiatria,
+            short consultaPsicologia, short intervencionQuimicoFarmaceutico, short intervencionFisioterapia,
+            String primerNombreMedicoPrincipal, String segundoNombreMedicoPrincipal,
+            String primerApellidoMedicoPrincipal, String segundoApellidoMedicoPrincipal,
+            short numeroAtencionesServicioUrgenciasHemofilia, short numeroEventosHospitalariosHemofilia,
+            double costoTotalUnidadesFactor, double costosAgentePuente, double costosCoagulopatia,
+            double costosIncapacidadesCoagulopatia, String novedades, String causaMuerte, Date fechaMuerte, int bdua,
+            Date fechaCorte) {
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
@@ -504,7 +533,39 @@ public class TblReadHemofiliaPasoModel implements Serializable {
         this.fechaCorte = fechaCorte;
     }
 
-    public TblReadHemofiliaPasoModel(Integer idHemofiliaPaso, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacionUsuario, String numeroIdentificacionUsuario, Date fechaNacimientoUsuario, String sexoUsuario, short ocupacionUsuario, String sgsss, String codigoEapb, short codigoPertenenciaEtnica, short grupoPoblacional, short municipioResidencia, String numeroTelefonicoUsuario, Date fechaAfilicionEps, String estadoGestacionUsuario, String usuarioProgramaPlanificacion, int edadUsuarioConsulta, String motivoPruebaDiagnostico, Date fechaDiagnostico, long codigoValidoHabilitacionIps, String tipoDeficienciaDiagnosticada, String clasificacionSeveridadNivelFactor, double actividadCoagulanteFactor, String antecedentesFamiliaresAsociadosHemofilia, String factorRecibidoPrimerTratamiento, String esquemaPrimerTratamiento, Date fechaInicioPrimerTratamiento, short factorRecibidoActualTratamieno, String esquemaActualTratamiento, double pesoUsuario, double dosis, String frecuenciaSemana, int numeroDosisTotalesPeriodo, long numeroAplicacionesTotalesPeriodo, String modalidadAplicacionTratamiento, String viaAdministracion, String cum1, String cum2, String cum3, String cum4, long codigoHabilitacionEps, String hermartrosis, short hemorragiailioPsoas, short numeroHermatrosisEspontaneasUltimoAno, short numeroHermatrosisTraumaticasUltimoAno, short hemorragiaMuscular, short hemorragiaIntracraneal, short hemorragiaCuello, short hemorragiaOral, short hemorragiaOtrasLocalizaciones, short hemorragiaOtrasDiferentesHematrosisEspontaneas, short hemorragiaOtrasDiferentesHematrosisTraumaticas, short hemorragiaAsociadaProcesosDiferentesHematrosis, String presenciaInhibidorFechaCorte, Date fechaDeterminacionTitulosInhibidor, String recibidoItiUsuario, String recibioItiPeriodo, short tiempoUsuarioIti, String artropatiaHemofilicaCronica, short numArticulacionesComprometidas, String usuarioInfectadoVhc, String usuarioInfectadoVhb, String usuarioInfectadoVih, String pseudotumores, String fracturas, String anafilaxis, String factorAnacfiliactica, short reemplazoArticularesVida, short reemplazoArticularesPeriodo, String profesionalAtencionUsuario, short consultasPresencialesHematologo, short consultasPresencialesOrtopedista, short intervencionProfesionalEnfermeria, short consultasOdontologo, short consultaNutricionista, short intervencionTrabajoSocial, short consultaFisiatria, short consultaPsicologia, short intervencionQuimicoFarmaceutico, short intervencionFisioterapia, String primerNombreMedicoPrincipal, String segundoNombreMedicoPrincipal, String primerApellidoMedicoPrincipal, String segundoApellidoMedicoPrincipal, short numeroAtencionesServicioUrgenciasHemofilia, short numeroEventosHospitalariosHemofilia, double costoTotalUnidadesFactor, double costosAgentePuente, double costosCoagulopatia, double costosIncapacidadesCoagulopatia, String novedades, String causaMuerte, Date fechaMuerte, int bdua, Date fechaCorte) {
+    public TblReadHemofiliaPasoModel(Integer idHemofiliaPaso, String primerNombre, String segundoNombre,
+            String primerApellido, String segundoApellido, String tipoIdentificacionUsuario,
+            String numeroIdentificacionUsuario, Date fechaNacimientoUsuario, String sexoUsuario, short ocupacionUsuario,
+            String sgsss, String codigoEapb, short codigoPertenenciaEtnica, short grupoPoblacional,
+            short municipioResidencia, String numeroTelefonicoUsuario, Date fechaAfilicionEps,
+            String estadoGestacionUsuario, String usuarioProgramaPlanificacion, int edadUsuarioConsulta,
+            String motivoPruebaDiagnostico, Date fechaDiagnostico, long codigoValidoHabilitacionIps,
+            String tipoDeficienciaDiagnosticada, String clasificacionSeveridadNivelFactor,
+            double actividadCoagulanteFactor, String antecedentesFamiliaresAsociadosHemofilia,
+            String factorRecibidoPrimerTratamiento, String esquemaPrimerTratamiento, Date fechaInicioPrimerTratamiento,
+            short factorRecibidoActualTratamieno, String esquemaActualTratamiento, double pesoUsuario, double dosis,
+            String frecuenciaSemana, int numeroDosisTotalesPeriodo, long numeroAplicacionesTotalesPeriodo,
+            String modalidadAplicacionTratamiento, String viaAdministracion, String cum1, String cum2, String cum3,
+            String cum4, long codigoHabilitacionEps, String hermartrosis, short hemorragiailioPsoas,
+            short numeroHermatrosisEspontaneasUltimoAno, short numeroHermatrosisTraumaticasUltimoAno,
+            short hemorragiaMuscular, short hemorragiaIntracraneal, short hemorragiaCuello, short hemorragiaOral,
+            short hemorragiaOtrasLocalizaciones, short hemorragiaOtrasDiferentesHematrosisEspontaneas,
+            short hemorragiaOtrasDiferentesHematrosisTraumaticas, short hemorragiaAsociadaProcesosDiferentesHematrosis,
+            String presenciaInhibidorFechaCorte, Date fechaDeterminacionTitulosInhibidor, String recibidoItiUsuario,
+            String recibioItiPeriodo, short tiempoUsuarioIti, String artropatiaHemofilicaCronica,
+            short numArticulacionesComprometidas, String usuarioInfectadoVhc, String usuarioInfectadoVhb,
+            String usuarioInfectadoVih, String pseudotumores, String fracturas, String anafilaxis,
+            String factorAnacfiliactica, short reemplazoArticularesVida, short reemplazoArticularesPeriodo,
+            String profesionalAtencionUsuario, short consultasPresencialesHematologo,
+            short consultasPresencialesOrtopedista, short intervencionProfesionalEnfermeria, short consultasOdontologo,
+            short consultaNutricionista, short intervencionTrabajoSocial, short consultaFisiatria,
+            short consultaPsicologia, short intervencionQuimicoFarmaceutico, short intervencionFisioterapia,
+            String primerNombreMedicoPrincipal, String segundoNombreMedicoPrincipal,
+            String primerApellidoMedicoPrincipal, String segundoApellidoMedicoPrincipal,
+            short numeroAtencionesServicioUrgenciasHemofilia, short numeroEventosHospitalariosHemofilia,
+            double costoTotalUnidadesFactor, double costosAgentePuente, double costosCoagulopatia,
+            double costosIncapacidadesCoagulopatia, String novedades, String causaMuerte, Date fechaMuerte, int bdua,
+            Date fechaCorte) {
         this.idHemofiliaPaso = idHemofiliaPaso;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -604,7 +665,8 @@ public class TblReadHemofiliaPasoModel implements Serializable {
         this.bdua = bdua;
         this.fechaCorte = fechaCorte;
     }
-//Getters and setters
+
+    // Getters and setters
     public Integer getIdHemofiliaPaso() {
         return idHemofiliaPaso;
     }
@@ -1033,7 +1095,8 @@ public class TblReadHemofiliaPasoModel implements Serializable {
         return hemorragiaOtrasDiferentesHematrosisEspontaneas;
     }
 
-    public void setHemorragiaOtrasDiferentesHematrosisEspontaneas(short hemorragiaOtrasDiferentesHematrosisEspontaneas) {
+    public void setHemorragiaOtrasDiferentesHematrosisEspontaneas(
+            short hemorragiaOtrasDiferentesHematrosisEspontaneas) {
         this.hemorragiaOtrasDiferentesHematrosisEspontaneas = hemorragiaOtrasDiferentesHematrosisEspontaneas;
     }
 
@@ -1041,7 +1104,8 @@ public class TblReadHemofiliaPasoModel implements Serializable {
         return hemorragiaOtrasDiferentesHematrosisTraumaticas;
     }
 
-    public void setHemorragiaOtrasDiferentesHematrosisTraumaticas(short hemorragiaOtrasDiferentesHematrosisTraumaticas) {
+    public void setHemorragiaOtrasDiferentesHematrosisTraumaticas(
+            short hemorragiaOtrasDiferentesHematrosisTraumaticas) {
         this.hemorragiaOtrasDiferentesHematrosisTraumaticas = hemorragiaOtrasDiferentesHematrosisTraumaticas;
     }
 
@@ -1049,7 +1113,8 @@ public class TblReadHemofiliaPasoModel implements Serializable {
         return hemorragiaAsociadaProcesosDiferentesHematrosis;
     }
 
-    public void setHemorragiaAsociadaProcesosDiferentesHematrosis(short hemorragiaAsociadaProcesosDiferentesHematrosis) {
+    public void setHemorragiaAsociadaProcesosDiferentesHematrosis(
+            short hemorragiaAsociadaProcesosDiferentesHematrosis) {
         this.hemorragiaAsociadaProcesosDiferentesHematrosis = hemorragiaAsociadaProcesosDiferentesHematrosis;
     }
 
