@@ -1,6 +1,10 @@
 package com.savia.validacion.validaciones;
 
 
+import com.savia.validacion.model.TblReadHemofiliaPasoModel;
+import com.savia.validacion.valueobject.Message;
+import org.springframework.http.ResponseEntity;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -271,4 +275,123 @@ public class ValidacionesHemofilia {
         }
     }
     //--------------------------------------------------------------------------------
+
+    public String validacionV19(Map<String,String> parametros){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        /*fila 210*/
+        if (parametros.get("edadUsuarioConsulta").equals("5555")&&
+                parametros.get("novedades").equals("11")==false)
+        {
+            return "ERROR(B2382) Esta ingresando en Variable 19 : '5555'" +
+                            "pero  la variable 64 no es: '11' ";
+        }
+        /*fila 211*/
+        Calendar fechaV21 = Calendar.getInstance();
+        Calendar fechaVariable1 = Calendar.getInstance();
+        try {
+            fechaV21.setTime(simpleDateFormat.parse(parametros.get("fechaNacimientoUsuario")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        fechaVariable1.set(1846,00,01);
+        if (parametros.get("edadUsuarioConsulta").equals("5555")&&(fechaV21.compareTo(fechaVariable1)>0))
+        {
+            return"ERROR(B2382) Esta ingresando en Variable 19 : '5555'" +
+                    "pero  la variable 21 no es: '1846-01-01' ";
+        }
+        /*fila 212*/
+        fechaVariable1.set(1811,00,01);
+        if (parametros.get("edadUsuarioConsulta").equals("9998")&&
+                fechaV21.after(fechaVariable1))
+        {
+            return "ERROR(B2383) Esta ingresando en Variable 19 : '9999'" +
+                            "pero  la variable 21 no es: '<=1811-01-01' ";
+        }
+        else
+        {
+            return "ok";
+        }
+    }
+    //--------------------------------------------------------------------------------
+    public String validacionV20(Map<String,String> parametros){
+        /*fila 214*/
+        if(parametros.get("motivoPruebaDiagnostico").equals("5555")&&
+                parametros.get("novedades").equals("11")==false)
+        {
+            return "ERROR(B2384) Esta ingresando en Variable 20 : '55'" +
+                            "pero  la variable 64 no es: '11' ";
+        }
+        /*fila 215-216*/
+        if((parametros.get("motivoPruebaDiagnostico").equals("55")==false)&&
+                (Integer.parseInt(parametros.get("motivoPruebaDiagnostico"))>4))
+        {
+            return "ERROR(B3978) No esta ingresando en Variable 20 " +
+                            "un dato:'<=4' o '55'";
+        }else
+        {
+            return "ok";
+        }
+    }
+    //--------------------------------------------------------------------------------
+    public String validacionV21(Map<String,String> parametros){
+        System.out.println("llegue"+parametros.get("fechaDiagnostico")+"--"+parametros.get("novedades")+"--"+
+                parametros.get("fechaNacimientoUsuario")+"--"+parametros.get("edadUsuarioConsulta")+"--"+
+                parametros.get("fechaCorte"));
+        /*fila 218-219*/
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        if((parametros.get("fechaDiagnostico").equals("1811-01-01")||
+                parametros.get("fechaDiagnostico").equals("1800-01-01"))&&
+                (parametros.get("novedades").equals("2")))
+        {
+            return "(B1558),(B2386)Esta ingresando en la variable 21 " +
+                            "'1811-01-01' o '1800-01-01' y en la variable 64 '2'";
+        }
+        //fila 220
+        if((parametros.get("fechaDiagnostico").equals("1846-01-01"))&&
+                (parametros.get("novedades").equals("11")==false))
+        {
+            return "(B2387)Esta ingresando en la variable 21 " +
+                    "'1846-01-01' y en la variable 64 no es '11'";
+        }
+        Calendar fechaV21 = Calendar.getInstance();
+        Calendar fechaVariable1 = Calendar.getInstance();
+        try {
+            fechaVariable1.setTime(format.parse(parametros.get("fechaNacimientoUsuario")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            fechaV21.setTime(format.parse(parametros.get("fechaDiagnostico")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //fila221
+        if((fechaV21.after(fechaVariable1)||
+                parametros.get("fechaDiagnostico").equals(parametros.get("fechaNacimientoUsuario")))
+                &&(Integer.parseInt(parametros.get("edadUsuarioConsulta"))>100))
+        {
+            return "ERROR(B2388) esta ingresando una fecha en la variable 21 >= a la variable 7, pero " +
+                    "variable V19 no es <100  ";
+        }
+        Calendar fechaVariable2 = Calendar.getInstance();
+        try {
+            fechaVariable2.setTime(format.parse(parametros.get("fechaCorte")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //fila223-226
+        if((fechaV21.before(fechaVariable1)||fechaV21.after(fechaVariable2))
+                &&(parametros.get("fechaDiagnostico")
+                .matches("[1][8][0][0][-][0][1][-][0][1]|[1][8][1][1][-][0][1][-][0][1]|[1][8][4][6][-][0][1][-][0][1]")==false))
+        {
+            return "ERROR(B901) esta ingresando una fecha no valida en la variable 21  ";
+        }
+
+        else
+        {
+            return "ok";
+        }
+
+    }
+
 }
