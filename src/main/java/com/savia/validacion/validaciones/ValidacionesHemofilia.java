@@ -391,7 +391,16 @@ public class ValidacionesHemofilia {
         {
             return "ok";
         }
-
+    }
+    public String validacionV22(Map<String,String> parametros){
+        //fila228
+        if(parametros.get("codigoValidoHabilitacionIps").equals("99")&&parametros.get("novedades").equals("2"))
+        {
+            return "ERROR(B2389) esta ingresando en la variable 22 :99 y en la variable 64:2 ";
+        }else
+        {
+            return "ok";
+        }
     }
 
 }
