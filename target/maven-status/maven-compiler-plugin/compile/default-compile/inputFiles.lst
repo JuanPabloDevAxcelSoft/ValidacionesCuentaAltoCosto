@@ -5,12 +5,13 @@ C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCost
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\service\HemofiliaReadService.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\repository\ValidacionRepository.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\reflector\ReflectorImpl.java
+C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\validaciones\ValidacionesHemofilia.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\repository\ReadValidacionRepository.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\constants\Comparadores.java
-C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\service\impl\validaciones\ValidacionesHemofilia.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\model\TblValidacionDependencia.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\valueobject\Message.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\dto\ValidateOperadores.java
+C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\util\TranferObjectoMap.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\service\ValidacionService.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\service\impl\HemofiliaReadServiceImpl.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\util\OperadoresLogicos.java
@@ -27,3 +28,4 @@ C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCost
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\constants\vih\ValoresIdErrores.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\controller\ValidadorController.java
 C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\model\TblConfiguracionValidacion.java
+C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto\src\main\java\com\savia\validacion\util\GenerateClassGeneric.java

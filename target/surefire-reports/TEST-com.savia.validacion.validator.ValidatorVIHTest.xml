@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.savia.validacion.validator.ValidatorVIHTest" time="0.22" errors="1" skipped="0">
+<testsuite tests="1" failures="0" name="com.savia.validacion.validator.ValidatorVIHTest" time="0.355" errors="1" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_192\jre\bin"/>
@@ -20,7 +20,7 @@
     <property name="basedir" value="C:\Users\Angel Gonzalez\Documents\Vs Code Spring Boot\ValidacionesCuentaAltoCosto"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_192\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="surefire.real.class.path" value="C:\Users\ANGELG~1\AppData\Local\Temp\surefirebooter3592169881547658733.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\ANGELG~1\AppData\Local\Temp\surefirebooter8707860126015997245.jar"/>
     <property name="java.io.tmpdir" value="C:\Users\ANGELG~1\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
@@ -44,7 +44,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_192\jre"/>
-    <property name="sun.java.command" value="C:\Users\ANGELG~1\AppData\Local\Temp\surefirebooter3592169881547658733.jar C:\Users\ANGELG~1\AppData\Local\Temp\surefire2664161863090289576tmp C:\Users\ANGELG~1\AppData\Local\Temp\surefire7660028454499698188tmp"/>
+    <property name="sun.java.command" value="C:\Users\ANGELG~1\AppData\Local\Temp\surefirebooter8707860126015997245.jar C:\Users\ANGELG~1\AppData\Local\Temp\surefire3543921764802892473tmp C:\Users\ANGELG~1\AppData\Local\Temp\surefire2686610885112566068tmp"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="es"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -61,7 +61,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.savia.validacion.validator.ValidatorVIHTest" name="initializationError" time="0.002">
+  <testcase classname="com.savia.validacion.validator.ValidatorVIHTest" name="initializationError" time="0.004">
     <error message="No runnable methods" type="java.lang.Exception">java.lang.Exception: No runnable methods
 	at org.junit.runners.BlockJUnit4ClassRunner.validateInstanceMethods(BlockJUnit4ClassRunner.java:191)
 	at org.junit.runners.BlockJUnit4ClassRunner.collectInitializationErrors(BlockJUnit4ClassRunner.java:128)

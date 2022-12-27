@@ -3,8 +3,10 @@ com\savia\validacion\validator\ValidacionesHemofilia.class
 com\savia\validacion\util\MethodsGeneric.class
 com\savia\validacion\service\impl\ValidacionServiceImpl.class
 com\savia\validacion\model\TblValidacionContatante.class
+com\savia\validacion\util\GenerateClassGeneric.class
 com\savia\validacion\valueobject\Message.class
 com\savia\validacion\repository\ValidacionRepository.class
+com\savia\validacion\validaciones\ValidacionesHemofilia.class
 com\savia\validacion\ValidacionApplication.class
 com\savia\validacion\validator\ValidatorVIH.class
 com\savia\validacion\service\ValidacionService.class
@@ -18,7 +20,7 @@ com\savia\validacion\repository\ReadValidacionRepository.class
 com\savia\validacion\repository\HemofiliaRepository.class
 com\savia\validacion\constants\Comparadores.class
 com\savia\validacion\model\TblReadValidacionModel.class
-com\savia\validacion\service\impl\validaciones\ValidacionesHemofilia.class
+com\savia\validacion\util\TranferObjectoMap.class
 com\savia\validacion\util\OperadoresLogicos.class
 com\savia\validacion\model\TblReadHemofiliaPasoModel.class
 com\savia\validacion\model\TblConfiguracionValidacion.class

@@ -42,6 +42,12 @@ public class TblValidacionDependencia implements Serializable {
     @Size(min = 1, max = 80)
     @Column(name = "nombre_metodo")
     private String nombreMetodo;
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "secuencia")
+    private Integer secuencia;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -97,22 +103,6 @@ public class TblValidacionDependencia implements Serializable {
         this.id = id;
     }
 
-    public TblValidacionDependencia(Integer id, int enfermedadId, String nombreMetodo, String variableIndependiente,
-            String variableDependiente, String operador, String errores, int tipoMetodo, String rutaValidaciones,
-            String rutaImplementaciones, Date fechaCreacion) {
-        this.id = id;
-        this.enfermedadId = enfermedadId;
-        this.nombreMetodo = nombreMetodo;
-        this.variableIndependiente = variableIndependiente;
-        this.variableDependiente = variableDependiente;
-        this.operador = operador;
-        this.errores = errores;
-        this.tipoMetodo = tipoMetodo;
-        this.rutaValidaciones = rutaValidaciones;
-        this.rutaImplementaciones = rutaImplementaciones;
-        this.fechaCreacion = fechaCreacion;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -131,6 +121,14 @@ public class TblValidacionDependencia implements Serializable {
 
     public String getNombreMetodo() {
         return nombreMetodo;
+    }
+
+    public Integer getSecuencia() {
+        return secuencia;
+    }
+
+    public void setSecuencia(Integer secuencia) {
+        this.secuencia = secuencia;
     }
 
     public void setNombreMetodo(String nombreMetodo) {

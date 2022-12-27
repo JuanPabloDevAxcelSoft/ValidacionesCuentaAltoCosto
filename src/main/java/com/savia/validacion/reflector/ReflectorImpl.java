@@ -1,6 +1,5 @@
 package com.savia.validacion.reflector;
 
-import com.savia.validacion.service.HemofiliaReadService;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
@@ -12,19 +11,13 @@ import java.util.Map;
 @Service
 public class ReflectorImpl implements Reflector {
 
-    private HemofiliaReadService hemofiliaReadService;
-
     @Override
     public Object buscarGenerico(Object enfermedad, String metodo, Integer idPaciente) {
         Method[] methods = enfermedad.getClass().getMethods();
         for (Method m : methods) {
             if (m.getName().equals(metodo)) {
                 try {
-                    System.out.println("hola");
-                    System.out.println(hemofiliaReadService.oneElement(idPaciente).getClass().getName());
-                    System.out.println("hecho");
                     System.out.println(m.invoke(enfermedad, idPaciente) + "Resultado busqueda");
-                    System.out.println("HOlaasmaksk");
                     return new Object();
                 } catch (InvocationTargetException e) {
                     System.out.println(e.getMessage());
