@@ -134,8 +134,7 @@ public class ValidacionesHemofilia {
                     "No es E";
         }
         /* fila 176-179 */
-        if (parametros.get("codigoEapb").matches("RES001|RES002|" +
-                "RES003|RES004") &&
+        if (parametros.get("codigoEapb").matches("RES001|RES002|RES003|RES004") &&
                 parametros.get("sgsss").toUpperCase().matches("P") == false) {
             return "ERROR Esta ingresando en la variable 11: " + parametros.get("codigoEapb")
                     + " Pero en la variable 10: " +
