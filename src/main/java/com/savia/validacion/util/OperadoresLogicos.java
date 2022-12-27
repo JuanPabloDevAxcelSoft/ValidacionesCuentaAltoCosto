@@ -2,11 +2,10 @@ package com.savia.validacion.util;
 
 import javax.annotation.PostConstruct;
 
+import io.vavr.control.Try;
 import org.springframework.stereotype.Component;
 
 import com.savia.validacion.dto.ValidateOperadores;
-
-import io.vavr.control.Try;
 
 @Component
 public class OperadoresLogicos {
