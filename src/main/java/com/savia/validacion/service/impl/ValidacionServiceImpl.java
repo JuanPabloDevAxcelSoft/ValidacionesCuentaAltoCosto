@@ -1,11 +1,14 @@
 package com.savia.validacion.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.savia.validacion.interfaces.ValidacionInterfaces;
 import com.savia.validacion.model.TblReadValidacionModel;
 import com.savia.validacion.reflector.Reflector;
-import com.savia.validacion.repository.TblReadValidacionRepository;
+import com.savia.validacion.repository.ReadValidacionRepository;
+import com.savia.validacion.repository.ValidacionRepository;
 import com.savia.validacion.service.HemofiliaReadService;
 import com.savia.validacion.service.ValidacionService;
+import com.savia.validacion.util.LoadClassGeneric;
 import com.savia.validacion.valueobject.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,13 +28,18 @@ public class ValidacionServiceImpl implements ValidacionService {
     private HemofiliaReadService hemofiliaReadService;
 
     @Autowired
-    private TblReadValidacionRepository tblReadValidacionRepository;
+    private ReadValidacionRepository ReadValidacionRepository;
 
     @Autowired
     private Reflector reflector;
 
+    @Autowired
+    private ValidacionRepository validacionRepository;
+
     @PersistenceContext
     private EntityManager entityManager;
+
+    private LoadClassGeneric loadClass = new LoadClassGeneric();
 
     @Override
     public ResponseEntity<Message> resultValidacion(int idPaciente, int idEnfermedad) {
@@ -54,28 +62,20 @@ public class ValidacionServiceImpl implements ValidacionService {
                 mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
                 String JSON_SOURCE = mapper.writeValueAsString(objectPasciente);
                 Map<?, ?> result = mapper.readValue(JSON_SOURCE, HashMap.class);
-                Map<String, String> parame = new HashMap<>();
+                Map<String, String> parametros = new HashMap<>();
                 try {
-                    List<TblReadValidacionModel> listValidacion = tblReadValidacionRepository
+                    List<TblReadValidacionModel> listValidacion = ReadValidacionRepository
                             .listValidaciones(idEnfermedad);
                     for (int i = 0; i < listValidacion.size(); i++) {
                         // Sacar parametros
                         String[] parametrosTbl = listValidacion.get(i).getParametros().split(",");
-                        for (int j = 0; j < parametrosTbl.length; j++) {
-                            parame.put(parametrosTbl[j], result.get(parametrosTbl[j]).toString());
+                        for (String item : parametrosTbl) {
+                            parametros.put(item, result.get(item).toString());
                         }
+
                         // Sacar clase validaciones generico
-                        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-                        try {
-                            Class<?> clazz = classLoader.loadClass(listValidacion.get(i).getClaseValidacion());
-                            claseValidaciones = clazz.getDeclaredConstructor().newInstance();
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (InstantiationException e) {
-                            e.printStackTrace();
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        }
+                        String nombreValidacion = listValidacion.get(i).getNombreValidacion();
+                        claseValidaciones = this.loadClass.getNewInstance(nombreValidacion);
                         /*
                          * //Sacar el objeto para validar
                          * ClassLoader classLoader = ClassLoader.getSystemClassLoader();
@@ -96,7 +96,8 @@ public class ValidacionServiceImpl implements ValidacionService {
                          */
                         try {
                             List<String> resultadoValidacion = reflector.validacionGenerico(claseValidaciones,
-                                    listValidacion.get(i).getNombreValidacion(), parame);
+                                    nombreValidacion, parametros);
+
                             if (resultadoValidacion.get(0).equals("false")) {
                                 /* Matriz de errores */
                                 return ResponseEntity.badRequest().body(new Message(resultadoValidacion.get(1)));
@@ -117,5 +118,11 @@ public class ValidacionServiceImpl implements ValidacionService {
             return ResponseEntity.badRequest().body(new Message("No se pudo terminar la validacion" + e.getMessage()));
         }
 
+    }
+
+    @Override
+    public List<ValidacionInterfaces> findAllValidacionesByIdEnfermedad(int enfermedadId) {
+        List<ValidacionInterfaces> list = validacionRepository.findAllEnfermedadId(enfermedadId);
+        return list;
     }
 }
