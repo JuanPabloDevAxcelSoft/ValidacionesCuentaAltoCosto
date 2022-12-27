@@ -39,23 +39,18 @@ public class ReflectorImpl implements Reflector {
     }
 
     @Override
-    public List<String> validacionGenerico(Object validacion, String metodo, Map<?, ?> map) {
+    public List<String> validacionGenerico(Object claseValidaciones, String metodo, Map<?, ?> parametros) {
         List<String> stringList = new ArrayList<>();
-        Method[] methods = validacion.getClass().getMethods();
+        Method[] methods = claseValidaciones.getClass().getMethods();
         stringList.add("");
         stringList.add("");
         stringList.set(0, "false");
         for (Method m : methods) {
             if (m.getName().equals(metodo)) {
                 try {
-                    String resulValidcion = (String) m.invoke(validacion, map);
-                    if (resulValidcion.equals("ok")) {
-                        stringList.set(0, "true");
-                        stringList.set(1, "");
-                    } else {
-                        stringList.set(0, "false");
-                        stringList.set(1, resulValidcion);
-                    }
+                    String resultValidation = (String) m.invoke(claseValidaciones, parametros);
+                    stringList.set(0, (resultValidation.equals("ok")) ? "true" : "false");
+                    stringList.set(1, (resultValidation.equals("ok")) ? "" : resultValidation);
                 } catch (IllegalAccessException e) {
                     stringList.set(1, e.getMessage());
                 } catch (InvocationTargetException e) {
