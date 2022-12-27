@@ -30,8 +30,11 @@ public class ValidadorController {
         return hemofiliaService.listHemofiliaModels();
     }
 
+<<<<<<< HEAD
     @GetMapping("/validacion/{id_hemofilia}")
     public ResponseEntity<Message> oneHemofilia(@PathVariable("id_hemofilia") Integer id_hemofilia) {
         return hemofiliaService.hemofiliaModelOne(id_hemofilia);
     }
+=======
+>>>>>>> dev.juan
 }
