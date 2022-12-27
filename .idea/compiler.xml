@@ -6,17 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="validaciones" />
-        <module name="com.hemofilia" />
-        <module name="hemofilia" />
+        <module name="Validacion" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="com.hemofilia" options="-parameters" />
-      <module name="hemofilia" options="-parameters" />
-      <module name="validaciones" options="-parameters" />
+      <module name="Validacion" options="-parameters" />
     </option>
   </component>
 </project>
