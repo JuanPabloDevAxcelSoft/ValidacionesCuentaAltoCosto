@@ -1,87 +1,36 @@
 package com.savia.validacion.util;
 
 import javax.annotation.PostConstruct;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
-import io.vavr.control.Try;
-import org.springframework.stereotype.Component;
 
-import com.savia.validacion.dto.ValidateOperadores;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-@Component
+
+@Service
 public class OperadoresLogicos {
+    Logger logger = LoggerFactory.getLogger(OperadoresLogicos.class);
 
     @PostConstruct
     public void init() {
     }
 
-    private boolean isValidNumber(String number) {
-        return Try.of(() -> Integer.valueOf(number)).isSuccess();
-    }
-
-    /*
-     * Tener encuenta que falta la validacion de que sea mayor a una fecha, por el
-     * momento solo se tiene los numero
-     */
-    public ValidateOperadores isOperadorCampos(Object var_depe, Object valor_var_dep, String operador) {
-        ValidateOperadores validate = new ValidateOperadores();
+    public boolean isValidationGeneric(String variableValidar, String valorVariableValidar, String operador){
+        ScriptEngineManager scriptEngineManager= new ScriptEngineManager() ;
+        String condicion = "'" + variableValidar + "' " + operador + " '" + valorVariableValidar + "'";
+        ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("JavaScript");
         boolean result = false;
-        String message = "";
-
-        switch (operador) {
-            case "IGUAL":
-                result = var_depe.toString().matches(valor_var_dep.toString());
-                message = "(IGUAL) : Operacion completada de igualda";
-                break;
-            case "MAYOR":
-                message = (this.isValidNumber(var_depe.toString()) && this.isValidNumber(valor_var_dep.toString()))
-                        ? "(MAYOR) : El valor " + valor_var_dep + " no es un numero."
-                        : "Accion completada de mayor";
-                if (this.isValidNumber(var_depe.toString()) && this.isValidNumber(valor_var_dep.toString())) {
-                    result = Integer.parseInt(var_depe.toString()) > Integer.parseInt(valor_var_dep.toString());
-                }
-                break;
-            case "MAYOR_IGUAL":
-                message = (this.isValidNumber(var_depe.toString()) && this.isValidNumber(valor_var_dep.toString()))
-                        ? "(MAYOR_IGUAL) : El valor " + valor_var_dep + " no es un numero."
-                        : "Accion completada de mayor";
-                if (this.isValidNumber(var_depe.toString()) && this.isValidNumber(valor_var_dep.toString())) {
-                    result = Integer.parseInt(var_depe.toString()) >= Integer.parseInt(valor_var_dep.toString());
-                }
-                break;
-            case "MENOR":
-                message = (this.isValidNumber(var_depe.toString()) && this.isValidNumber(valor_var_dep.toString()))
-                        ? "(MENOR) : El valor " + valor_var_dep + " no es un numero."
-                        : "Accion completada de mayor";
-                if (this.isValidNumber(var_depe.toString()) && this.isValidNumber(valor_var_dep.toString())) {
-                    result = Integer.parseInt(var_depe.toString()) < Integer.parseInt(valor_var_dep.toString());
-                }
-                break;
-            case "MENOR_IGUAL":
-                message = (this.isValidNumber(var_depe.toString()) && this.isValidNumber(valor_var_dep.toString()))
-                        ? "(MENOR_IGUAL) El valor " + valor_var_dep + " no es un numero."
-                        : "Accion completada de mayor";
-                if (this.isValidNumber(var_depe.toString()) && this.isValidNumber(valor_var_dep.toString())) {
-                    result = Integer.parseInt(var_depe.toString()) <= Integer.parseInt(valor_var_dep.toString());
-                }
-                break;
-            case "DIFERENTE": /*
-                               * Falta por validar, ya que es posible que sea diferente no solo de numero si
-                               * no tambien de letras
-                               */
-                message = (this.isValidNumber(var_depe.toString()) && this.isValidNumber(valor_var_dep.toString()))
-                        ? "(DIFERENTE) : El valor " + valor_var_dep + " no es un numero."
-                        : "Accion completada debe ser diferente.";
-                if (this.isValidNumber(var_depe.toString()) && this.isValidNumber(valor_var_dep.toString())) {
-                    result = Integer.parseInt(var_depe.toString()) != Integer.parseInt(valor_var_dep.toString());
-                }
-                break;
-            default:
-                break;
+        try {
+            result = (boolean) scriptEngine.eval(condicion);
+            return result;
+        } catch (ScriptException e) {
+            logger.error("Ocurrió un error en la función 'validationGeneric'"+ e.getMessage());
         }
-
-        validate.setDescription(message);
-        validate.setIsCompleted(result);
-        return validate;
+        return result;
     }
 
 }

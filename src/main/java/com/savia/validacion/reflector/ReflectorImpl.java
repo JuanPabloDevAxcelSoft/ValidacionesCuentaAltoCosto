@@ -1,5 +1,8 @@
 package com.savia.validacion.reflector;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
@@ -10,6 +13,7 @@ import java.util.Map;
 
 @Service
 public class ReflectorImpl implements Reflector {
+    Logger logger = LoggerFactory.getLogger(ReflectorImpl.class);
 
     @Override
     public Object buscarGenerico(Object enfermedad, String metodo, Integer idPaciente) {
@@ -52,5 +56,25 @@ public class ReflectorImpl implements Reflector {
             }
         }
         return stringList;
+    }
+
+    @Override
+    public boolean validacionGenericoFinal
+            (Object claseValidaciones, String metodo, String variableValidar, String valorVariableValidar,String operador){
+        Method[] methods = claseValidaciones.getClass().getMethods();
+        boolean result=false;
+        for (Method m : methods) {
+            if (m.getName().equals(metodo)) {
+                try {
+                   result= (boolean) m.invoke(claseValidaciones,variableValidar,valorVariableValidar,operador );
+                   return result;
+                } catch (IllegalAccessException e) {
+                    logger.error("ERROR en Reflector "+e.getMessage());
+                } catch (InvocationTargetException e) {
+                    logger.error("ERROR en Reflector "+e.getMessage());
+                }
+            }
+        }
+        return  result;
     }
 }

@@ -7,6 +7,6 @@ import java.util.List;
 public interface HemofiliaReadService {
     List<TblReadHemofiliaPasoModel> listHemofiliaModels();
 
-    Object oneElement(Integer id);
+    TblReadHemofiliaPasoModel oneElement(Integer id);
 
 }

@@ -24,7 +24,7 @@ public class TblReadHemofiliaPasoModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_hemofilia_paso")
+    @Column(name = "id_hemofilia")
     private Integer idHemofiliaPaso;
     @Basic(optional = false)
     @NotNull
@@ -204,11 +204,11 @@ public class TblReadHemofiliaPasoModel implements Serializable {
     private short hemorragiailioPsoas;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "numero_hermatrosis_espontaneas_ultimo_ano")
+    @Column(name = "numero_hermatrosis_espontaneas_ultimo_año")
     private short numeroHermatrosisEspontaneasUltimoAno;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "numero_hermatrosis_traumaticas_ultimo_ano")
+    @Column(name = "numero_hermatrosis_traumaticas_ultimo_año")
     private short numeroHermatrosisTraumaticasUltimoAno;
     @Basic(optional = false)
     @NotNull

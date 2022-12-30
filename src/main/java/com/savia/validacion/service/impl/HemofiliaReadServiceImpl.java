@@ -18,10 +18,9 @@ public class HemofiliaReadServiceImpl implements HemofiliaReadService {
     }
 
     @Override
-    public Object oneElement(Integer id) {
+    public TblReadHemofiliaPasoModel oneElement(Integer id) {
         try {
-            Object result = hemofiliaRepository.findById(id).get();
-            return result;
+            return hemofiliaRepository.findById(id).get();
         } catch (Exception e) {
             System.out.println("no  se encontro un usuario");
             return null;
