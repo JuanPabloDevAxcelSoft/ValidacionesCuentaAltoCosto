@@ -19,11 +19,15 @@ public class TranValiServiToOpeLogi {
             boolean multipleVa= false;
             JSONObject obj = jsonArray.getJSONObject(i);
             String[] valor = obj.getString("valor").split("\\:");
-            String operador = obj.getString("operador");
-            String parametro = obj.getString("parametro");
-            parametro= String.valueOf(paciente.get(parametro)) ;
+            String[] operador = obj.getString("operador").split("\\:");
+            String[] parametro = obj.getString("parametro").split("\\:");
+            String parametroIndep=new  String();
+            parametroIndep= String.valueOf(paciente.get(parametro[0])) ;
+            if(parametro.length>1) {
+                valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
+            }
             for (int j = 0; j < valor.length; j++) {
-                multipleVa=multipleVa||reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametro,valor[j],operador);
+                multipleVa=multipleVa||reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametroIndep,valor[j],operador[j]);
             }
             result=multipleVa&&result;
 

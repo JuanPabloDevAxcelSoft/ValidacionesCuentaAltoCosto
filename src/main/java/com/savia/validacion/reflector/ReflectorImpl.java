@@ -36,42 +36,19 @@ public class ReflectorImpl implements Reflector {
     }
 
     @Override
-    public List<String> validacionGenerico(Object claseValidaciones, String metodo, Map<?, ?> parametros) {
-        List<String> stringList = new ArrayList<>();
-        Method[] methods = claseValidaciones.getClass().getMethods();
-        stringList.add("");
-        stringList.add("");
-        stringList.set(0, "false");
-        for (Method m : methods) {
-            if (m.getName().equals(metodo)) {
-                try {
-                    String resultValidation = (String) m.invoke(claseValidaciones, parametros);
-                    stringList.set(0, (resultValidation.equals("ok")) ? "true" : "false");
-                    stringList.set(1, (resultValidation.equals("ok")) ? "" : resultValidation);
-                } catch (IllegalAccessException e) {
-                    stringList.set(1, e.getMessage());
-                } catch (InvocationTargetException e) {
-                    stringList.set(1, e.getMessage());
-                }
-            }
-        }
-        return stringList;
-    }
-
-    @Override
     public boolean validacionGenericoFinal
             (Object claseValidaciones, String metodo, String variableValidar, String valorVariableValidar,String operador){
         Method[] methods = claseValidaciones.getClass().getMethods();
-        boolean result=false;
+        boolean result = false;
         for (Method m : methods) {
             if (m.getName().equals(metodo)) {
                 try {
                    result= (boolean) m.invoke(claseValidaciones,variableValidar,valorVariableValidar,operador );
                    return result;
                 } catch (IllegalAccessException e) {
-                    logger.error("ERROR en Reflector "+e.getMessage());
+                    logger.error("ERROR en Reflector illegalAccessException "+e.getMessage());
                 } catch (InvocationTargetException e) {
-                    logger.error("ERROR en Reflector "+e.getMessage());
+                    logger.error("ERROR en Reflector invocation "+e.getMessage());
                 }
             }
         }

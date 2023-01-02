@@ -8,6 +8,7 @@ package com.savia.validacion.validator;
 import com.savia.validacion.model.TblReadHemofiliaPasoModel;
 import com.savia.validacion.service.HemofiliaReadService;
 import com.savia.validacion.service.impl.ValidacionServiceImpl;
+import com.savia.validacion.util.OperadoresLogicos;
 import com.savia.validacion.util.PacienteFind;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class ValidatorVIHTest {
-    @Autowired
-    PacienteFind pacienteFind;
+    OperadoresLogicos operadoresLogicos = new OperadoresLogicos();
     // private final Integer idEnfermedad = 2;
     // private String response = null;;
     // private MethodsGeneric methodsGeneric = new MethodsGeneric();
@@ -35,7 +35,7 @@ public class ValidatorVIHTest {
     void validatorV1() {
         //String result= validacionService.isPacienteCorrect(1,1);
 
-        TblReadHemofiliaPasoModel tblReadHemofiliaPasoModel= (TblReadHemofiliaPasoModel)pacienteFind.paciente(1,1);
+        boolean result= operadoresLogicos.isValidationGeneric("2","2","==");
         // Map<String, String> parametros = new HashMap<String, String>() {
         // {
         // put("entidad_reporte", "11000");
@@ -49,8 +49,8 @@ public class ValidatorVIHTest {
         // response = methodsGeneric.validacionDependenciaUno(item, parametros);
         // }
 
-         TblReadHemofiliaPasoModel tblReadHemofiliaPasoModel2= new TblReadHemofiliaPasoModel();
-        assertEquals(tblReadHemofiliaPasoModel2,tblReadHemofiliaPasoModel);
+
+        assertEquals(result,true);
     }
 
 }

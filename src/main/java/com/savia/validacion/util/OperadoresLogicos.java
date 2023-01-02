@@ -1,6 +1,6 @@
 package com.savia.validacion.util;
 
-import javax.annotation.PostConstruct;
+
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -15,13 +15,12 @@ import org.springframework.stereotype.Service;
 public class OperadoresLogicos {
     Logger logger = LoggerFactory.getLogger(OperadoresLogicos.class);
 
-    @PostConstruct
-    public void init() {
+    public OperadoresLogicos() {
     }
 
     public boolean isValidationGeneric(String variableValidar, String valorVariableValidar, String operador){
         ScriptEngineManager scriptEngineManager= new ScriptEngineManager() ;
-        String condicion = "'" + variableValidar + "' " + operador + " '" + valorVariableValidar + "'";
+        String condicion =  "'"+variableValidar +"'"+  operador +  "'"+valorVariableValidar+"'" ;
         ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("JavaScript");
         boolean result = false;
         try {
