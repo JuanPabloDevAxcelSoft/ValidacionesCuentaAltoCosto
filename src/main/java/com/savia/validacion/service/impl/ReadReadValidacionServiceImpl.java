@@ -3,8 +3,8 @@ package com.savia.validacion.service.impl;
 
 import com.savia.validacion.model.ReadCmValidacion;
 import com.savia.validacion.repository.ReadCmValidacionRepository;
-import com.savia.validacion.service.HemofiliaReadService;
-import com.savia.validacion.service.ValidacionService;
+import com.savia.validacion.service.ReadHemofiliaPasoService;
+import com.savia.validacion.service.ReadValidacionService;
 import com.savia.validacion.util.GenerateClassGeneric;
 import com.savia.validacion.util.PacienteFind;
 import com.savia.validacion.util.TranferObjectoMap;
@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ValidacionServiceImpl implements ValidacionService {
-    Logger logger = LoggerFactory.getLogger(ValidacionServiceImpl.class);
+public class ReadReadValidacionServiceImpl implements ReadValidacionService {
+    Logger logger = LoggerFactory.getLogger(ReadReadValidacionServiceImpl.class);
     @Autowired
     TranValiServiToOpeLogi tranValiServiToOpeLogi;
     @Autowired
@@ -29,7 +29,7 @@ public class ValidacionServiceImpl implements ValidacionService {
     @Autowired
     GenerateClassGeneric generateClassGeneric;
     @Autowired
-    private HemofiliaReadService hemofiliaReadService;
+    private ReadHemofiliaPasoService readHemofiliaPasoService;
     @Autowired
     private ReadCmValidacionRepository readCmValidacionRepository;
 
@@ -49,8 +49,8 @@ public class ValidacionServiceImpl implements ValidacionService {
             //sacando clase de validaciones
             claseValidaciones=generateClassGeneric.classGeneric(readCmValidacionModel.getClaseValidacion());
             //envio a validacion
-            if(tranValiServiToOpeLogi.tranferValidacion(mapPaciente,readCmValidacionModel.getJsonValidacion(),claseValidaciones,
-                    readCmValidacionModel.getNombreValidacion())){
+            if((tranValiServiToOpeLogi.tranferValidacion(mapPaciente,readCmValidacionModel.getJsonValidacion(),claseValidaciones,
+                    readCmValidacionModel.getNombreValidacion()))==false){
                 result=result+" Error detectado: "+readCmValidacionModel.getError()+";";
             }
         }

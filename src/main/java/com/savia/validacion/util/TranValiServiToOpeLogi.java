@@ -13,23 +13,47 @@ public class TranValiServiToOpeLogi {
     @Autowired
     Reflector reflector;
     public boolean tranferValidacion(Map<?,?> paciente, String Json, Object classValidacion, String nomMetodo){
+        boolean varde=false;
+        String tipoMe="";
         boolean result= true;
         JSONArray jsonArray = new JSONArray(Json);
         for (int i = 0; i < jsonArray.length(); i++) {
-            boolean multipleVa= false;
             JSONObject obj = jsonArray.getJSONObject(i);
-            String[] valor = obj.getString("valor").split("\\:");
-            String[] operador = obj.getString("operador").split("\\:");
-            String[] parametro = obj.getString("parametro").split("\\:");
-            String parametroIndep=new  String();
-            parametroIndep= String.valueOf(paciente.get(parametro[0])) ;
-            if(parametro.length>1) {
-                valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
+            boolean multipleVa= false;
+            if(i==0){
+                tipoMe=obj.getString("tipo");
+            }else{
+                String[] valor= obj.getString("valor").split("\\:");
+                if(tipoMe.equals("depen")){
+                    String operador=obj.getString("operador");
+                    String parametro = obj.getString("parametro");
+                    parametro=String.valueOf(paciente.get(parametro));
+                    if ((i==2)&&(varde==false)){
+                        return true;
+                    }
+                    for (int j = 0; j < valor.length; j++) {
+                        multipleVa=multipleVa|reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametro,valor[j],operador);
+                        if(multipleVa){
+                            break;
+                        }
+                    }
+                    varde=varde|multipleVa;
+                    result=result&&multipleVa;
+                }
+                if(tipoMe.equals("integ")){
+                    multipleVa=true;
+                    String[] operador = obj.getString("operador").split("\\:");
+                    String[] parametro = obj.getString("parametro").split("\\:");
+                    String parametroIndep=new  String();
+                    parametroIndep= String.valueOf(paciente.get(parametro[0]));
+                    valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
+                    for (int j = 0; j < valor.length; j++) {
+                        multipleVa=multipleVa&&reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametroIndep,valor[j],operador[j]);
+                    }
+                    result=multipleVa;
+                }
             }
-            for (int j = 0; j < valor.length; j++) {
-                multipleVa=multipleVa||reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametroIndep,valor[j],operador[j]);
-            }
-            result=multipleVa&&result;
+
 
         }
         return result;

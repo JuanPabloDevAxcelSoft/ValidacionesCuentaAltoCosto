@@ -1,14 +1,12 @@
 package com.savia.validacion.controller;
 
 
-import com.savia.validacion.service.HemofiliaReadService;
-import com.savia.validacion.service.ValidacionService;
+import com.savia.validacion.service.ReadHemofiliaPasoService;
+import com.savia.validacion.service.ReadValidacionService;
 import com.savia.validacion.valueobject.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
@@ -16,10 +14,10 @@ import java.util.List;
 public class ValidadorController {
 
     @Autowired
-    private HemofiliaReadService hemofiliaService;
+    private ReadHemofiliaPasoService hemofiliaService;
 
     @Autowired
-    private ValidacionService validacionService;
+    private ReadValidacionService readValidacionService;
 
 
     @GetMapping("/validacion/{id_hemofilia}")
@@ -31,6 +29,6 @@ public class ValidadorController {
     @GetMapping("/prueba")
     public ResponseEntity<Message> prueba(@RequestParam("idPaciente") int idPaciente,
                                                         @RequestParam("idEnfermedad") int idEnfermedad) {
-        return ResponseEntity.ok().body(new Message(validacionService.isPacienteCorrect(idPaciente, idEnfermedad)));
+        return ResponseEntity.ok().body(new Message(readValidacionService.isPacienteCorrect(idPaciente, idEnfermedad)));
     }
 }

@@ -5,19 +5,15 @@ package com.savia.validacion.validator;
 // import java.util.List;
 // import java.util.Map;
 
-import com.savia.validacion.service.HemofiliaReadService;
-import com.savia.validacion.service.impl.ValidacionServiceImpl;
 import com.savia.validacion.util.OperadoresLogicos;
-import com.savia.validacion.util.PacienteFind;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 // import org.springframework.beans.factory.annotation.Autowired;
 // import com.savia.validacion.interfaces.ValidacionInterfaces;
-// import com.savia.validacion.service.ValidacionService;
+// import com.savia.validacion.service.ReadValidacionService;
 // import com.savia.validacion.util.MethodsGeneric;
 
 @SpringBootTest
@@ -28,7 +24,7 @@ public class ValidatorVIHTest {
     // private MethodsGeneric methodsGeneric = new MethodsGeneric();
 
     // @Autowired
-    // private ValidacionService validacion;
+    // private ReadValidacionService validacion;
 
     @Test
     void validatorV1() {

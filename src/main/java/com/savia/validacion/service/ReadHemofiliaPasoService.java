@@ -4,7 +4,7 @@ import com.savia.validacion.model.ReadCmHemofiliaPaso;
 
 
 
-public interface HemofiliaReadService {
+public interface ReadHemofiliaPasoService {
     ReadCmHemofiliaPaso oneElement(Integer id);
 
 }
