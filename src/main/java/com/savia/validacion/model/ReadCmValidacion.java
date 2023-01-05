@@ -11,39 +11,34 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author Angel Gonzalez
+ */
 @Entity
-@Table(name = "tbl_validacion")
-public class TblReadValidacionModel implements Serializable {
+@Table(name = "cm_validacion")
+public class ReadCmValidacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_validacion")
+    @Column(name = "id")
     private Integer idValidacion;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "nombre_validacion")
-    private String nombreValidacion;
-    @Basic(optional = false)
-    @NotNull
-    private int enfermedad;
-    @Basic(optional = false)
-    @NotNull
+    @Lob
+    @Size(max = 1073741824)
     @Column(name = "json_validacion")
-    @Size(min = 1, max = 255)
     private String jsonValidacion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "secuencia_validacion")
-    private int secuenciaValidacion;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -56,6 +51,9 @@ public class TblReadValidacionModel implements Serializable {
     private String claseValidacion;
     @Basic(optional = false)
     @NotNull
+    private int enfermedad;
+    @Basic(optional = false)
+    @NotNull
     private boolean estado;
     @Basic(optional = false)
     @NotNull
@@ -64,64 +62,32 @@ public class TblReadValidacionModel implements Serializable {
     private Date fechaIngreso;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "error")
+    @Size(min = 1, max = 50)
+    @Column(name = "nombre_validacion")
+    private String nombreValidacion;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "secuencia_validacion")
+    private int secuenciaValidacion;
+    @Size(max = 255)
     private String error;
 
-    public TblReadValidacionModel() {
+    public ReadCmValidacion() {
     }
 
-    public TblReadValidacionModel(Integer idValidacion, String nombreValidacion, int enfermedad, String jsonValidacion, int secuenciaValidacion, String buscarElemento, String claseValidacion, boolean estado, Date fechaIngreso, String error) {
+    public ReadCmValidacion(Integer idValidacion) {
         this.idValidacion = idValidacion;
-        this.nombreValidacion = nombreValidacion;
-        this.enfermedad = enfermedad;
-        this.jsonValidacion = jsonValidacion;
-        this.secuenciaValidacion = secuenciaValidacion;
+    }
+
+    public ReadCmValidacion(Integer idValidacion, String buscarElemento, String claseValidacion, int enfermedad, boolean estado, Date fechaIngreso, String nombreValidacion, int secuenciaValidacion) {
+        this.idValidacion = idValidacion;
         this.buscarElemento = buscarElemento;
         this.claseValidacion = claseValidacion;
+        this.enfermedad = enfermedad;
         this.estado = estado;
         this.fechaIngreso = fechaIngreso;
-        this.error = error;
-    }
-
-    public String getJsonValidacion() {
-        return jsonValidacion;
-    }
-
-    public void setJsonValidacion(String jsonValidacion) {
-        this.jsonValidacion = jsonValidacion;
-    }
-
-    public TblReadValidacionModel(Integer idValidacion, String nombreValidacion, int enfermedad, String jsonValidacion, int secuenciaValidacion, String buscarElemento, String claseValidacion, boolean estado, Date fechaIngreso) {
-        this.idValidacion = idValidacion;
         this.nombreValidacion = nombreValidacion;
-        this.enfermedad = enfermedad;
-        this.jsonValidacion = jsonValidacion;
         this.secuenciaValidacion = secuenciaValidacion;
-        this.buscarElemento = buscarElemento;
-        this.claseValidacion = claseValidacion;
-        this.estado = estado;
-        this.fechaIngreso = fechaIngreso;
-    }
-
-    public String getClaseValidacion() {
-        return claseValidacion;
-    }
-
-    public void setClaseValidacion(String claseValidacion) {
-        this.claseValidacion = claseValidacion;
-    }
-
-    public String getBuscarElemento() {
-        return buscarElemento;
-    }
-
-    public void setBuscarElemento(String buscarElemento) {
-        this.buscarElemento = buscarElemento;
-    }
-
-    public boolean isEstado() {
-        return estado;
     }
 
     public Integer getIdValidacion() {
@@ -132,12 +98,28 @@ public class TblReadValidacionModel implements Serializable {
         this.idValidacion = idValidacion;
     }
 
-    public String getNombreValidacion() {
-        return nombreValidacion;
+    public String getJsonValidacion() {
+        return jsonValidacion;
     }
 
-    public void setNombreValidacion(String nombreValidacion) {
-        this.nombreValidacion = nombreValidacion;
+    public void setJsonValidacion(String jsonValidacion) {
+        this.jsonValidacion = jsonValidacion;
+    }
+
+    public String getBuscarElemento() {
+        return buscarElemento;
+    }
+
+    public void setBuscarElemento(String buscarElemento) {
+        this.buscarElemento = buscarElemento;
+    }
+
+    public String getClaseValidacion() {
+        return claseValidacion;
+    }
+
+    public void setClaseValidacion(String claseValidacion) {
+        this.claseValidacion = claseValidacion;
     }
 
     public int getEnfermedad() {
@@ -146,13 +128,6 @@ public class TblReadValidacionModel implements Serializable {
 
     public void setEnfermedad(int enfermedad) {
         this.enfermedad = enfermedad;
-    }
-    public int getSecuenciaValidacion() {
-        return secuenciaValidacion;
-    }
-
-    public void setSecuenciaValidacion(int secuenciaValidacion) {
-        this.secuenciaValidacion = secuenciaValidacion;
     }
 
     public boolean getEstado() {
@@ -169,6 +144,22 @@ public class TblReadValidacionModel implements Serializable {
 
     public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public String getNombreValidacion() {
+        return nombreValidacion;
+    }
+
+    public void setNombreValidacion(String nombreValidacion) {
+        this.nombreValidacion = nombreValidacion;
+    }
+
+    public int getSecuenciaValidacion() {
+        return secuenciaValidacion;
+    }
+
+    public void setSecuenciaValidacion(int secuenciaValidacion) {
+        this.secuenciaValidacion = secuenciaValidacion;
     }
 
     public String getError() {
@@ -189,10 +180,10 @@ public class TblReadValidacionModel implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TblReadValidacionModel)) {
+        if (!(object instanceof ReadCmValidacion)) {
             return false;
         }
-        TblReadValidacionModel other = (TblReadValidacionModel) object;
+        ReadCmValidacion other = (ReadCmValidacion) object;
         if ((this.idValidacion == null && other.idValidacion != null) || (this.idValidacion != null && !this.idValidacion.equals(other.idValidacion))) {
             return false;
         }
@@ -201,7 +192,7 @@ public class TblReadValidacionModel implements Serializable {
 
     @Override
     public String toString() {
-        return "savia.generatedenttiys.entity.TblReadValidacionModel[ idValidacion=" + idValidacion + " ]";
+        return "entity.ReadCmValidacion[ idValidacion=" + idValidacion + " ]";
     }
     
 }

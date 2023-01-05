@@ -5,7 +5,6 @@ package com.savia.validacion.validator;
 // import java.util.List;
 // import java.util.Map;
 
-import com.savia.validacion.model.TblReadHemofiliaPasoModel;
 import com.savia.validacion.service.HemofiliaReadService;
 import com.savia.validacion.service.impl.ValidacionServiceImpl;
 import com.savia.validacion.util.OperadoresLogicos;

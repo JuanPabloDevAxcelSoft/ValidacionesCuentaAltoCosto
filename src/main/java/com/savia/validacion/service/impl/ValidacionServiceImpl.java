@@ -1,8 +1,8 @@
 package com.savia.validacion.service.impl;
 
 
-import com.savia.validacion.model.TblReadValidacionModel;
-import com.savia.validacion.repository.ReadValidacionRepository;
+import com.savia.validacion.model.ReadCmValidacion;
+import com.savia.validacion.repository.ReadCmValidacionRepository;
 import com.savia.validacion.service.HemofiliaReadService;
 import com.savia.validacion.service.ValidacionService;
 import com.savia.validacion.util.GenerateClassGeneric;
@@ -31,7 +31,7 @@ public class ValidacionServiceImpl implements ValidacionService {
     @Autowired
     private HemofiliaReadService hemofiliaReadService;
     @Autowired
-    private ReadValidacionRepository readValidacionRepository;
+    private ReadCmValidacionRepository readCmValidacionRepository;
 
 
     @Override
@@ -44,14 +44,14 @@ public class ValidacionServiceImpl implements ValidacionService {
         // Transformando Paciente a Mapa
         Map<String, Object> mapPaciente = tranferObjectoMap.objectToMap(objectPasciente);
         // Sacando las validaciones de tbl_validaciones
-       List<TblReadValidacionModel> listTblReadValidacionModels =readValidacionRepository.listValidaciones(idEnfermedad);
-        for (TblReadValidacionModel tblReadValidacionModel:listTblReadValidacionModels) {
+       List<ReadCmValidacion> listReadCmValidacion = readCmValidacionRepository.listValidaciones(idEnfermedad);
+        for (ReadCmValidacion readCmValidacionModel:listReadCmValidacion) {
             //sacando clase de validaciones
-            claseValidaciones=generateClassGeneric.classGeneric(tblReadValidacionModel.getClaseValidacion());
+            claseValidaciones=generateClassGeneric.classGeneric(readCmValidacionModel.getClaseValidacion());
             //envio a validacion
-            if(tranValiServiToOpeLogi.tranferValidacion(mapPaciente,tblReadValidacionModel.getJsonValidacion(),claseValidaciones,
-                    tblReadValidacionModel.getNombreValidacion())){
-                result=result+" Error detectado: "+tblReadValidacionModel.getError()+";";
+            if(tranValiServiToOpeLogi.tranferValidacion(mapPaciente,readCmValidacionModel.getJsonValidacion(),claseValidaciones,
+                    readCmValidacionModel.getNombreValidacion())){
+                result=result+" Error detectado: "+readCmValidacionModel.getError()+";";
             }
         }
         return result;

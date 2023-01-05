@@ -1,6 +1,6 @@
 package com.savia.validacion.controller;
 
-import com.savia.validacion.model.TblReadHemofiliaPasoModel;
+
 import com.savia.validacion.service.HemofiliaReadService;
 import com.savia.validacion.service.ValidacionService;
 import com.savia.validacion.valueobject.Message;
@@ -21,11 +21,6 @@ public class ValidadorController {
     @Autowired
     private ValidacionService validacionService;
 
-
-    @GetMapping("/all/validacion")
-    public List<TblReadHemofiliaPasoModel> allHemofilia() {
-        return hemofiliaService.listHemofiliaModels();
-    }
 
     @GetMapping("/validacion/{id_hemofilia}")
     public ResponseEntity<Message> oneHemofilia(@PathVariable("id_hemofilia") Integer id_hemofilia) {
