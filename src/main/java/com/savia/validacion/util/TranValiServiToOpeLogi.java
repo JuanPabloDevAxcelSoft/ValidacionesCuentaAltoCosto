@@ -50,7 +50,7 @@ public class TranValiServiToOpeLogi {
                     for (int j = 0; j < valor.length; j++) {
                         multipleVa=multipleVa&&reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametroIndep,valor[j],operador[j]);
                     }
-                    result=multipleVa;
+                    result=result&&multipleVa;
                 }
             }
 
