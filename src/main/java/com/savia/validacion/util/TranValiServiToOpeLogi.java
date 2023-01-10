@@ -13,52 +13,41 @@ public class TranValiServiToOpeLogi {
     @Autowired
     Reflector reflector;
     public boolean tranferValidacion(Map<?,?> paciente, String Json, Object classValidacion, String nomMetodo){
-        boolean varde=false;
+        boolean multipleVa= false;
         String tipoMe="";
         boolean result= true;
         JSONArray jsonArray = new JSONArray(Json);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            boolean multipleVa= false;
             if(i==0){
                 tipoMe=obj.getString("tipo");
             }else{
                 String[] valor= obj.getString("valor").split("\\:");
+                String operador=obj.getString("operador");
+                String[] parametro = obj.getString("parametro").split("\\:");
+                String parametroIndep;
+                parametroIndep= String.valueOf(paciente.get(parametro[0]));
                 if(tipoMe.equals("depen")){
-                    String operador=obj.getString("operador");
-                    String parametro = obj.getString("parametro");
-                    parametro=String.valueOf(paciente.get(parametro));
-                    if ((i==2)&&(varde==false)){
+                    if ((i==2)&&(result==false)){
                         return true;
                     }
-                    for (int j = 0; j < valor.length; j++) {
-                        multipleVa=multipleVa|reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametro,valor[j],operador);
-                        if(multipleVa){
-                            break;
-                        }
-                    }
-                    varde=varde|multipleVa;
-                    result=result&&multipleVa;
                 }
-                if(tipoMe.equals("integ")){
-                    multipleVa=true;
-                    String[] operador = obj.getString("operador").split("\\:");
-                    String[] parametro = obj.getString("parametro").split("\\:");
-                    String parametroIndep=new  String();
-                    parametroIndep= String.valueOf(paciente.get(parametro[0]));
+                if(tipoMe.equals("integ")&&parametro.length>=2){
                     valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
-                    for (int j = 0; j < valor.length; j++) {
-                        multipleVa=multipleVa&&reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametroIndep,valor[j],operador[j]);
-                    }
-                    result=result&&multipleVa;
                 }
+                for (int j = 0; j < valor.length; j++) {
+                    System.out.println(parametroIndep+operador+valor[j]);
+                    multipleVa=multipleVa|reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametroIndep,valor[j],operador);
+                    if(multipleVa){
+                        break;
+                    }
+                }
+                result=result&&multipleVa;
             }
-
-
+            multipleVa=false;
         }
         return result;
     }
-
     }
 
 
