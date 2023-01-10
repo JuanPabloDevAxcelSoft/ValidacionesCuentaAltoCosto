@@ -35,8 +35,17 @@ public class TranValiServiToOpeLogi {
                 if(tipoMe.equals("integ")&&parametro.length>=2){
                     valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
                 }
+                if(tipoMe.equals("integYo")){
+                    if (parametro.length>=2){
+                        valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
+                    }
+                    if ((i==2)&&(result==true)){
+                        return true;
+                    }else if(i==3){
+                        result=true;
+                    }
+                }
                 for (int j = 0; j < valor.length; j++) {
-                    System.out.println(parametroIndep+operador+valor[j]);
                     multipleVa=multipleVa|reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametroIndep,valor[j],operador);
                     if(multipleVa){
                         break;
