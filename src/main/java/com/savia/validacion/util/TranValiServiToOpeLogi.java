@@ -32,6 +32,17 @@ public class TranValiServiToOpeLogi {
                         return true;
                     }
                 }
+                if(tipoMe.equals("depenYo")){
+                    if ((i==2)&&(result==false)){
+                        return true;
+                    }
+                    if ((i==3)&&(result==true)){
+                        return true;
+                    }
+                    else if(i==4){
+                        result=true;
+                    }
+                }
                 if(tipoMe.equals("integ")&&parametro.length>=2){
                     valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
                 }
@@ -45,7 +56,9 @@ public class TranValiServiToOpeLogi {
                         result=true;
                     }
                 }
+                parametroIndep=parametroIndep.replaceAll("\\.0$","");
                 for (int j = 0; j < valor.length; j++) {
+                    valor[j]=valor[j].replaceAll("\\.0$","");
                     multipleVa=multipleVa|reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametroIndep,valor[j],operador);
                     if(multipleVa){
                         break;
