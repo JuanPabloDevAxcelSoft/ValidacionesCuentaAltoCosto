@@ -39,7 +39,7 @@ public class TranValiServiToOpeLogi {
                     if ((i==3)&&(result==true)){
                         return true;
                     }
-                    else if(i==4){
+                    if(i==3){
                         result=true;
                     }
                 }
@@ -52,7 +52,8 @@ public class TranValiServiToOpeLogi {
                     }
                     if ((i==2)&&(result==true)){
                         return true;
-                    }else if(i==3){
+                    }
+                    if(i==2){
                         result=true;
                     }
                 }

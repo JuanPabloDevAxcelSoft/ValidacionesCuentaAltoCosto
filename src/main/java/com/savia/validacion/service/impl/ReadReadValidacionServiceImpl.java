@@ -5,10 +5,7 @@ import com.savia.validacion.model.ReadCmValidacion;
 import com.savia.validacion.repository.ReadCmValidacionRepository;
 import com.savia.validacion.service.ReadHemofiliaPasoService;
 import com.savia.validacion.service.ReadValidacionService;
-import com.savia.validacion.util.GenerateClassGeneric;
-import com.savia.validacion.util.PacienteFind;
-import com.savia.validacion.util.TranferObjectoMap;
-import com.savia.validacion.util.TranValiServiToOpeLogi;
+import com.savia.validacion.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +23,8 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
     TranferObjectoMap tranferObjectoMap;
     @Autowired
     PacienteFind pacienteFind;
+    @Autowired
+    PacienteSaveFinal pacienteSaveFinal;
     @Autowired
     GenerateClassGeneric generateClassGeneric;
     @Autowired
@@ -53,6 +52,9 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
                     readCmValidacionModel.getNombreValidacion()))==false){
                 result=result+" Error detectado: "+readCmValidacionModel.getError()+";";
             }
+        }
+        if (result.equals("")){
+            result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente);
         }
         return result;
 

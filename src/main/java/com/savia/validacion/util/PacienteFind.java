@@ -9,7 +9,6 @@ public class PacienteFind {
     @Autowired
     ReadHemofiliaPasoService readHemofiliaPasoService;
     public  Object paciente(int idPaciente,int idEnfermedad){
-
         Object objectPasciente;
         switch (idEnfermedad) {
             case 1: {
