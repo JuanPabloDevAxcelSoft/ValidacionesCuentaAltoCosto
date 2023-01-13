@@ -50,7 +50,7 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
             //envio a validacion
             if((tranValiServiToOpeLogi.tranferValidacion(mapPaciente,readCmValidacionModel.getJsonValidacion(),claseValidaciones,
                     readCmValidacionModel.getNombreValidacion()))==false){
-                result=result+" Error detectado: "+readCmValidacionModel.getError()+";";
+                result=result+" Error : "+readCmValidacionModel.getError()+";";
             }
         }
         if (result.equals("")){

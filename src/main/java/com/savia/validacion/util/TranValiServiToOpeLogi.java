@@ -22,6 +22,7 @@ public class TranValiServiToOpeLogi {
             if(i==0){
                 tipoMe=obj.getString("tipo");
             }else{
+                String tipoDato=obj.getString("tipo_dato");
                 String[] valor= obj.getString("valor").split("\\:");
                 String operador=obj.getString("operador");
                 String[] parametro = obj.getString("parametro").split("\\:");
@@ -60,7 +61,7 @@ public class TranValiServiToOpeLogi {
                 parametroIndep=parametroIndep.replaceAll("\\.0$","");
                 for (int j = 0; j < valor.length; j++) {
                     valor[j]=valor[j].replaceAll("\\.0$","");
-                    multipleVa=multipleVa|reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametroIndep,valor[j],operador);
+                    multipleVa=multipleVa|reflector.validacionGenericoFinal(classValidacion,nomMetodo,parametroIndep,valor[j],operador,tipoDato);
                     if(multipleVa){
                         break;
                     }

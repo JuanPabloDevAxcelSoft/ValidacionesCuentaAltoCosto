@@ -9,8 +9,7 @@ import com.savia.validacion.util.OperadoresLogicos;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 // import org.springframework.beans.factory.annotation.Autowired;
 // import com.savia.validacion.interfaces.ValidacionInterfaces;
 // import com.savia.validacion.service.ReadValidacionService;
@@ -30,7 +29,7 @@ public class ValidatorVIHTest {
     void validatorV1() {
         //String result= validacionService.isPacienteCorrect(1,1);
 
-        boolean result= operadoresLogicos.isValidationGeneric("2","2","==");
+        boolean result= operadoresLogicos.isValidationGeneric("1","2",">=", "number");
         // Map<String, String> parametros = new HashMap<String, String>() {
         // {
         // put("entidad_reporte", "11000");
@@ -45,7 +44,7 @@ public class ValidatorVIHTest {
         // }
 
 
-        assertEquals(result,true);
+        assertFalse(result);
     }
 
 }

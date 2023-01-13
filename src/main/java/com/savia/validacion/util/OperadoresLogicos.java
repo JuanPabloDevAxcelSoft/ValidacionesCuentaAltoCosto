@@ -18,9 +18,14 @@ public class OperadoresLogicos {
     public OperadoresLogicos() {
     }
 
-    public boolean isValidationGeneric(String variableValidar, String valorVariableValidar, String operador){
+    public boolean isValidationGeneric(String variableValidar, String valorVariableValidar, String operador,String tipoDato){
         ScriptEngineManager scriptEngineManager= new ScriptEngineManager() ;
-        String condicion =  "'"+variableValidar +"'"+  operador +  "'"+valorVariableValidar+"'" ;
+        String condicion;
+        if ((tipoDato.equals("Date"))|(tipoDato.equals("String"))){
+             condicion =  "'"+variableValidar +"'"+  operador +  "'"+valorVariableValidar+"'" ;
+        }else {
+            condicion =  variableValidar +operador +valorVariableValidar;
+        }
         ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("JavaScript");
         boolean result = false;
         try {

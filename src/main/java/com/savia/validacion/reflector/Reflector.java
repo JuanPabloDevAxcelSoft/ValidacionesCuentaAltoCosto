@@ -5,6 +5,6 @@ import java.util.Map;
 
 public interface Reflector {
     Object buscarGenerico(Object enfermedad, String metodo, Integer idPaciente);
-    boolean validacionGenericoFinal(Object claseValidaciones, String metodo,String variableValidar, String valorVariableValidar, String operador);
+    boolean validacionGenericoFinal(Object claseValidaciones, String metodo,String variableValidar, String valorVariableValidar, String operador,String tipoDato);
 
 }

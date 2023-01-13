@@ -7,9 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class ReflectorImpl implements Reflector {
@@ -37,13 +34,13 @@ public class ReflectorImpl implements Reflector {
 
     @Override
     public boolean validacionGenericoFinal
-            (Object claseValidaciones, String metodo, String variableValidar, String valorVariableValidar,String operador){
+            (Object claseValidaciones, String metodo, String variableValidar, String valorVariableValidar,String operador, String tipoDato){
         Method[] methods = claseValidaciones.getClass().getMethods();
         boolean result = false;
         for (Method m : methods) {
             if (m.getName().equals(metodo)) {
                 try {
-                   result= (boolean) m.invoke(claseValidaciones,variableValidar,valorVariableValidar,operador );
+                   result= (boolean) m.invoke(claseValidaciones,variableValidar,valorVariableValidar,operador,tipoDato );
                    return result;
                 } catch (IllegalAccessException e) {
                     logger.error("ERROR en Reflector illegalAccessException "+e.getMessage());

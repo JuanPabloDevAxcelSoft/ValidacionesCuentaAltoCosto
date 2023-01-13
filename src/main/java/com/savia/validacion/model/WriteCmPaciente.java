@@ -266,7 +266,7 @@ public class WriteCmPaciente implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.WriteCmPaciente[ id=" + id + " ]";
+        return "entity.WriteCmPacienteRepository[ id=" + id + " ]";
     }
     
 }
