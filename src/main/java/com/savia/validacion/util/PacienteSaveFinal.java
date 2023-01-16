@@ -1,18 +1,25 @@
 package com.savia.validacion.util;
 
+import com.savia.validacion.model.WriteCmDetallePaciente;
+import com.savia.validacion.model.WriteCmPaciente;
 import com.savia.validacion.model.WriteCmPacienteHemofilia;
+import com.savia.validacion.repository.WriteCmDetallePacienteRepository;
+import com.savia.validacion.repository.WriteCmPacienteHemofiliaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 @Service
 public class PacienteSaveFinal {
+    @Autowired
+    WriteCmDetallePacienteRepository writeCmDetallePacienteRepository;
+    @Autowired
+    WriteCmPacienteHemofiliaRepository writeCmPacienteHemofiliaRepository;
     public String Paciente(int idEnfermedad, Map<String,Object> paciente) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Map<String, String> mapaConvert = new HashMap<>();
@@ -23,7 +30,18 @@ public class PacienteSaveFinal {
         }
         switch (idEnfermedad) {
             case 1: {
-                List<WriteCmPacienteHemofilia> listWriteCmPacienteHemofilia=new ArrayList<>();
+                //sacando Paciente
+                WriteCmPaciente writeCmPaciente=null;
+                try {
+                    writeCmPaciente= new WriteCmPaciente(mapaConvert.get("primerNombre"),
+                            mapaConvert.get("segundoNombre"),mapaConvert.get("primerApellido"),mapaConvert.get("segundoApellido"),
+                            mapaConvert.get("tipoIdentificacionUsuario"),mapaConvert.get("numeroIdentificacionUsuario"),
+                            simpleDateFormat.parse(mapaConvert.get("fechaNacimientoUsuario")),mapaConvert.get("sexoUsuario").toCharArray()[0],
+                            mapaConvert.get("codigoPertenenciaEtnica").toCharArray()[0]);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                //Sacando el Paciente
                 WriteCmPacienteHemofilia writeCmPacienteHemofilia= null;
                 try {
                     writeCmPacienteHemofilia = new WriteCmPacienteHemofilia(Integer.parseInt(mapaConvert.get("ocupacionUsuario")),
@@ -59,13 +77,25 @@ public class PacienteSaveFinal {
                             Double.parseDouble(mapaConvert.get("costosAgentePuente")),Double.parseDouble(mapaConvert.get("costosCoagulopatia")),
                             Double.parseDouble(mapaConvert.get("costIncaCoag")),mapaConvert.get("novedades"),mapaConvert.get("causaMuerte"),
                             simpleDateFormat.parse(mapaConvert.get("fechaMuerte")),Long.parseLong(mapaConvert.get("bdua")),
-                            simpleDateFormat.parse(mapaConvert.get("fechaCorte")));
+                            simpleDateFormat.parse(mapaConvert.get("fechaCorte")),writeCmPaciente);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                System.out.println(writeCmPacienteHemofilia.getPrimNombMediPrin());
-                listWriteCmPacienteHemofilia.add(writeCmPacienteHemofilia);
-                return "llegue hasta guardado";
+                //Sacando detalle Paciente
+                WriteCmDetallePaciente writeCmDetallePaciente= null;
+                try {
+                    writeCmDetallePaciente= new WriteCmDetallePaciente(mapaConvert.get("sgsss").toCharArray()[0],
+                            Integer.parseInt(mapaConvert.get("municipioResidencia")),mapaConvert.get("numeroTelefonicoUsuario"),
+                            mapaConvert.get("codigoEapb"),simpleDateFormat.parse(mapaConvert.get("fechaAfilicionEps")),
+                            simpleDateFormat.parse(mapaConvert.get("fechaMuerte")),mapaConvert.get("causaMuerte"),
+                            simpleDateFormat.parse(mapaConvert.get("fechaCorte")),mapaConvert.get("bdua"),writeCmPaciente);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                //Guardando
+                writeCmDetallePacienteRepository.save(writeCmDetallePaciente);
+                writeCmPacienteHemofiliaRepository.save(writeCmPacienteHemofilia);
+                return "Paciente de Hemofilia guardado";
             }
             default:
                 return null;

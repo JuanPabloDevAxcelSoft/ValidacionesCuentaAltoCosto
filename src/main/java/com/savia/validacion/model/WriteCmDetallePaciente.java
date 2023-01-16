@@ -7,15 +7,7 @@ package com.savia.validacion.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,6 +23,7 @@ public class WriteCmDetallePaciente implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Basic(optional = false)
     @NotNull
@@ -62,7 +55,7 @@ public class WriteCmDetallePaciente implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "causa_muerte")
-    private Character causaMuerte;
+    private String causaMuerte;
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_corte")
@@ -74,7 +67,7 @@ public class WriteCmDetallePaciente implements Serializable {
     @Column(name = "codigo_serial")
     private String codigoSerial;
     @JoinColumn(name = "id_paciente", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL,optional = false)
     private WriteCmPaciente idPaciente;
 
     public WriteCmDetallePaciente() {
@@ -84,7 +77,7 @@ public class WriteCmDetallePaciente implements Serializable {
         this.id = id;
     }
 
-    public WriteCmDetallePaciente(Long id, Character regimenAfiliacion, int municipioResidencia, String telefono, String codigoEapb, Date fechaAfilicionEapb, Date fechaMuerte, Character causaMuerte, Date fechaCorte, String codigoSerial) {
+    public WriteCmDetallePaciente(Long id, Character regimenAfiliacion, int municipioResidencia, String telefono, String codigoEapb, Date fechaAfilicionEapb, Date fechaMuerte, String causaMuerte, Date fechaCorte, String codigoSerial) {
         this.id = id;
         this.regimenAfiliacion = regimenAfiliacion;
         this.municipioResidencia = municipioResidencia;
@@ -95,6 +88,19 @@ public class WriteCmDetallePaciente implements Serializable {
         this.causaMuerte = causaMuerte;
         this.fechaCorte = fechaCorte;
         this.codigoSerial = codigoSerial;
+    }
+
+    public WriteCmDetallePaciente(Character regimenAfiliacion, int municipioResidencia, String telefono, String codigoEapb, Date fechaAfilicionEapb, Date fechaMuerte, String causaMuerte, Date fechaCorte, String codigoSerial, WriteCmPaciente idPaciente) {
+        this.regimenAfiliacion = regimenAfiliacion;
+        this.municipioResidencia = municipioResidencia;
+        this.telefono = telefono;
+        this.codigoEapb = codigoEapb;
+        this.fechaAfilicionEapb = fechaAfilicionEapb;
+        this.fechaMuerte = fechaMuerte;
+        this.causaMuerte = causaMuerte;
+        this.fechaCorte = fechaCorte;
+        this.codigoSerial = codigoSerial;
+        this.idPaciente = idPaciente;
     }
 
     public Long getId() {
@@ -153,11 +159,11 @@ public class WriteCmDetallePaciente implements Serializable {
         this.fechaMuerte = fechaMuerte;
     }
 
-    public Character getCausaMuerte() {
+    public String getCausaMuerte() {
         return causaMuerte;
     }
 
-    public void setCausaMuerte(Character causaMuerte) {
+    public void setCausaMuerte(String causaMuerte) {
         this.causaMuerte = causaMuerte;
     }
 

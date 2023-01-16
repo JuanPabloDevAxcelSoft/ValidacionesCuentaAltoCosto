@@ -8,15 +8,7 @@ package com.savia.validacion.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
@@ -33,6 +25,8 @@ public class WriteCmPaciente implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Size(max = 20)
     @Column(name = "primer_nombre")
@@ -90,6 +84,18 @@ public class WriteCmPaciente implements Serializable {
         this.id = id;
         this.tipoIdentificacion = tipoIdentificacion;
         this.numeroIdentificacion = numeroIdentificacion;
+    }
+
+    public WriteCmPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacion, String numeroIdentificacion, Date fechaNacimiento, Character sexo, Character codigoPertenenciaEtnica) {
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+        this.tipoIdentificacion = tipoIdentificacion;
+        this.numeroIdentificacion = numeroIdentificacion;
+        this.fechaNacimiento = fechaNacimiento;
+        this.sexo = sexo;
+        this.codigoPertenenciaEtnica = codigoPertenenciaEtnica;
     }
 
     public Long getId() {
