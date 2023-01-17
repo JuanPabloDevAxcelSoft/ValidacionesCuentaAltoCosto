@@ -16,6 +16,7 @@ public class TranferObjectoMap {
             mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
             String JSON_SOURCE = null;
             JSON_SOURCE = mapper.writeValueAsString(objectPasciente);
+            System.out.println(JSON_SOURCE);
             Map<String, Object> result = mapper.readValue(JSON_SOURCE, HashMap.class);
             return result;
         } catch (JsonProcessingException e) {
