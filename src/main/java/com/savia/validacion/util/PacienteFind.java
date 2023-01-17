@@ -1,7 +1,7 @@
 package com.savia.validacion.util;
 
-import com.savia.validacion.service.ReadCmVihPasoService;
-import com.savia.validacion.service.ReadHemofiliaPasoService;
+import com.savia.validacion.service.read.ReadCmVihPasoService;
+import com.savia.validacion.service.read.ReadHemofiliaPasoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

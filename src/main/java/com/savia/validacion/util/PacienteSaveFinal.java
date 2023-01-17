@@ -1,10 +1,10 @@
 package com.savia.validacion.util;
 
-import com.savia.validacion.model.WriteCmDetallePaciente;
-import com.savia.validacion.model.WriteCmPaciente;
-import com.savia.validacion.model.WriteCmPacienteHemofilia;
-import com.savia.validacion.repository.WriteCmDetallePacienteRepository;
-import com.savia.validacion.repository.WriteCmPacienteHemofiliaRepository;
+import com.savia.validacion.model.write.WriteCmDetallePaciente;
+import com.savia.validacion.model.write.WriteCmPaciente;
+import com.savia.validacion.model.write.WriteCmPacienteHemofilia;
+import com.savia.validacion.repository.write.WriteCmDetallePacienteRepository;
+import com.savia.validacion.repository.write.WriteCmPacienteHemofiliaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,6 +96,10 @@ public class PacienteSaveFinal {
                 writeCmDetallePacienteRepository.save(writeCmDetallePaciente);
                 writeCmPacienteHemofiliaRepository.save(writeCmPacienteHemofilia);
                 return "Paciente de Hemofilia guardado";
+            }
+            case 2:
+            {
+                System.out.println("llegue hasta guardado");
             }
             default:
                 return null;
