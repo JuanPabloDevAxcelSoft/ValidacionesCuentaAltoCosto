@@ -71,7 +71,7 @@ public class TranValiServiToOpeLogi {
             multipleVa=false;
         }
         return result;
-    }
-    }
+     }
+}
 
 

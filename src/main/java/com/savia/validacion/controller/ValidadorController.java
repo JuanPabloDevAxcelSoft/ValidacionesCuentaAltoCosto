@@ -15,7 +15,6 @@ public class ValidadorController {
     @Autowired
     private ReadValidacionService readValidacionService;
 
-
     @GetMapping("/prueba")
     public ResponseEntity<Message> prueba(@RequestParam("idPaciente") int idPaciente,
                                                         @RequestParam("idEnfermedad") int idEnfermedad) {

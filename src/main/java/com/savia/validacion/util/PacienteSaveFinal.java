@@ -99,7 +99,7 @@ public class PacienteSaveFinal {
             }
             case 2:
             {
-                System.out.println("llegue hasta guardado");
+               return "llegue hasta guardado";
             }
             default:
                 return null;
