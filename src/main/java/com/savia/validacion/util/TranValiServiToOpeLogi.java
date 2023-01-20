@@ -44,6 +44,20 @@ public class TranValiServiToOpeLogi {
                         result=true;
                     }
                 }
+                if(tipoMe.equals("depenIntegYo")){
+                    if (parametro.length>=2){
+                        valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
+                    }
+                    if ((i==2)&&(result==false)){
+                        return true;
+                    }
+                    if ((i==3)&&(result==true)){
+                        return true;
+                    }
+                    if(i==3){
+                        result=true;
+                    }
+                }
                 if(tipoMe.equals("integ")&&parametro.length>=2){
                     valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
                 }
