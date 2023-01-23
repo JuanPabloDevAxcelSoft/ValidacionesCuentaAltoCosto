@@ -31,6 +31,8 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
     private ReadHemofiliaPasoService readHemofiliaPasoService;
     @Autowired
     private ReadCmValidacionRepository readCmValidacionRepository;
+    @Autowired
+    Errores errores;
 
 
     @Override
@@ -53,6 +55,7 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
                 result=result+" Error : "+readCmValidacionModel.getError()+";";
             }
         }
+        errores.guardarErrores();
         if (result.equals("")){
             result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente);
         }
