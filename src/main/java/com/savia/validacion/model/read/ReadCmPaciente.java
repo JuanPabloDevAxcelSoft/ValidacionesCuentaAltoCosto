@@ -36,6 +36,9 @@ public class ReadCmPaciente implements Serializable {
     @Basic(optional = false)
     @NotNull
     private Long id;
+    @Column(name = "fecha_ingreso")
+    @Temporal(TemporalType.DATE)
+    private Date fechaIngreso;
     @Size(max = 20)
     @Column(name = "primer_nombre")
     private String primerNombre;
@@ -121,6 +124,14 @@ public class ReadCmPaciente implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
     }
 
     public String getPrimerNombre() {
