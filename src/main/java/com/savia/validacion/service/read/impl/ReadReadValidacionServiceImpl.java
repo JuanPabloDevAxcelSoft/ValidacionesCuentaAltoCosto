@@ -56,6 +56,9 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
         if (result.equals("")){
             result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente);
         }
+        else{
+
+        }
         return result;
 
     }

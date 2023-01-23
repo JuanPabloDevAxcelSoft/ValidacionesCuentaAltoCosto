@@ -41,7 +41,7 @@ public class PacienteSaveFinal {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                //Sacando el Paciente
+                //Sacando el Paciente hemofilia
                 WriteCmPacienteHemofilia writeCmPacienteHemofilia= null;
                 try {
                     writeCmPacienteHemofilia = new WriteCmPacienteHemofilia(Integer.parseInt(mapaConvert.get("ocupacionUsuario")),
