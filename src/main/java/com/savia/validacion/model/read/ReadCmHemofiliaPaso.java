@@ -401,6 +401,14 @@ public class ReadCmHemofiliaPaso implements Serializable {
     @Column(name = "fecha_corte")
     @Temporal(TemporalType.DATE)
     private Date fechaCorte;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "campo_leido")
+    private boolean campoLeido;
+    @Column(name = "clave_archivo")
+    private String claveArchvio;
+    @Column(name = "error_validacion")
+    private String errorValidacion;
 
     public ReadCmHemofiliaPaso() {
     }
@@ -1261,6 +1269,30 @@ public class ReadCmHemofiliaPaso implements Serializable {
 
     public void setFechaCorte(Date fechaCorte) {
         this.fechaCorte = fechaCorte;
+    }
+
+    public boolean isCampoLeido() {
+        return campoLeido;
+    }
+
+    public void setCampoLeido(boolean campoLeido) {
+        this.campoLeido = campoLeido;
+    }
+
+    public String getClaveArchvio() {
+        return claveArchvio;
+    }
+
+    public void setClaveArchvio(String claveArchvio) {
+        this.claveArchvio = claveArchvio;
+    }
+
+    public String getErrorValidacion() {
+        return errorValidacion;
+    }
+
+    public void setErrorValidacion(String errorValidacion) {
+        this.errorValidacion = errorValidacion;
     }
 
     @Override

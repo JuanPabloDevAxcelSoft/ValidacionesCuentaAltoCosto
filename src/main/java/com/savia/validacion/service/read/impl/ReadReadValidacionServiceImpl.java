@@ -36,7 +36,7 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
 
 
     @Override
-    public String isPacienteCorrect(int idPaciente, int idEnfermedad){
+    public String isPacienteCorrect(int idPaciente, int idEnfermedad,String claveArchivo){
         String result="";
         Object objectPasciente;
         Object claseValidaciones;
@@ -52,15 +52,14 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
             //envio a validacion
             if((tranValiServiToOpeLogi.tranferValidacion(mapPaciente,readCmValidacionModel.getJsonValidacion(),claseValidaciones,
                     readCmValidacionModel.getNombreValidacion()))==false){
-                result=result+" Error : "+readCmValidacionModel.getError()+";";
+                result=result+readCmValidacionModel.getError()+";";
             }
         }
-        errores.guardarErrores();
         if (result.equals("")){
             result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente);
         }
         else{
-
+            errores.guardarErrores(idEnfermedad,idPaciente,result,claveArchivo);
         }
         return result;
 
