@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("unchecked") /* para quitar las advertencia cast */
 @Service
 public class TranferObjectoMap {
     public Map<String, Object> objectToMap(Object objectPasciente) {

@@ -15,7 +15,10 @@ import java.util.Map;
 @Service
 public class ReadReadValidacionServiceImpl implements ReadValidacionService {
     Logger logger = LoggerFactory.getLogger(ReadReadValidacionServiceImpl.class);
-
+    @Autowired
+    SacarNombreTablaPaso sacarNombreTablaPaso;
+    @Autowired
+    SacarNombreClaseValidacion sacarNombreClaseValidacion;
     @Autowired
     TranValiServiToOpeLogi tranValiServiToOpeLogi;
 
@@ -42,8 +45,12 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
         String result = "";
         Object objectPasciente;
         Object claseValidaciones;
+        //Sacando nombre del la tabla de paso
+        String nomTablaPaso=sacarNombreTablaPaso.nomTabPaso(idEnfermedad);
+        //sacando nombre de la clase Validacion
+        String claseValidacion =sacarNombreClaseValidacion.nomClaseValidacion(idEnfermedad);
         // Sacando paciente
-        objectPasciente = pacienteFind.paciente(idPaciente, idEnfermedad);
+        objectPasciente = pacienteFind.pacienteObj(claseValidacion,idPaciente);
         // Transformando Paciente a Mapa
         Map<String, Object> mapPaciente = tranferObjectoMap.objectToMap(objectPasciente);
         // Sacando las validaciones de tbl_validaciones
@@ -63,7 +70,7 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
             result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente,claveArchivo);
         }
         else{
-            errores.guardarErrores(idEnfermedad,idPaciente,result,claveArchivo);
+            errores.guardarErrores(nomTablaPaso,idPaciente,result,claveArchivo);
         }
         return result;
     }

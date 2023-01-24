@@ -31,7 +31,7 @@ public class ReadCmHemofiliaPaso implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
-    private Integer idHemofilia;
+    private Long idHemofilia;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -412,11 +412,11 @@ public class ReadCmHemofiliaPaso implements Serializable {
     public ReadCmHemofiliaPaso() {
     }
 
-    public ReadCmHemofiliaPaso(Integer idHemofilia) {
+    public ReadCmHemofiliaPaso(Long idHemofilia) {
         this.idHemofilia = idHemofilia;
     }
 
-    public ReadCmHemofiliaPaso(Integer idHemofilia, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacionUsuario, String numeroIdentificacionUsuario, Character sexoUsuario, int ocupacionUsuario, Character sgsss, String codigoEapb, int codigoPertenenciaEtnica, int grupoPoblacional, int municipioResidencia, String numeroTelefonicoUsuario, Date fechaAfilicionEps, String estadoGestacionUsuario, int edadUsuarioConsulta, String motivoPruebaDiagnostico, Date fechaDiagnostico, float actividadCoagulanteFactor, String esquemaPrimerTratamiento, String esquemaActualTratamiento, float pesoUsuario, float dosis, String frecuenciaSemana, int numeroDosisTotalesPeriodo, String viaAdministracion, String cum1, String cum2, String cum3, String cum4, long codigoHabilitacionEps, String hermartrosis, int hemorragiaIlioPsoas, int hemorragiaMuscular, int hemorragiaIntracraneal, int hemorragiaCuello, int hemorragiaOral, String recibidoItiUsuario, String recibioItiPeriodo, int tiempoUsuarioIti, String artropatiaHemofilicaCronica, String usuarioInfectadoVhc, String usuarioInfectadoVhb, String usuarioInfectadoVih, String pseudotumores, String fracturas, String anafilaxis, String factorAnacfiliactica, int reemplazoArticularesVida, int reemplazoArticularesPeriodo, String profesionalAtencionUsuario, int consultasOdontologo, int consultaNutricionista, int intervencionTrabajoSocial, int consultaFisiatria, int consultaPsicologia, int intervencionFisioterapia, double costoTotalUnidadesFactor, double costosAgentePuente, double costosCoagulopatia, String novedades, String causaMuerte, Date fechaMuerte, long bdua, Date fechaCorte) {
+    public ReadCmHemofiliaPaso(Long idHemofilia, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacionUsuario, String numeroIdentificacionUsuario, Character sexoUsuario, int ocupacionUsuario, Character sgsss, String codigoEapb, int codigoPertenenciaEtnica, int grupoPoblacional, int municipioResidencia, String numeroTelefonicoUsuario, Date fechaAfilicionEps, String estadoGestacionUsuario, int edadUsuarioConsulta, String motivoPruebaDiagnostico, Date fechaDiagnostico, float actividadCoagulanteFactor, String esquemaPrimerTratamiento, String esquemaActualTratamiento, float pesoUsuario, float dosis, String frecuenciaSemana, int numeroDosisTotalesPeriodo, String viaAdministracion, String cum1, String cum2, String cum3, String cum4, long codigoHabilitacionEps, String hermartrosis, int hemorragiaIlioPsoas, int hemorragiaMuscular, int hemorragiaIntracraneal, int hemorragiaCuello, int hemorragiaOral, String recibidoItiUsuario, String recibioItiPeriodo, int tiempoUsuarioIti, String artropatiaHemofilicaCronica, String usuarioInfectadoVhc, String usuarioInfectadoVhb, String usuarioInfectadoVih, String pseudotumores, String fracturas, String anafilaxis, String factorAnacfiliactica, int reemplazoArticularesVida, int reemplazoArticularesPeriodo, String profesionalAtencionUsuario, int consultasOdontologo, int consultaNutricionista, int intervencionTrabajoSocial, int consultaFisiatria, int consultaPsicologia, int intervencionFisioterapia, double costoTotalUnidadesFactor, double costosAgentePuente, double costosCoagulopatia, String novedades, String causaMuerte, Date fechaMuerte, long bdua, Date fechaCorte) {
         this.idHemofilia = idHemofilia;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -486,11 +486,11 @@ public class ReadCmHemofiliaPaso implements Serializable {
         this.fechaCorte = fechaCorte;
     }
 
-    public Integer getIdHemofilia() {
+    public Long getIdHemofilia() {
         return idHemofilia;
     }
 
-    public void setIdHemofilia(Integer idHemofilia) {
+    public void setIdHemofilia(Long idHemofilia) {
         this.idHemofilia = idHemofilia;
     }
 

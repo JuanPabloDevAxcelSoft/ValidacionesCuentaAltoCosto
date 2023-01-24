@@ -10,11 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 @Service
 public class Errores {
@@ -29,25 +24,16 @@ public class Errores {
 
     @Transactional
     @Modifying
-    public void guardarErrores(int idEnfermedad, int idPaciente, String errores, String claveArchivo) {
+    public void guardarErrores(String nomTablaPaso, int idPaciente, String errores, String claveArchivo) {
         String message = "";
-        HttpClient httpClient = HttpClient.newHttpClient();
-        String rutaServicio =  this.server + "/api/v1/nombre/paso/" + idEnfermedad;
-        HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(rutaServicio)).GET().build();
         try {
-            HttpResponse<String> stringHttpResponse = httpClient.send(httpRequest,
-                    HttpResponse.BodyHandlers.ofString());
-            String nomTabla = stringHttpResponse.body();
-            String pureSql = "UPDATE " + nomTabla + " SET campo_leido=true, clave_archivo='" + claveArchivo + "', " +
+            String pureSql = "UPDATE " + nomTablaPaso + " SET campo_leido=true, clave_archivo='" + claveArchivo + "', " +
                     "error_validacion='" + errores + "' WHERE id=" + idPaciente;
             Query nativeQuery = entityManager.createNativeQuery(pureSql);
             nativeQuery.executeUpdate();
             message = "Actualizacion de errores completado";
-        } catch (IOException e) {
-            message = "Ocurrion un error : 'IOException' : " + e.getMessage();
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            message = "Ocurrion un error : 'InterruptedException' : " + e.getMessage();
+        } catch (Exception e) {
+            message = "Ocurrion un error : 'Exception' : " + e.getMessage();
             e.printStackTrace();
         }
         this.logger.info(message);
