@@ -56,7 +56,7 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
             }
         }
         if (result.equals("")){
-            result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente);
+            result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente,claveArchivo);
         }
         else{
             errores.guardarErrores(idEnfermedad,idPaciente,result,claveArchivo);

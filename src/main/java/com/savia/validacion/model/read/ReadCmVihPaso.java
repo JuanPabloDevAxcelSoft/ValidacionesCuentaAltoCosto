@@ -749,6 +749,13 @@ public class ReadCmVihPaso implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "codigo_serial")
     private String codigoSerial;
+    @NotNull
+    @Column(name = "campo_leido")
+    private boolean campoLeido;
+    @Column(name = "clave_archivo")
+    private String claveArchvio;
+    @Column(name = "error_validacion")
+    private String errorValidacion;
 
     public ReadCmVihPaso() {
     }
@@ -2504,6 +2511,30 @@ public class ReadCmVihPaso implements Serializable {
 
     public void setCodigoSerial(String codigoSerial) {
         this.codigoSerial = codigoSerial;
+    }
+
+    public boolean isCampoLeido() {
+        return campoLeido;
+    }
+
+    public void setCampoLeido(boolean campoLeido) {
+        this.campoLeido = campoLeido;
+    }
+
+    public String getClaveArchvio() {
+        return claveArchvio;
+    }
+
+    public void setClaveArchvio(String claveArchvio) {
+        this.claveArchvio = claveArchvio;
+    }
+
+    public String getErrorValidacion() {
+        return errorValidacion;
+    }
+
+    public void setErrorValidacion(String errorValidacion) {
+        this.errorValidacion = errorValidacion;
     }
 
     @Override

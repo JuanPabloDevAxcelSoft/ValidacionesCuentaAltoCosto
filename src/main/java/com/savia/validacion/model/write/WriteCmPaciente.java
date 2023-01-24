@@ -56,6 +56,8 @@ public class WriteCmPaciente implements Serializable {
     private Character sexo;
     @Column(name = "codigo_pertenencia_etnica")
     private Character codigoPertenenciaEtnica;
+    @Column(name = "clave_archivo")
+    private String claveArchvio;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
     private List<WriteCmPacienteCancer> writeCmPacienteCancerList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
@@ -86,7 +88,7 @@ public class WriteCmPaciente implements Serializable {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 
-    public WriteCmPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacion, String numeroIdentificacion, Date fechaNacimiento, Character sexo, Character codigoPertenenciaEtnica) {
+    public WriteCmPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacion, String numeroIdentificacion, Date fechaNacimiento, Character sexo, Character codigoPertenenciaEtnica, String claveArchvio) {
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
@@ -96,6 +98,7 @@ public class WriteCmPaciente implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
         this.codigoPertenenciaEtnica = codigoPertenenciaEtnica;
+        this.claveArchvio = claveArchvio;
     }
 
     public Long getId() {
@@ -176,6 +179,14 @@ public class WriteCmPaciente implements Serializable {
 
     public void setCodigoPertenenciaEtnica(Character codigoPertenenciaEtnica) {
         this.codigoPertenenciaEtnica = codigoPertenenciaEtnica;
+    }
+
+    public String getClaveArchvio() {
+        return claveArchvio;
+    }
+
+    public void setClaveArchvio(String claveArchvio) {
+        this.claveArchvio = claveArchvio;
     }
 
     @XmlTransient
