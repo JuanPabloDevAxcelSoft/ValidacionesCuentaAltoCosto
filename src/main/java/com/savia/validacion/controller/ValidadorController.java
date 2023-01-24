@@ -19,10 +19,16 @@ public class ValidadorController {
 
 
     @GetMapping("/validacion")
+<<<<<<< HEAD
     public ResponseEntity<Message> prueba(
             @RequestParam("idPaciente") int idPaciente,
             @RequestParam("idEnfermedad") int idEnfermedad) {
         return ResponseEntity.ok().body(new Message(readValidacionService.isPacienteCorrect(idPaciente, idEnfermedad)));
+=======
+    public ResponseEntity<Message> prueba(@RequestParam("idPaciente") int idPaciente,
+                                                        @RequestParam("idEnfermedad") int idEnfermedad,@RequestParam("claveArchivo") String claveArchivo) {
+        return ResponseEntity.ok().body(new Message(readValidacionService.isPacienteCorrect(idPaciente, idEnfermedad,claveArchivo)));
+>>>>>>> origin/Dev
     }
 
     @GetMapping("/test")
