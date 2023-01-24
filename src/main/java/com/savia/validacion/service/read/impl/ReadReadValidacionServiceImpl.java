@@ -58,18 +58,12 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
                 result = result + readCmValidacionModel.getError() + ";";
             }
         }
-<<<<<<< HEAD
-        if (result.equals("")) {
-            result = pacienteSaveFinal.Paciente(idEnfermedad, mapPaciente);
-        } else {
-            errores.guardarErrores(idEnfermedad, idPaciente, result, claveArchivo);
-=======
+
         if (result.equals("")){
             result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente,claveArchivo);
         }
         else{
             errores.guardarErrores(idEnfermedad,idPaciente,result,claveArchivo);
->>>>>>> dev.juan
         }
         return result;
     }

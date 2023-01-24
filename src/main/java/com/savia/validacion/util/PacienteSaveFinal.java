@@ -20,12 +20,8 @@ public class PacienteSaveFinal {
     WriteCmDetallePacienteRepository writeCmDetallePacienteRepository;
     @Autowired
     WriteCmPacienteHemofiliaRepository writeCmPacienteHemofiliaRepository;
-<<<<<<< HEAD
 
-    public String Paciente(int idEnfermedad, Map<String, Object> paciente) {
-=======
     public String Paciente(int idEnfermedad, Map<String,Object> paciente,String claveArchivo) {
->>>>>>> dev.juan
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Map<String, String> mapaConvert = new HashMap<>();
         for (Map.Entry<String, Object> entry : paciente.entrySet()) {
@@ -38,22 +34,12 @@ public class PacienteSaveFinal {
                 // sacando Paciente
                 WriteCmPaciente writeCmPaciente = null;
                 try {
-<<<<<<< HEAD
-                    writeCmPaciente = new WriteCmPaciente(mapaConvert.get("primerNombre"),
-                            mapaConvert.get("segundoNombre"), mapaConvert.get("primerApellido"),
-                            mapaConvert.get("segundoApellido"),
-                            mapaConvert.get("tipoIdentificacionUsuario"),
-                            mapaConvert.get("numeroIdentificacionUsuario"),
-                            simpleDateFormat.parse(mapaConvert.get("fechaNacimientoUsuario")),
-                            mapaConvert.get("sexoUsuario").toCharArray()[0],
-                            mapaConvert.get("codigoPertenenciaEtnica").toCharArray()[0]);
-=======
                     writeCmPaciente= new WriteCmPaciente(mapaConvert.get("primerNombre"),
                             mapaConvert.get("segundoNombre"),mapaConvert.get("primerApellido"),mapaConvert.get("segundoApellido"),
                             mapaConvert.get("tipoIdentificacionUsuario"),mapaConvert.get("numeroIdentificacionUsuario"),
                             simpleDateFormat.parse(mapaConvert.get("fechaNacimientoUsuario")),mapaConvert.get("sexoUsuario").toCharArray()[0],
                             mapaConvert.get("codigoPertenenciaEtnica").toCharArray()[0],claveArchivo);
->>>>>>> dev.juan
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
