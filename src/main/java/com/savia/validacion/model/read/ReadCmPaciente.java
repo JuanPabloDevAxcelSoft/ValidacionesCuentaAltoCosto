@@ -65,6 +65,8 @@ public class ReadCmPaciente implements Serializable {
     private Character sexo;
     @Column(name = "codigo_pertenencia_etnica")
     private Character codigoPertenenciaEtnica;
+    @Column(name = "clave_archivo")
+    private String claveArchvio;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
     private List<ReadCmPacienteCancer> readCmPacienteCancerList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
@@ -211,6 +213,14 @@ public class ReadCmPaciente implements Serializable {
 
     public void setCodigoPertenenciaEtnica(Character codigoPertenenciaEtnica) {
         this.codigoPertenenciaEtnica = codigoPertenenciaEtnica;
+    }
+
+    public String getClaveArchvio() {
+        return claveArchvio;
+    }
+
+    public void setClaveArchvio(String claveArchvio) {
+        this.claveArchvio = claveArchvio;
     }
 
     @XmlTransient
