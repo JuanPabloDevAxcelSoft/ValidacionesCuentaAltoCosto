@@ -33,17 +33,13 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
 
     @Autowired
     private ReadCmValidacionRepository readCmValidacionRepository;
+    
     @Autowired
     Errores errores;
 
     @Override
-<<<<<<< HEAD
-    public String isPacienteCorrect(int idPaciente, int idEnfermedad) {
+    public String isPacienteCorrect(int idPaciente, int idEnfermedad, String claveArchivo) {
         String result = "";
-=======
-    public String isPacienteCorrect(int idPaciente, int idEnfermedad,String claveArchivo){
-        String result="";
->>>>>>> origin/Dev
         Object objectPasciente;
         Object claseValidaciones;
         // Sacando paciente
@@ -51,7 +47,6 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
         // Transformando Paciente a Mapa
         Map<String, Object> mapPaciente = tranferObjectoMap.objectToMap(objectPasciente);
         // Sacando las validaciones de tbl_validaciones
-<<<<<<< HEAD
         List<ReadCmValidacion> listReadCmValidacion = readCmValidacionRepository.listValidaciones(idEnfermedad);
         for (ReadCmValidacion readCmValidacionModel : listReadCmValidacion) {
             // sacando clase de validaciones
@@ -60,33 +55,15 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
             if ((tranValiServiToOpeLogi.tranferValidacion(mapPaciente, readCmValidacionModel.getJsonValidacion(),
                     claseValidaciones,
                     readCmValidacionModel.getNombreValidacion())) == false) {
-                result = result + " Error : " + readCmValidacionModel.getError() + ";";
+                result = result + readCmValidacionModel.getError() + ";";
             }
         }
         if (result.equals("")) {
             result = pacienteSaveFinal.Paciente(idEnfermedad, mapPaciente);
         } else {
-
-=======
-       List<ReadCmValidacion> listReadCmValidacion = readCmValidacionRepository.listValidaciones(idEnfermedad);
-        for (ReadCmValidacion readCmValidacionModel:listReadCmValidacion) {
-            //sacando clase de validaciones
-            claseValidaciones=generateClassGeneric.classGeneric(readCmValidacionModel.getClaseValidacion());
-            //envio a validacion
-            if((tranValiServiToOpeLogi.tranferValidacion(mapPaciente,readCmValidacionModel.getJsonValidacion(),claseValidaciones,
-                    readCmValidacionModel.getNombreValidacion()))==false){
-                result=result+readCmValidacionModel.getError()+";";
-            }
-        }
-        if (result.equals("")){
-            result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente);
-        }
-        else{
-            errores.guardarErrores(idEnfermedad,idPaciente,result,claveArchivo);
->>>>>>> origin/Dev
+            errores.guardarErrores(idEnfermedad, idPaciente, result, claveArchivo);
         }
         return result;
-
     }
 
 }
