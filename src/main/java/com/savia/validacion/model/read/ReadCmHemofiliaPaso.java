@@ -402,7 +402,6 @@ public class ReadCmHemofiliaPaso implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaCorte;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "campo_leido")
     private boolean campoLeido;
     @Column(name = "clave_archivo")
