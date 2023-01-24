@@ -21,22 +21,16 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
     SacarNombreClaseValidacion sacarNombreClaseValidacion;
     @Autowired
     TranValiServiToOpeLogi tranValiServiToOpeLogi;
-
     @Autowired
     TranferObjectoMap tranferObjectoMap;
-
     @Autowired
     PacienteFind pacienteFind;
-
     @Autowired
     PacienteSaveFinal pacienteSaveFinal;
-
     @Autowired
     GenerateClassGeneric generateClassGeneric;
-
     @Autowired
     private ReadCmValidacionRepository readCmValidacionRepository;
-    
     @Autowired
     Errores errores;
 
