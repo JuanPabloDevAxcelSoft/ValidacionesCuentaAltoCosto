@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("unchecked") /* para quitar las advertencia cast */
 @Service
 public class TranferObjectoMap {
     public Map<String, Object> objectToMap(Object objectPasciente) {
@@ -16,8 +17,7 @@ public class TranferObjectoMap {
             mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
             String JSON_SOURCE = null;
             JSON_SOURCE = mapper.writeValueAsString(objectPasciente);
-            System.out.println(JSON_SOURCE);
-            Map<String, Object> result = mapper.readValue(JSON_SOURCE, HashMap.class);
+            Map<String, Object> result = (Map<String, Object>) mapper.readValue(JSON_SOURCE, HashMap.class);
             return result;
         } catch (JsonProcessingException e) {
             e.printStackTrace();

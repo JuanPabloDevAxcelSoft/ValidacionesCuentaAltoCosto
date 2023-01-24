@@ -5,8 +5,6 @@
  */
 package com.savia.validacion.model.read;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -97,7 +95,16 @@ public class ReadCmPaciente implements Serializable {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 
-    public ReadCmPaciente(Long id, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacion, String numeroIdentificacion, Date fechaNacimiento, Character sexo, Character codigoPertenenciaEtnica, List<ReadCmPacienteCancer> readCmPacienteCancerList, List<ReadCmDetallePaciente> readCmDetallePacienteList, List<ReadCmPacienteArtritisReumatoide> readCmPacienteArtritisReumatoideList, List<ReadCmPacienteHemofilia> readCmPacienteHemofiliaList, List<ReadCmPacienteHepatitisDos> readCmPacienteHepatitisDosList, List<ReadCmPacienteVih> readCmPacienteVihList, List<ReadCmPacienteHepatitisTres> readCmPacienteHepatitisTresList, List<ReadCmPacienteHepatitisUno> readCmPacienteHepatitisUnoList) {
+    public ReadCmPaciente(Long id, String primerNombre, String segundoNombre, String primerApellido,
+            String segundoApellido, String tipoIdentificacion, String numeroIdentificacion, Date fechaNacimiento,
+            Character sexo, Character codigoPertenenciaEtnica, List<ReadCmPacienteCancer> readCmPacienteCancerList,
+            List<ReadCmDetallePaciente> readCmDetallePacienteList,
+            List<ReadCmPacienteArtritisReumatoide> readCmPacienteArtritisReumatoideList,
+            List<ReadCmPacienteHemofilia> readCmPacienteHemofiliaList,
+            List<ReadCmPacienteHepatitisDos> readCmPacienteHepatitisDosList,
+            List<ReadCmPacienteVih> readCmPacienteVihList,
+            List<ReadCmPacienteHepatitisTres> readCmPacienteHepatitisTresList,
+            List<ReadCmPacienteHepatitisUno> readCmPacienteHepatitisUnoList) {
         this.id = id;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -229,7 +236,8 @@ public class ReadCmPaciente implements Serializable {
         return readCmPacienteArtritisReumatoideList;
     }
 
-    public void setCmPacienteArtritisReumatoideList(List<ReadCmPacienteArtritisReumatoide> readCmPacienteArtritisReumatoideList) {
+    public void setCmPacienteArtritisReumatoideList(
+            List<ReadCmPacienteArtritisReumatoide> readCmPacienteArtritisReumatoideList) {
         this.readCmPacienteArtritisReumatoideList = readCmPacienteArtritisReumatoideList;
     }
 
@@ -287,7 +295,7 @@ public class ReadCmPaciente implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        
         if (!(object instanceof ReadCmPaciente)) {
             return false;
         }
@@ -302,5 +310,5 @@ public class ReadCmPaciente implements Serializable {
     public String toString() {
         return "entity.ReadCmPaciente[ id=" + id + " ]";
     }
-    
+
 }
