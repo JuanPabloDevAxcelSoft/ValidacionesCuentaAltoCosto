@@ -33,39 +33,47 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
     private ReadCmValidacionRepository readCmValidacionRepository;
     @Autowired
     Errores errores;
+    @Autowired
+    EliminacionPacientePaso eliminacionPacientePaso;
 
     @Override
     public String isPacienteCorrect(int idPaciente, int idEnfermedad, String claveArchivo) {
         String result = "";
-        Object objectPasciente;
-        Object claseValidaciones;
-        //Sacando nombre del la tabla de paso
-        String nomTablaPaso=sacarNombreTablaPaso.nomTabPaso(idEnfermedad);
-        //sacando nombre de la clase Validacion
-        String claseValidacion =sacarNombreClaseValidacion.nomClaseValidacion(idEnfermedad);
-        // Sacando paciente
-        objectPasciente = pacienteFind.pacienteObj(claseValidacion,idPaciente);
-        // Transformando Paciente a Mapa
-        Map<String, Object> mapPaciente = tranferObjectoMap.objectToMap(objectPasciente);
-        // Sacando las validaciones de tbl_validaciones
-        List<ReadCmValidacion> listReadCmValidacion = readCmValidacionRepository.listValidaciones(idEnfermedad);
-        for (ReadCmValidacion readCmValidacionModel : listReadCmValidacion) {
-            // sacando clase de validaciones
-            claseValidaciones = generateClassGeneric.classGeneric(readCmValidacionModel.getClaseValidacion());
-            // envio a validacion
-            if ((tranValiServiToOpeLogi.tranferValidacion(mapPaciente, readCmValidacionModel.getJsonValidacion(),
-                    claseValidaciones,
-                    readCmValidacionModel.getNombreValidacion())) == false) {
-                result = result + readCmValidacionModel.getError() + ";";
+        try {
+            Object objectPasciente;
+            Object claseValidaciones;
+            //Sacando nombre del la tabla de paso
+            String nomTablaPaso=sacarNombreTablaPaso.getNombreTablaPaso(idEnfermedad);
+            //sacando nombre de la clase Validacion
+            String claseValidacion =sacarNombreClaseValidacion.getNombreClaseValidacion(idEnfermedad);
+            // Sacando paciente
+            objectPasciente = pacienteFind.getPacienteObj(claseValidacion,idPaciente);
+            // Transformando Paciente a Mapa
+            Map<String, Object> mapPaciente = tranferObjectoMap.objectToMap(objectPasciente);
+            // Sacando las validaciones de tbl_validaciones
+            List<ReadCmValidacion> listReadCmValidacion = readCmValidacionRepository.listValidaciones(idEnfermedad);
+            for (ReadCmValidacion readCmValidacionModel : listReadCmValidacion) {
+                // sacando clase de validaciones
+                claseValidaciones = generateClassGeneric.classGeneric(readCmValidacionModel.getClaseValidacion());
+                // envio a validacion
+                if ((tranValiServiToOpeLogi.tranferValidacion(mapPaciente, readCmValidacionModel.getJsonValidacion(),
+                        claseValidaciones,
+                        readCmValidacionModel.getNombreValidacion())) == false) {
+                    result = result + readCmValidacionModel.getError() + ";";
+                }
             }
+
+            if (result.equals("")){
+                result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente,claveArchivo);
+                eliminacionPacientePaso.setEliminarPacientePaso(nomTablaPaso,idPaciente);
+            }
+            else{
+                errores.guardarErrores(nomTablaPaso,idPaciente,result,claveArchivo);
+            }
+        }catch (NullPointerException e){
+            logger.error("Error "+e.getMessage());
         }
 
-        if (result.equals("")){
-            result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente,claveArchivo);
-        }
-        else{
-            errores.guardarErrores(nomTablaPaso,idPaciente,result,claveArchivo);
-        }
         return result;
     }
 

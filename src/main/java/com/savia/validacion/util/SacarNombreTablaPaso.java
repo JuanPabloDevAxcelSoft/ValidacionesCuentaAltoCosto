@@ -25,7 +25,7 @@ public class SacarNombreTablaPaso {
 
     @Transactional
     @Modifying
-    public  String nomTabPaso(int idEnfermedad){
+    public  String getNombreTablaPaso(int idEnfermedad){
         String message = "";
         HttpClient httpClient = HttpClient.newHttpClient();
         String rutaServicio =  this.server + "/api/v1/nombre/paso/" + idEnfermedad;

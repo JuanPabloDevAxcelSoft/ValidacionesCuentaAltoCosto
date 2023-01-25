@@ -25,7 +25,7 @@ public class SacarNombreClaseValidacion {
 
     @Transactional
     @Modifying
-    public  String nomClaseValidacion(int idEnfermedad){
+    public  String getNombreClaseValidacion(int idEnfermedad){
         String message = "";
         HttpClient httpClient = HttpClient.newHttpClient();
         String rutaServicio =  this.server + "/api/v1/nombre/clase/validacion/" + idEnfermedad;
