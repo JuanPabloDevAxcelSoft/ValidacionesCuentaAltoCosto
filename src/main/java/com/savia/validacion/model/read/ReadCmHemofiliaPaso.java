@@ -212,14 +212,14 @@ public class ReadCmHemofiliaPaso implements Serializable {
     @NotNull
     @Size(min = 1, max = 4)
     private String hermartrosis;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "hemorragia_ilio_psoas")
-    private int hemorragiaIlioPsoas;
     @Column(name = "nume_herm_espo_ulti_año")
     private Integer numeHermEspoUltiAño;
     @Column(name = "nume_herm_trau_ulti_año")
     private Integer numeHermTrauUltiAño;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "hemorragia_ilio_psoas")
+    private int hemorragiaIlioPsoas;
     @Basic(optional = false)
     @NotNull
     @Column(name = "hemorragia_muscular")
