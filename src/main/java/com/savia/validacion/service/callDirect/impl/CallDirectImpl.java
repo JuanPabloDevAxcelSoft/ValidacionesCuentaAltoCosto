@@ -1,5 +1,7 @@
 package com.savia.validacion.service.callDirect.impl;
 
+import com.savia.validacion.util.RequestHttp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.savia.validacion.service.callDirect.CallDirectService;
@@ -15,6 +17,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class CallDirectImpl implements CallDirectService {
+    @Autowired
+    RequestHttp requestHttp;
 
     private final Logger logger = LoggerFactory.getLogger(CallDirectImpl.class);
 
@@ -30,19 +34,8 @@ public class CallDirectImpl implements CallDirectService {
         this.headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         headers.add("Accept", "*/*");
-        this.post("/api/v1/notificacion/evento");
+        this.requestHttp.getRequest("/api/v1/notificacion/evento",true,null);
     }
 
-    public void post(String uri) {
-        try {
-            String ruta = server + uri;
-            HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
-            ResponseEntity<String> responseEntity = rest.exchange(ruta, HttpMethod.POST, requestEntity, String.class);
-            String response = responseEntity.getBody();
-            this.logger.info(response);
-        } catch (Exception e) {
-            this.logger.info("Error al momento de realizar el llamado al servicio de directo : " + e.getMessage());
-        }
-    }
 
 }

@@ -39,11 +39,6 @@ public class ReadCmValidacion implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "buscar_elemento")
-    private String buscarElemento;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
     @Column(name = "clase_validacion")
     private String claseValidacion;
     @Basic(optional = false)
@@ -76,9 +71,8 @@ public class ReadCmValidacion implements Serializable {
         this.idValidacion = idValidacion;
     }
 
-    public ReadCmValidacion(Integer idValidacion, String buscarElemento, String claseValidacion, int enfermedad, boolean estado, Date fechaIngreso, String nombreValidacion, int secuenciaValidacion) {
+    public ReadCmValidacion(Integer idValidacion,  String claseValidacion, int enfermedad, boolean estado, Date fechaIngreso, String nombreValidacion, int secuenciaValidacion) {
         this.idValidacion = idValidacion;
-        this.buscarElemento = buscarElemento;
         this.claseValidacion = claseValidacion;
         this.enfermedad = enfermedad;
         this.estado = estado;
@@ -101,14 +95,6 @@ public class ReadCmValidacion implements Serializable {
 
     public void setJsonValidacion(String jsonValidacion) {
         this.jsonValidacion = jsonValidacion;
-    }
-
-    public String getBuscarElemento() {
-        return buscarElemento;
-    }
-
-    public void setBuscarElemento(String buscarElemento) {
-        this.buscarElemento = buscarElemento;
     }
 
     public String getClaseValidacion() {
