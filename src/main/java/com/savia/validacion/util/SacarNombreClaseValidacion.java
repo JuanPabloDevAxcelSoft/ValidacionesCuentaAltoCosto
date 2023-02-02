@@ -18,8 +18,10 @@ import java.net.http.HttpResponse;
 @Service
 public class SacarNombreClaseValidacion {
     private final Logger logger = LoggerFactory.getLogger(Errores.class);
+    
     @Value("${allowed.origin}")
     private String server;
+    
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -28,14 +30,14 @@ public class SacarNombreClaseValidacion {
     public  String getNombreClaseValidacion(int idEnfermedad){
         String message = "";
         HttpClient httpClient = HttpClient.newHttpClient();
-        String rutaServicio =  this.server + "/api/v1/nombre/clase/validacion/" + idEnfermedad;
+        String rutaServicio =  this.server + "/api/v1/nombre/clase/validacion?idEnfermedad=" + idEnfermedad;
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(rutaServicio)).GET().build();
         try {
             HttpResponse<String> stringHttpResponse = httpClient.send(httpRequest,
                     HttpResponse.BodyHandlers.ofString());
             message= stringHttpResponse.body();
         } catch (IOException e) {
-            message = "Ocurrion un error : 'IOException' : " + e.getMessage();
+            message = "Ocurrion un error : 'IOException 1' : " + e.getMessage();
             e.printStackTrace();
         } catch (InterruptedException e) {
             message = "Ocurrion un error : 'InterruptedException' : " + e.getMessage();

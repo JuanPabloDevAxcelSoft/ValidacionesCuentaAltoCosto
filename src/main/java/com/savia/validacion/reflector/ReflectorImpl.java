@@ -1,6 +1,5 @@
 package com.savia.validacion.reflector;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -33,22 +32,25 @@ public class ReflectorImpl implements Reflector {
     }
 
     @Override
-    public boolean validacionGenericoFinal
-            (Object claseValidaciones, String metodo, String variableValidar, String valorVariableValidar,String operador, String tipoDato){
+    public boolean validacionGenericoFinal(Object claseValidaciones, String metodo, String variableValidar,
+            String valorVariableValidar, String operador, String tipoDato) {
         Method[] methods = claseValidaciones.getClass().getMethods();
         boolean result = false;
+
         for (Method m : methods) {
             if (m.getName().equals(metodo)) {
                 try {
-                   result= (boolean) m.invoke(claseValidaciones,variableValidar,valorVariableValidar,operador,tipoDato );
-                   return result;
+                    result = (boolean) m.invoke(claseValidaciones, variableValidar, valorVariableValidar, operador,
+                            tipoDato);
+                    return result;
                 } catch (IllegalAccessException e) {
-                    logger.error("ERROR en Reflector illegalAccessException "+e.getMessage());
+                    logger.error("ERROR en Reflector illegalAccessException " + e.getMessage());
                 } catch (InvocationTargetException e) {
-                    logger.error("ERROR en Reflector invocation "+e.getMessage());
+                    logger.error("ERROR en Reflector invocation " + e.getMessage());
+                    e.printStackTrace();
                 }
             }
         }
-        return  result;
+        return result;
     }
 }

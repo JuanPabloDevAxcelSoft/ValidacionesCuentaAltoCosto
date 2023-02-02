@@ -1,0 +1,8 @@
+POST http://localhost:8082/api/v1/validacion
+Content-Type: application/json
+
+{
+    "idPaciente": 4,
+    "idEnfermedad": 1,
+    "claveValor": "12-2023-02-01-11-36-29"
+}

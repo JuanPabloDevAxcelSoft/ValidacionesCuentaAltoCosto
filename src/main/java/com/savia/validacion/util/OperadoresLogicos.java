@@ -1,15 +1,11 @@
 package com.savia.validacion.util;
 
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import org.graalvm.polyglot.Engine;
+import org.graalvm.polyglot.Context;
 
 @Service
 public class OperadoresLogicos {
@@ -18,23 +14,29 @@ public class OperadoresLogicos {
     public OperadoresLogicos() {
     }
 
-    public boolean isValidationGeneric(String variableValidar, String valorVariableValidar, String operador,String tipoDato){
-        ScriptEngineManager scriptEngineManager= new ScriptEngineManager() ;
+    public boolean isValidationGeneric(String variableValidar, String valorVariableValidar, String operador,
+            String tipoDato) {
+
+        Engine engine = Engine.newBuilder().option("engine.WarnInterpreterOnly", "false").build();
+        Context ctx = Context.newBuilder("js").engine(engine).build();
         String condicion;
-        if ((tipoDato.equals("Date"))|(tipoDato.equals("String"))){
-             condicion =  "'"+variableValidar +"'"+  operador +  "'"+valorVariableValidar+"'" ;
-        }else {
-            condicion =  variableValidar +operador +valorVariableValidar;
+
+        if ((tipoDato.equals("Date")) | (tipoDato.equals("String"))) {
+            condicion = "'" + variableValidar + "'" + operador + "'" + valorVariableValidar + "'";
+        } else {
+            condicion = variableValidar + operador + valorVariableValidar;
         }
-        ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("JavaScript");
         boolean result = false;
         try {
-            result = (boolean) scriptEngine.eval(condicion);
-            return result;
-        } catch (ScriptException e) {
-            logger.error("Ocurrió un error en la función 'validationGeneric'"+ e.getMessage());
+            org.graalvm.polyglot.Value eval = ctx.eval("js", condicion);
+            eval.asBoolean();
+            // result = (eval.equals("true") ? true : false);
+            result = eval.asBoolean();
+            System.out.println("RESULTADO ::: " + condicion + " : " + (result));
+            System.out.println(result);
+        } catch (Exception e) {
+            logger.error("Ocurrio un error en la funcion 'validationGeneric': " + e.getMessage());
         }
         return result;
     }
-
 }

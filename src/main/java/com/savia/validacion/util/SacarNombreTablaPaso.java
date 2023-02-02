@@ -35,7 +35,7 @@ public class SacarNombreTablaPaso {
                     HttpResponse.BodyHandlers.ofString());
             message= stringHttpResponse.body();
         } catch (IOException e) {
-            message = "Ocurrion un error : 'IOException' : " + e.getMessage();
+            message = "Ocurrion un error : 'IOException 2' : " + e.getMessage();
             e.printStackTrace();
         } catch (InterruptedException e) {
             message = "Ocurrion un error : 'InterruptedException' : " + e.getMessage();
