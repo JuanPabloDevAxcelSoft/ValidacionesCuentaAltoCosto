@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 
 @Service
 public class PacienteFind {
-    private final Logger logger = LoggerFactory.getLogger(Errores.class);
+    private final Logger logger = LoggerFactory.getLogger(PacienteFind.class);
     @PersistenceContext
     private EntityManager entityManager;
     public  Object getPacienteObj(String nombClaseValidacion, int idPaciente){

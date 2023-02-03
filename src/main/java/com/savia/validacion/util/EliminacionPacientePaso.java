@@ -13,7 +13,7 @@ import javax.persistence.Query;
 
 @Service
 public class EliminacionPacientePaso {
-    private final Logger logger = LoggerFactory.getLogger(Errores.class);
+    private final Logger logger = LoggerFactory.getLogger(EliminacionPacientePaso.class);
     @PersistenceContext
     private EntityManager entityManager;
 

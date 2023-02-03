@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class RequestHttp {
-    private final Logger logger = LoggerFactory.getLogger(CallDirectImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(RequestHttp.class);
 
     @Value("${allowed.origin}")
     private String server;

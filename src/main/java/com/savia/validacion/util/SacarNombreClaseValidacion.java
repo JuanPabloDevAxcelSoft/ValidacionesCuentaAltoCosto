@@ -17,7 +17,7 @@ import java.net.http.HttpResponse;
 
 @Service
 public class SacarNombreClaseValidacion {
-    private final Logger logger = LoggerFactory.getLogger(Errores.class);
+    private final Logger logger = LoggerFactory.getLogger(SacarNombreClaseValidacion.class);
     
     @Value("${allowed.origin}")
     private String server;

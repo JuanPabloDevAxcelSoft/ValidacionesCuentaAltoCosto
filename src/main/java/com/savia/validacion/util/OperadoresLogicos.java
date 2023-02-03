@@ -29,11 +29,7 @@ public class OperadoresLogicos {
         boolean result = false;
         try {
             org.graalvm.polyglot.Value eval = ctx.eval("js", condicion);
-            eval.asBoolean();
-            // result = (eval.equals("true") ? true : false);
             result = eval.asBoolean();
-            System.out.println("RESULTADO ::: " + condicion + " : " + (result));
-            System.out.println(result);
         } catch (Exception e) {
             logger.error("Ocurrio un error en la funcion 'validationGeneric': " + e.getMessage());
         }
