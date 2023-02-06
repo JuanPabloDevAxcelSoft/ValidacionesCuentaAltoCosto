@@ -24,10 +24,10 @@ public class Errores {
 
     @Transactional
     @Modifying
-    public void guardarErrores(String nomTablaPaso, int idPaciente, String errores, String claveArchivo) {
+    public void guardarErrores(String nomTablaPaso, int idPaciente, String errores) {
         String message = "";
         try {
-            String pureSql = "UPDATE " + nomTablaPaso + " SET campo_leido=true, clave_archivo='" + claveArchivo + "', " +
+            String pureSql = "UPDATE " + nomTablaPaso + " SET campo_leido=true , " +
                     "error_validacion='" + errores + "' WHERE id=" + idPaciente;
             Query nativeQuery = entityManager.createNativeQuery(pureSql);
             nativeQuery.executeUpdate();

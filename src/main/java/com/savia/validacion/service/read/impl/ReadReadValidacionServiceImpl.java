@@ -68,7 +68,7 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
                 eliminacionPacientePaso.setEliminarPacientePaso(nomTablaPaso,idPaciente);
             }
             else{
-                errores.guardarErrores(nomTablaPaso,idPaciente,result,claveArchivo);
+                errores.guardarErrores(nomTablaPaso,idPaciente,result);
             }
         }catch (NullPointerException e){
             logger.error("Error "+e.getMessage());
