@@ -33,6 +33,18 @@ public class TranValiServiToOpeLogi {
                         return true;
                     }
                 }
+                if(tipoMe.equals("depenSegunO")){
+                    if (parametro.length>=2){
+                        valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
+                    }
+                    if ((i==2)&&(result==false)){
+                        result=false;
+                        return true;
+                    }
+                    if ((i>2)&&(result==true)){
+                        return true;
+                    }
+                }
                 if(tipoMe.equals("depenYo")){
                     if ((i==2)&&(result==false)){
                         return true;
@@ -80,7 +92,7 @@ public class TranValiServiToOpeLogi {
                         break;
                     }
                 }
-                result=result&&multipleVa;
+                result=(tipoMe.equals("depenSegunO"))? result|multipleVa:result&&multipleVa;
             }
             multipleVa=false;
         }
