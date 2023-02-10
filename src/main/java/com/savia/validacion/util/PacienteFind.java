@@ -17,7 +17,6 @@ public class PacienteFind {
         Long id= Long.valueOf(idPaciente);
         String message = "";
         Class<?> claseEntity= null;
-        System.out.println("soy el nombre de la clase de validacion "+ nombClaseValidacion);
         try {
             if (!nombClaseValidacion.equals("")){
                 claseEntity=Class.forName(nombClaseValidacion);

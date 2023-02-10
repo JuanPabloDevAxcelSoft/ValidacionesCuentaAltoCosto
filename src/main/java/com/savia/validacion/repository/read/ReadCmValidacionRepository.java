@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface ReadCmValidacionRepository extends JpaRepository<ReadCmValidacion, Integer> {
-    @Query(value = "SELECT * FROM `cm_validacion` WHERE enfermedad=:idEnfermedad And estado=1 ORDER By secuencia_validacion;", nativeQuery = true)
+    @Query(value = "SELECT * FROM `cm_validacion` WHERE enfermedad=:idEnfermedad And estado=1 ORDER By id;", nativeQuery = true)
     List<ReadCmValidacion> listValidaciones(int idEnfermedad);
 
 }

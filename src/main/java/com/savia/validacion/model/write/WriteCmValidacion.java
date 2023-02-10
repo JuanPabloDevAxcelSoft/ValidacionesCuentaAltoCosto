@@ -50,10 +50,7 @@ public class WriteCmValidacion implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "nombre_validacion")
     private String nombreValidacion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "secuencia_validacion")
-    private int secuenciaValidacion;
+
     @Size(max = 255)
     private String error;
 
@@ -64,14 +61,13 @@ public class WriteCmValidacion implements Serializable {
         this.idValidacion = idValidacion;
     }
 
-    public WriteCmValidacion(Integer idValidacion,  String claseValidacion, int enfermedad, boolean estado, Date fechaIngreso, String nombreValidacion, int secuenciaValidacion) {
+    public WriteCmValidacion(Integer idValidacion,  String claseValidacion, int enfermedad, boolean estado, Date fechaIngreso, String nombreValidacion) {
         this.idValidacion = idValidacion;
         this.claseValidacion = claseValidacion;
         this.enfermedad = enfermedad;
         this.estado = estado;
         this.fechaIngreso = fechaIngreso;
         this.nombreValidacion = nombreValidacion;
-        this.secuenciaValidacion = secuenciaValidacion;
     }
 
     public Integer getIdValidacion() {
@@ -128,14 +124,6 @@ public class WriteCmValidacion implements Serializable {
 
     public void setNombreValidacion(String nombreValidacion) {
         this.nombreValidacion = nombreValidacion;
-    }
-
-    public int getSecuenciaValidacion() {
-        return secuenciaValidacion;
-    }
-
-    public void setSecuenciaValidacion(int secuenciaValidacion) {
-        this.secuenciaValidacion = secuenciaValidacion;
     }
 
     public String getError() {
