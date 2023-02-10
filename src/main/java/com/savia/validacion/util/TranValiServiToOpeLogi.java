@@ -28,15 +28,15 @@ public class TranValiServiToOpeLogi {
                 String[] parametro = obj.getString("parametro").split("\\:");
                 String parametroIndep;
                 parametroIndep= String.valueOf(paciente.get(parametro[0]));
+                if (parametro.length>=2){
+                    valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
+                }
                 if(tipoMe.equals("depen")){
                     if ((i==2)&&(result==false)){
                         return true;
                     }
                 }
                 if(tipoMe.equals("depenSegunO")){
-                    if (parametro.length>=2){
-                        valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
-                    }
                     if ((i==2)&&(result==false)){
                         result=false;
                         return true;
@@ -57,9 +57,6 @@ public class TranValiServiToOpeLogi {
                     }
                 }
                 if(tipoMe.equals("depenIntegYo")){
-                    if (parametro.length>=2){
-                        valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
-                    }
                     if ((i==2)&&(result==false)){
                         return true;
                     }
@@ -70,13 +67,10 @@ public class TranValiServiToOpeLogi {
                         result=true;
                     }
                 }
-                if(tipoMe.equals("integ")&&parametro.length>=2){
-                    valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
+                if(tipoMe.equals("integ")){
                 }
                 if(tipoMe.equals("integYo")){
-                    if (parametro.length>=2){
-                        valor[valor.length-1]=String.valueOf(paciente.get(parametro[1]));
-                    }
+
                     if ((i==2)&&(result==true)){
                         return true;
                     }

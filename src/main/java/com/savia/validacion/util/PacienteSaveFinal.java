@@ -137,6 +137,19 @@ public class PacienteSaveFinal {
                 return "Paciente de Hemofilia guardado";
             }
             case 2: {
+                // sacando Paciente
+                WriteCmPaciente writeCmPaciente = null;
+                try {
+                    writeCmPaciente= new WriteCmPaciente(mapaConvert.get("primerNombre"),
+                            mapaConvert.get("segundoNombre"),mapaConvert.get("primerApellido"),mapaConvert.get("segundoApellido"),
+                            mapaConvert.get("tipoIdentificacion"),mapaConvert.get("numeroIdentificacion"),
+                            simpleDateFormat.parse(mapaConvert.get("fechaNacimiento")),mapaConvert.get("sexo").toCharArray()[0],
+                            mapaConvert.get("codigoEtnia").toCharArray()[0],claveArchivo);
+                    System.out.println(writeCmPaciente.getClaveArchvio() +" Hola soy la clave del archivo");
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 return "llegue hasta guardado";
             }
             default:

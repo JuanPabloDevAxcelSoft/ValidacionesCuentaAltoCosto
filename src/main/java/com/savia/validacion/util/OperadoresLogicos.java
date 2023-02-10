@@ -33,6 +33,7 @@ public class OperadoresLogicos {
         } catch (Exception e) {
             logger.error("Ocurrio un error en la funcion 'validationGeneric': " + e.getMessage());
         }
+        System.out.println(condicion +" soy la condicion "+ result);
         return result;
     }
 }
