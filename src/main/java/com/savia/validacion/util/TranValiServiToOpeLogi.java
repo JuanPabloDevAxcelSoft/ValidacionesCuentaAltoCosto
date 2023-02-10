@@ -56,17 +56,6 @@ public class TranValiServiToOpeLogi {
                         result=true;
                     }
                 }
-                if(tipoMe.equals("depenIntegYo")){
-                    if ((i==2)&&(result==false)){
-                        return true;
-                    }
-                    if ((i==3)&&(result==true)){
-                        return true;
-                    }
-                    if(i==3){
-                        result=true;
-                    }
-                }
                 if(tipoMe.equals("integ")){
                 }
                 if(tipoMe.equals("integYo")){
