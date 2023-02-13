@@ -65,7 +65,7 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
 
             if (result.equals("")){
                 result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente,claveArchivo);
-                eliminacionPacientePaso.setEliminarPacientePaso(nomTablaPaso,idPaciente);
+                //eliminacionPacientePaso.setEliminarPacientePaso(nomTablaPaso,idPaciente);
             }
             else{
                 errores.guardarErrores(nomTablaPaso,idPaciente,result);

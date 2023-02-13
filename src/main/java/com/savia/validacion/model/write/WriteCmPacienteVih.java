@@ -5,17 +5,16 @@
  */
 package com.savia.validacion.model.write;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import java.util.Map;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,9 +26,11 @@ import javax.validation.constraints.Size;
 @Table(name = "cm_paciente_vih")
 public class WriteCmPacienteVih implements Serializable {
 
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     private Long id;
     @Basic(optional = false)
@@ -204,6 +205,10 @@ public class WriteCmPacienteVih implements Serializable {
     private Character estadioClinico;
     @Column(name = "valo_linf_tcd4_diag")
     private Integer valoLinfTcd4Diag;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "cont_linf_tcd4_diag")
+    private int contLinfTcd4Diag;
     @Column(name = "real_carg_vira_diag")
     private Character realCargViraDiag;
     @Basic(optional = false)
@@ -334,7 +339,7 @@ public class WriteCmPacienteVih implements Serializable {
     private Character coccidioidomicosis;
     @Basic(optional = false)
     @NotNull
-    private Character citomegalovirus;
+    private String  citomegalovirus;
     @Basic(optional = false)
     @NotNull
     private Character retinitis;
@@ -495,7 +500,7 @@ public class WriteCmPacienteVih implements Serializable {
     @Column(name = "coin_hepa_c_cron")
     private Character coinHepaCCron;
     @Column(name = "o_tuvo_coin_tube_acti")
-    private Character oTuvoCoinTubeActi;
+    private String otuvoCoinTubeActi;
     @Basic(optional = false)
     @NotNull
     @Column(name = "tipo_tuberculosis_activa")
@@ -682,13 +687,43 @@ public class WriteCmPacienteVih implements Serializable {
 
     public WriteCmPacienteVih() {
     }
+    public WriteCmPacienteVih(Map<String, Object> map)  {
+        Logger logger = LoggerFactory.getLogger(WriteCmPacienteVih.class);
+        SimpleDateFormat simpleDateFormat =new SimpleDateFormat("yyyy-MM-dd");
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            String fieldName = entry.getKey();
+            Object value = entry.getValue();
+            try {
+                Field field = this.getClass().getDeclaredField(fieldName);
+                Class<?> fieldType = field.getType();
+                if (fieldType == String.class) {
+                    field.set(this,  value.toString());
+                } else if (fieldType == Integer.class || fieldType ==int.class || fieldType ==Long.class) {
+                    field.set(this, Integer.parseInt(value.toString()));
+                } else if (fieldType == Character.class) {
+                    field.set(this, value.toString().toCharArray()[0]);
+                } else if (fieldType == Date.class) {
+                    field.set(this, simpleDateFormat.parse(value.toString()));
+                } else if (fieldType == float.class || fieldType== Float.class || fieldType== Double.class) {
+                    field.set(this,Float.parseFloat(value.toString()));
+                } else if (fieldType == boolean.class || fieldType == Boolean.class ) {
+                    field.set(this,Boolean.parseBoolean(value.toString()));
+                } else {
+                    logger.info("dato no soportado"+ fieldType);
+                }
+            }catch (NoSuchFieldException e){
+            }
+            catch (IllegalAccessException |ParseException |IllegalArgumentException e) {
+                logger.error(e.getMessage());
+            }
+        }
+    }
 
     public WriteCmPacienteVih(Long id) {
         this.id = id;
     }
 
-    public WriteCmPacienteVih(Long id, Character poblacionClave, Character mujerGestante, boolean hijoMadreVih, Character tuberculosis, Character diagnosticoInfecciónVih, Date fechaDiagnosticoGestacion, Date fechaTamizajeVihT1, Date fechaTamizajeVihT2, Date fechaTamizajeVihT3, Date fechaTamizajeVihParto, Character tratamientoVihGestacion, int edadGestacionalTar, Character tarIntraparto, Character resultadoGestacionVih, Character supresionLactanciaVih, String tipoIdentificacionMadreVih, Character suministroFormulaLactea, Date fechaCargaViralHijoP1, String resultadoCargaViralHijoP1, Date fechaCargaViralHijoP2, String resultadoCargaViralHijoP2, Date fechaCargaViralHijoP3, String resultadoCargaViralHijoP3, Character condicionFinHijo, Date fechaPruebaPresuntivaVih, String pruebaPresuntivaVih, Date fechaConfirmacionVih, Character reportePersonaVihAfiliada, String entidadReportante, Date fechaInicioAtencionVih, Character viaTransmisionVih, Character estadioClinico, int cargaViralDiagnostico, Date fechaInicioTar, int medicamento1InicioTar, int medicamento2InicioTar, int medicamento3InicioTar, int medicamento4InicioTar, int medicamento5InicioTar, Character linfocitosTcd4Tar, int valorLinfocitosTcd4Tar, Character realizoCargaViralTar, int cargaViralTar, String motivoInicioTar, Character coinfeccionVhbInicioTar, Character coinfeccionVhcInicioTar, int numMesesDispensoTar, int numConsultasVihTar, Character cambiosEsquemaTar, Date fechaCambioMedicamentoTar, String causaCambioMedicamentoTar, String medicamento1Cambio, String medicamento2Cambio, String medicamento3Cambio, String medicamento4Cambio, Character fallasTar, int numFallasTar, Character infeccionesBacterianas, Character candidiasis, Character cancerCervixInvasivo, Character coccidioidomicosis, Character citomegalovirus, Character retinitis, Character herpes, Character diarrea, Character histoplasmosis, Character linfoma, Character neumoníaPneumocystis, Character neumoníaRecurrente, Character septicemiaSalmonella, Character infecciónDiseminada, Character criptococosisExtrapulmonar, Character sarcomakaposi, Character sindromeDesgaste, Character leucoencefalopatia, Character toxoplasmosisCerebral, Character demenciaAsociadaVih, Character neumoníaIntersticial, String codigoSedeIps, Date fechaIngresoIps, int municipioIps, String tipoPersonaAtiende, Character valoracionInfectologo, Date fechaUltimaGenotipificación, Character estadioClinicoActual, Date fechaUltimoColesterol, int resultadoUltimoColesterol, Date fechaNivelTrigliceridos, int resultadoNivelTrigliceridos, Date fechaHemoglobinaSerica, float resultadoHemoglobinaSerica, Date fechaAtl, int resultadoAtl, int talla, Character neuropatiaPeriferica, Character lipoatrofiaOLiodistrofia, Character tipoTuberculosisActiva, Character personaCoinfeccionTbVih, Character cirrosisHepatica, Character enfermedadCoronaria, Character neoplasiaNoRelacionadaSida, Character discapacidadFuncional, Character recibeTar, String medicamentoUnoTarActual, String medicamentoDosTarActual, String medicamentoTresTarActual, String medicamentoCuatroTarActual, String medicamentoCincoTarActual, String medicamentoSeisTarActual, Character vacunacionContraHepatitsA, Character vacunacionContraHepatitsB, Character vacunacionContraNeumococo, Character recibioTratamientoSifilis, Character profilaxisMac, Date fechasafiliacionEntidad) {
-        this.id = id;
+    public WriteCmPacienteVih(Character poblacionClave, Character mujerGestante, boolean hijoMadreVih, Character tuberculosis, Character diagnosticoInfecciónVih, Date fechaDiagnosticoGestacion, Date fechaTamizajeVihT1, Date fechaTamizajeVihT2, Date fechaTamizajeVihT3, Date fechaTamizajeVihParto, Character mujeDiagVihGest, Integer edadGestDiagVih, Character tratamientoVihGestacion, int edadGestacionalTar, Character tarIntraparto, Character resultadoGestacionVih, Date fechCulmGestVih, Character supresionLactanciaVih, String tipoIdenReciNaci, String numeIdenReciNaci, String tipoIdentificacionMadreVih, String numeIdenMadrVih, Character madrDiagConfVih, Character profReciNaciExpuVih, Character suministroFormulaLactea, Date fechaCargaViralHijoP1, String resultadoCargaViralHijoP1, Date fechaCargaViralHijoP2, String resultadoCargaViralHijoP2, Date fechaCargaViralHijoP3, String resultadoCargaViralHijoP3, Character condicionFinHijo, Date fechDiagTurb, Date fechTamiTurbVih, Date fechaPruebaPresuntivaVih, String pruebaPresuntivaVih, Date fechaConfirmacionVih, Character reportePersonaVihAfiliada, String entidadReportante, Date fechaInicioAtencionVih, Character viaTransmisionVih, Character estadioClinico, Integer valoLinfTcd4Diag, int contLinfTcd4Diag, Character realCargViraDiag, int cargaViralDiagnostico, Date fechaInicioTar, int medicamento1InicioTar, int medicamento2InicioTar, int medicamento3InicioTar, int medicamento4InicioTar, int medicamento5InicioTar, Character linfocitosTcd4Tar, int valorLinfocitosTcd4Tar, Character realizoCargaViralTar, int cargaViralTar, String motivoInicioTar, Character coinfeccionVhbInicioTar, Character coinfeccionVhcInicioTar, Character coinTubeInicTar, int numMesesDispensoTar, int numConsultasVihTar, Character cambiosEsquemaTar, Date fechaCambioMedicamentoTar, String causaCambioMedicamentoTar, String medicamento1Cambio, String medicamento2Cambio, String medicamento3Cambio, String medicamento4Cambio, Character fallasTar, int numFallasTar, Character infeccionesBacterianas, Character candidiasis, Character tubePulmExtr, Character cancerCervixInvasivo, Character coccidioidomicosis, String citomegalovirus, Character retinitis, Character herpes, Character diarrea, Character histoplasmosis, Character linfoma, Character neumoníaPneumocystis, Character neumoníaRecurrente, Character septicemiaSalmonella, Character infecciónDiseminada, Character criptococosisExtrapulmonar, Character sarcomakaposi, Character sindromeDesgaste, Character leucoencefalopatia, Character toxoplasmosisCerebral, Character demenciaAsociadaVih, Character neumoníaIntersticial, String codigoSedeIps, Date fechaIngresoIps, int municipioIps, String tipoPersonaAtiende, Character valoracionInfectologo, Date fechaUltimaGenotipificación, Character estadioClinicoActual, Date fechaUltimoColesterol, int resultadoUltimoColesterol, Date fechaNivelTrigliceridos, int resultadoNivelTrigliceridos, Date fechaHemoglobinaSerica, float resultadoHemoglobinaSerica, Date fechaAtl, int resultadoAtl, Date fechUltiCreaSeri, String resuUltiCreaSeri, Date fechUltiGlucSeriEnAyun, String resuUltiGlucSeriEnAyun, Date fechUltiMediPesoCorpPeri, String resuUltiMediPesoCorp, int talla, Character neuropatiaPeriferica, Character lipoatrofiaOLiodistrofia, Character coinHepaBCron, Character coinHepaCCron, String otuvoCoinTubeActi, Character tipoTuberculosisActiva, Character personaCoinfeccionTbVih, Date fechInicTratAnti, String mediUnoTratAntiCoin, String mediDosTratAntiCoin, String mediTresTratAntiCoin, String mediCuatTratAntiCoin, String mediCincTratAntiCoin, String mediSeisTratAntiCoin, String mediSietTratAntiCoin, String mediOchoTratAntiCoin, String mediNuevTratAntiCoin, Date fechEnTermElTratAnti, String condEgreTratAnti, Character cirrosisHepatica, Character enfeRenaCronVihb, Character enfermedadCoronaria, Character otrInfTraSexDifSifHep, Character neoplasiaNoRelacionadaSida, Character discapacidadFuncional, Date fecUltConLinCd4PerObs, String valUltConLinCd4PerObs, Date fehaUltiCargViraPeriObse, String valoUltiCargViraPeriObse, Character recibeTar, Date fehaInicMediReciPersVive, String medicamentoUnoTarActual, String medicamentoDosTarActual, String medicamentoTresTarActual, String medicamentoCuatroTarActual, String medicamentoCincoTarActual, String medicamentoSeisTarActual, String numeMeseDispFormCompTar, Integer numeCondSumiUltiAnio, Character metoPlanFamiPersViveVih, Character vacunacionContraHepatitsA, Character vacunacionContraHepatitsB, Character vacunacionContraNeumococo, Character tamiTubeActiUltiCons, Character ppdPrueEquiIdenTube, String reciTratTubeLate, Character tamiSifiEnPersViveVih, Character recibioTratamientoSifilis, String tamiVihAnogPersViveVih, Character tamiHepaBPersViveVih, Character tamiHepaCPersViveVih, String resuEvalRiesCardPersVive, Character profilaxisMac, Character profCripNeof, Character profPneuJiro, Integer costTotaAtenNoHosp, Integer costTotaAtenHosp, Integer numeHospPeriRelaElVih, String noveUsuaRespAlRepoAnte, Date fechasafiliacionEntidad, String entiTrasUsuaVihDesa, WriteCmPaciente idPaciente) {
         this.poblacionClave = poblacionClave;
         this.mujerGestante = mujerGestante;
         this.hijoMadreVih = hijoMadreVih;
@@ -699,12 +734,20 @@ public class WriteCmPacienteVih implements Serializable {
         this.fechaTamizajeVihT2 = fechaTamizajeVihT2;
         this.fechaTamizajeVihT3 = fechaTamizajeVihT3;
         this.fechaTamizajeVihParto = fechaTamizajeVihParto;
+        this.mujeDiagVihGest = mujeDiagVihGest;
+        this.edadGestDiagVih = edadGestDiagVih;
         this.tratamientoVihGestacion = tratamientoVihGestacion;
         this.edadGestacionalTar = edadGestacionalTar;
         this.tarIntraparto = tarIntraparto;
         this.resultadoGestacionVih = resultadoGestacionVih;
+        this.fechCulmGestVih = fechCulmGestVih;
         this.supresionLactanciaVih = supresionLactanciaVih;
+        this.tipoIdenReciNaci = tipoIdenReciNaci;
+        this.numeIdenReciNaci = numeIdenReciNaci;
         this.tipoIdentificacionMadreVih = tipoIdentificacionMadreVih;
+        this.numeIdenMadrVih = numeIdenMadrVih;
+        this.madrDiagConfVih = madrDiagConfVih;
+        this.profReciNaciExpuVih = profReciNaciExpuVih;
         this.suministroFormulaLactea = suministroFormulaLactea;
         this.fechaCargaViralHijoP1 = fechaCargaViralHijoP1;
         this.resultadoCargaViralHijoP1 = resultadoCargaViralHijoP1;
@@ -713,6 +756,8 @@ public class WriteCmPacienteVih implements Serializable {
         this.fechaCargaViralHijoP3 = fechaCargaViralHijoP3;
         this.resultadoCargaViralHijoP3 = resultadoCargaViralHijoP3;
         this.condicionFinHijo = condicionFinHijo;
+        this.fechDiagTurb = fechDiagTurb;
+        this.fechTamiTurbVih = fechTamiTurbVih;
         this.fechaPruebaPresuntivaVih = fechaPruebaPresuntivaVih;
         this.pruebaPresuntivaVih = pruebaPresuntivaVih;
         this.fechaConfirmacionVih = fechaConfirmacionVih;
@@ -721,6 +766,9 @@ public class WriteCmPacienteVih implements Serializable {
         this.fechaInicioAtencionVih = fechaInicioAtencionVih;
         this.viaTransmisionVih = viaTransmisionVih;
         this.estadioClinico = estadioClinico;
+        this.valoLinfTcd4Diag = valoLinfTcd4Diag;
+        this.contLinfTcd4Diag = contLinfTcd4Diag;
+        this.realCargViraDiag = realCargViraDiag;
         this.cargaViralDiagnostico = cargaViralDiagnostico;
         this.fechaInicioTar = fechaInicioTar;
         this.medicamento1InicioTar = medicamento1InicioTar;
@@ -735,6 +783,7 @@ public class WriteCmPacienteVih implements Serializable {
         this.motivoInicioTar = motivoInicioTar;
         this.coinfeccionVhbInicioTar = coinfeccionVhbInicioTar;
         this.coinfeccionVhcInicioTar = coinfeccionVhcInicioTar;
+        this.coinTubeInicTar = coinTubeInicTar;
         this.numMesesDispensoTar = numMesesDispensoTar;
         this.numConsultasVihTar = numConsultasVihTar;
         this.cambiosEsquemaTar = cambiosEsquemaTar;
@@ -748,6 +797,7 @@ public class WriteCmPacienteVih implements Serializable {
         this.numFallasTar = numFallasTar;
         this.infeccionesBacterianas = infeccionesBacterianas;
         this.candidiasis = candidiasis;
+        this.tubePulmExtr = tubePulmExtr;
         this.cancerCervixInvasivo = cancerCervixInvasivo;
         this.coccidioidomicosis = coccidioidomicosis;
         this.citomegalovirus = citomegalovirus;
@@ -782,28 +832,75 @@ public class WriteCmPacienteVih implements Serializable {
         this.resultadoHemoglobinaSerica = resultadoHemoglobinaSerica;
         this.fechaAtl = fechaAtl;
         this.resultadoAtl = resultadoAtl;
+        this.fechUltiCreaSeri = fechUltiCreaSeri;
+        this.resuUltiCreaSeri = resuUltiCreaSeri;
+        this.fechUltiGlucSeriEnAyun = fechUltiGlucSeriEnAyun;
+        this.resuUltiGlucSeriEnAyun = resuUltiGlucSeriEnAyun;
+        this.fechUltiMediPesoCorpPeri = fechUltiMediPesoCorpPeri;
+        this.resuUltiMediPesoCorp = resuUltiMediPesoCorp;
         this.talla = talla;
         this.neuropatiaPeriferica = neuropatiaPeriferica;
         this.lipoatrofiaOLiodistrofia = lipoatrofiaOLiodistrofia;
+        this.coinHepaBCron = coinHepaBCron;
+        this.coinHepaCCron = coinHepaCCron;
+        this.otuvoCoinTubeActi = otuvoCoinTubeActi;
         this.tipoTuberculosisActiva = tipoTuberculosisActiva;
         this.personaCoinfeccionTbVih = personaCoinfeccionTbVih;
+        this.fechInicTratAnti = fechInicTratAnti;
+        this.mediUnoTratAntiCoin = mediUnoTratAntiCoin;
+        this.mediDosTratAntiCoin = mediDosTratAntiCoin;
+        this.mediTresTratAntiCoin = mediTresTratAntiCoin;
+        this.mediCuatTratAntiCoin = mediCuatTratAntiCoin;
+        this.mediCincTratAntiCoin = mediCincTratAntiCoin;
+        this.mediSeisTratAntiCoin = mediSeisTratAntiCoin;
+        this.mediSietTratAntiCoin = mediSietTratAntiCoin;
+        this.mediOchoTratAntiCoin = mediOchoTratAntiCoin;
+        this.mediNuevTratAntiCoin = mediNuevTratAntiCoin;
+        this.fechEnTermElTratAnti = fechEnTermElTratAnti;
+        this.condEgreTratAnti = condEgreTratAnti;
         this.cirrosisHepatica = cirrosisHepatica;
+        this.enfeRenaCronVihb = enfeRenaCronVihb;
         this.enfermedadCoronaria = enfermedadCoronaria;
+        this.otrInfTraSexDifSifHep = otrInfTraSexDifSifHep;
         this.neoplasiaNoRelacionadaSida = neoplasiaNoRelacionadaSida;
         this.discapacidadFuncional = discapacidadFuncional;
+        this.fecUltConLinCd4PerObs = fecUltConLinCd4PerObs;
+        this.valUltConLinCd4PerObs = valUltConLinCd4PerObs;
+        this.fehaUltiCargViraPeriObse = fehaUltiCargViraPeriObse;
+        this.valoUltiCargViraPeriObse = valoUltiCargViraPeriObse;
         this.recibeTar = recibeTar;
+        this.fehaInicMediReciPersVive = fehaInicMediReciPersVive;
         this.medicamentoUnoTarActual = medicamentoUnoTarActual;
         this.medicamentoDosTarActual = medicamentoDosTarActual;
         this.medicamentoTresTarActual = medicamentoTresTarActual;
         this.medicamentoCuatroTarActual = medicamentoCuatroTarActual;
         this.medicamentoCincoTarActual = medicamentoCincoTarActual;
         this.medicamentoSeisTarActual = medicamentoSeisTarActual;
+        this.numeMeseDispFormCompTar = numeMeseDispFormCompTar;
+        this.numeCondSumiUltiAnio = numeCondSumiUltiAnio;
+        this.metoPlanFamiPersViveVih = metoPlanFamiPersViveVih;
         this.vacunacionContraHepatitsA = vacunacionContraHepatitsA;
         this.vacunacionContraHepatitsB = vacunacionContraHepatitsB;
         this.vacunacionContraNeumococo = vacunacionContraNeumococo;
+        this.tamiTubeActiUltiCons = tamiTubeActiUltiCons;
+        this.ppdPrueEquiIdenTube = ppdPrueEquiIdenTube;
+        this.reciTratTubeLate = reciTratTubeLate;
+        this.tamiSifiEnPersViveVih = tamiSifiEnPersViveVih;
         this.recibioTratamientoSifilis = recibioTratamientoSifilis;
+        this.tamiVihAnogPersViveVih = tamiVihAnogPersViveVih;
+        this.tamiHepaBPersViveVih = tamiHepaBPersViveVih;
+        this.tamiHepaCPersViveVih = tamiHepaCPersViveVih;
+        this.resuEvalRiesCardPersVive = resuEvalRiesCardPersVive;
         this.profilaxisMac = profilaxisMac;
+        this.profCripNeof = profCripNeof;
+        this.profPneuJiro = profPneuJiro;
+        this.costTotaAtenNoHosp = costTotaAtenNoHosp;
+        this.costTotaAtenHosp = costTotaAtenHosp;
+        this.numeHospPeriRelaElVih = numeHospPeriRelaElVih;
+        this.noveUsuaRespAlRepoAnte = noveUsuaRespAlRepoAnte;
         this.fechasafiliacionEntidad = fechasafiliacionEntidad;
+        this.entiTrasUsuaVihDesa = entiTrasUsuaVihDesa;
+        this.idPaciente = idPaciente;
     }
 
     public Long getId() {
@@ -1158,6 +1255,14 @@ public class WriteCmPacienteVih implements Serializable {
         this.valoLinfTcd4Diag = valoLinfTcd4Diag;
     }
 
+    public int getContLinfTcd4Diag() {
+        return contLinfTcd4Diag;
+    }
+
+    public void setContLinfTcd4Diag(int contLinfTcd4Diag) {
+        this.contLinfTcd4Diag = contLinfTcd4Diag;
+    }
+
     public Character getRealCargViraDiag() {
         return realCargViraDiag;
     }
@@ -1414,11 +1519,11 @@ public class WriteCmPacienteVih implements Serializable {
         this.coccidioidomicosis = coccidioidomicosis;
     }
 
-    public Character getCitomegalovirus() {
+    public String getCitomegalovirus() {
         return citomegalovirus;
     }
 
-    public void setCitomegalovirus(Character citomegalovirus) {
+    public void setCitomegalovirus(String citomegalovirus) {
         this.citomegalovirus = citomegalovirus;
     }
 
@@ -1758,12 +1863,12 @@ public class WriteCmPacienteVih implements Serializable {
         this.coinHepaCCron = coinHepaCCron;
     }
 
-    public Character getOTuvoCoinTubeActi() {
-        return oTuvoCoinTubeActi;
+    public String getOTuvoCoinTubeActi() {
+        return otuvoCoinTubeActi;
     }
 
-    public void setOTuvoCoinTubeActi(Character oTuvoCoinTubeActi) {
-        this.oTuvoCoinTubeActi = oTuvoCoinTubeActi;
+    public void setOTuvoCoinTubeActi(String oTuvoCoinTubeActi) {
+        this.otuvoCoinTubeActi = oTuvoCoinTubeActi;
     }
 
     public Character getTipoTuberculosisActiva() {
@@ -2222,29 +2327,6 @@ public class WriteCmPacienteVih implements Serializable {
         this.idPaciente = idPaciente;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
 
-    @Override
-    public boolean equals(Object object) {
-        
-        if (!(object instanceof WriteCmPacienteVih)) {
-            return false;
-        }
-        WriteCmPacienteVih other = (WriteCmPacienteVih) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "entity.WriteCmPacienteVih[ id=" + id + " ]";
-    }
     
 }
