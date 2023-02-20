@@ -58,6 +58,8 @@ public class WriteCmPaciente implements Serializable {
     private Character codigoPertenenciaEtnica;
     @Column(name = "clave_archivo")
     private String claveArchvio;
+
+    private String novedades;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
     private List<WriteCmPacienteCancer> writeCmPacienteCancerList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
@@ -88,7 +90,7 @@ public class WriteCmPaciente implements Serializable {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 
-    public WriteCmPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacion, String numeroIdentificacion, Date fechaNacimiento, Character sexo, Character codigoPertenenciaEtnica, String claveArchvio) {
+    public WriteCmPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacion, String numeroIdentificacion, Date fechaNacimiento, Character sexo, Character codigoPertenenciaEtnica, String claveArchvio, String novedades) {
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
@@ -99,6 +101,7 @@ public class WriteCmPaciente implements Serializable {
         this.sexo = sexo;
         this.codigoPertenenciaEtnica = codigoPertenenciaEtnica;
         this.claveArchvio = claveArchvio;
+        this.novedades = novedades;
     }
 
     public Long getId() {
@@ -259,6 +262,14 @@ public class WriteCmPaciente implements Serializable {
 
     public void setCmPacienteHepatitisUnoList(List<WriteCmPacienteHepatitisUno> writeCmPacienteHepatitisUnoList) {
         this.writeCmPacienteHepatitisUnoList = writeCmPacienteHepatitisUnoList;
+    }
+
+    public String getNovedades() {
+        return novedades;
+    }
+
+    public void setNovedades(String novedades) {
+        this.novedades = novedades;
     }
 
     @Override
