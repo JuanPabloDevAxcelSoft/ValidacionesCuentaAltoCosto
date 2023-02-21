@@ -58,6 +58,8 @@ public class WriteCmPaciente implements Serializable {
     private Character codigoPertenenciaEtnica;
     @Column(name = "clave_archivo")
     private String claveArchvio;
+    @Column(name = "nombre_archivo_original")
+    private String nombreArchivoOriginal;
 
     private String novedades;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
@@ -90,7 +92,7 @@ public class WriteCmPaciente implements Serializable {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 
-    public WriteCmPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacion, String numeroIdentificacion, Date fechaNacimiento, Character sexo, Character codigoPertenenciaEtnica, String claveArchvio, String novedades) {
+    public WriteCmPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacion, String numeroIdentificacion, Date fechaNacimiento, Character sexo, Character codigoPertenenciaEtnica, String claveArchvio, String nombreArchivoOriginal, String novedades) {
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
@@ -101,6 +103,7 @@ public class WriteCmPaciente implements Serializable {
         this.sexo = sexo;
         this.codigoPertenenciaEtnica = codigoPertenenciaEtnica;
         this.claveArchvio = claveArchvio;
+        this.nombreArchivoOriginal = nombreArchivoOriginal;
         this.novedades = novedades;
     }
 
@@ -262,6 +265,14 @@ public class WriteCmPaciente implements Serializable {
 
     public void setCmPacienteHepatitisUnoList(List<WriteCmPacienteHepatitisUno> writeCmPacienteHepatitisUnoList) {
         this.writeCmPacienteHepatitisUnoList = writeCmPacienteHepatitisUnoList;
+    }
+
+    public String getNombreArchivoOriginal() {
+        return nombreArchivoOriginal;
+    }
+
+    public void setNombreArchivoOriginal(String nombreArchivoOriginal) {
+        this.nombreArchivoOriginal = nombreArchivoOriginal;
     }
 
     public String getNovedades() {

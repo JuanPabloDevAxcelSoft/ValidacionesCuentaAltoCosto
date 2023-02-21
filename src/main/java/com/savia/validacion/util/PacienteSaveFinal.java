@@ -45,7 +45,7 @@ public class PacienteSaveFinal {
                             mapaConvert.get("segundoNombre"),mapaConvert.get("primerApellido"),mapaConvert.get("segundoApellido"),
                             mapaConvert.get("tipoIdentificacionUsuario"),mapaConvert.get("numeroIdentificacionUsuario"),
                             simpleDateFormat.parse(mapaConvert.get("fechaNacimientoUsuario")),mapaConvert.get("sexoUsuario").toCharArray()[0],
-                            mapaConvert.get("codigoPertenenciaEtnica").toCharArray()[0],claveArchivo,mapaConvert.get("novedades"));
+                            mapaConvert.get("codigoPertenenciaEtnica").toCharArray()[0],claveArchivo,mapaConvert.get("nombreArchivoOriginal"),mapaConvert.get("novedades"));
 
                 } catch (Exception e) {
                     logger.error(e.getMessage());
@@ -151,7 +151,7 @@ public class PacienteSaveFinal {
                             mapaConvert.get("segundoNombre"),mapaConvert.get("primerApellido"),mapaConvert.get("segundoApellido"),
                             mapaConvert.get("tipoIdentificacion"),mapaConvert.get("numeroIdentificacion"),
                             simpleDateFormat.parse(mapaConvert.get("fechaNacimiento")),mapaConvert.get("sexo").toCharArray()[0],
-                            mapaConvert.get("codigoEtnia").toCharArray()[0],claveArchivo,mapaConvert.get("noveUsuaRespAlRepoAnte"));
+                            mapaConvert.get("codigoEtnia").toCharArray()[0],claveArchivo,mapaConvert.get("nombreArchivoOriginal"),mapaConvert.get("noveUsuaRespAlRepoAnte"));
 
                 } catch (Exception e) {
                     logger.error(e.getMessage());

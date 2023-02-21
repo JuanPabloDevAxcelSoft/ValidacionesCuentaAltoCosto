@@ -756,6 +756,8 @@ public class ReadCmVihPaso implements Serializable {
     private String claveArchvio;
     @Column(name = "error_validacion")
     private String errorValidacion;
+    @Column(name = "nombre_archivo_original")
+    private String nombreArchivoOriginal;
 
     public ReadCmVihPaso() {
     }
@@ -2535,6 +2537,14 @@ public class ReadCmVihPaso implements Serializable {
 
     public void setErrorValidacion(String errorValidacion) {
         this.errorValidacion = errorValidacion;
+    }
+
+    public String getNombreArchivoOriginal() {
+        return nombreArchivoOriginal;
+    }
+
+    public void setNombreArchivoOriginal(String nombreArchivoOriginal) {
+        this.nombreArchivoOriginal = nombreArchivoOriginal;
     }
 
     @Override
