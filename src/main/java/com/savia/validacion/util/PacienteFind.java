@@ -21,7 +21,7 @@ public class PacienteFind {
         try {
             if (!nombClaseValidacion.equals("")){
                 claseEntity=Class.forName(nombClaseValidacion);
-                entityManager.find(claseEntity,id);
+                objectPaciente= entityManager.find(claseEntity,id);
             }
         } catch (ClassNotFoundException e) {
             message= e.getMessage();
