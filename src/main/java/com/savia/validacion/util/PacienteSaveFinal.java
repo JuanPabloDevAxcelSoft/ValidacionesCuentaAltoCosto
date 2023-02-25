@@ -44,8 +44,8 @@ public class PacienteSaveFinal {
                     writeCmPaciente= new WriteCmPaciente(mapaConvert.get("primerNombre"),
                             mapaConvert.get("segundoNombre"),mapaConvert.get("primerApellido"),mapaConvert.get("segundoApellido"),
                             mapaConvert.get("tipoIdentificacionUsuario"),mapaConvert.get("numeroIdentificacionUsuario"),
-                            simpleDateFormat.parse(mapaConvert.get("fechaNacimientoUsuario")),mapaConvert.get("sexoUsuario").toCharArray()[0],
-                            mapaConvert.get("codigoPertenenciaEtnica").toCharArray()[0],claveArchivo);
+                            simpleDateFormat.parse(mapaConvert.get("fechaNacimientoUsuario")),simpleDateFormat.parse(mapaConvert.get("fechaAfilicionEps")),mapaConvert.get("sexoUsuario").toCharArray()[0],
+                            mapaConvert.get("codigoPertenenciaEtnica").toCharArray()[0],claveArchivo,mapaConvert.get("nombreArchivoOriginal"),mapaConvert.get("novedades"));
 
                 } catch (Exception e) {
                     logger.error(e.getMessage());
@@ -117,7 +117,7 @@ public class PacienteSaveFinal {
                             Double.parseDouble(mapaConvert.get("costoTotalUnidadesFactor")),
                             Double.parseDouble(mapaConvert.get("costosAgentePuente")),
                             Double.parseDouble(mapaConvert.get("costosCoagulopatia")),
-                            Double.parseDouble(mapaConvert.get("costIncaCoag")), mapaConvert.get("novedades"),
+                            Double.parseDouble(mapaConvert.get("costIncaCoag")),
                             mapaConvert.get("causaMuerte"),
                             simpleDateFormat.parse(mapaConvert.get("fechaMuerte")),
                             Long.parseLong(mapaConvert.get("bdua")),
@@ -150,8 +150,8 @@ public class PacienteSaveFinal {
                     writeCmPaciente= new WriteCmPaciente(mapaConvert.get("primerNombre"),
                             mapaConvert.get("segundoNombre"),mapaConvert.get("primerApellido"),mapaConvert.get("segundoApellido"),
                             mapaConvert.get("tipoIdentificacion"),mapaConvert.get("numeroIdentificacion"),
-                            simpleDateFormat.parse(mapaConvert.get("fechaNacimiento")),mapaConvert.get("sexo").toCharArray()[0],
-                            mapaConvert.get("codigoEtnia").toCharArray()[0],claveArchivo);
+                            simpleDateFormat.parse(mapaConvert.get("fechaNacimiento")),simpleDateFormat.parse(mapaConvert.get("fechAfilEntiRepo")),mapaConvert.get("sexo").toCharArray()[0],
+                            mapaConvert.get("codigoEtnia").toCharArray()[0],claveArchivo,mapaConvert.get("nombreArchivoOriginal"),mapaConvert.get("noveUsuaRespAlRepoAnte"));
 
                 } catch (Exception e) {
                     logger.error(e.getMessage());

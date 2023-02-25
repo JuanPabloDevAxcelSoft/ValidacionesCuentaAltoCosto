@@ -38,12 +38,13 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
 
     @Override
     public String isPacienteCorrect(int idPaciente, int idEnfermedad, String claveArchivo) {
+
         String result = "";
+        //Sacando nombre del la tabla de paso
+        String nomTablaPaso=sacarNombreTablaPaso.getNombreTablaPaso(idEnfermedad);;
         try {
             Object objectPasciente;
             Object claseValidaciones;
-            //Sacando nombre del la tabla de paso
-            String nomTablaPaso=sacarNombreTablaPaso.getNombreTablaPaso(idEnfermedad);
             //sacando nombre de la clase Validacion
             String claseValidacion =sacarNombreClaseValidacion.getNombreClaseValidacion(idEnfermedad);
             // Sacando paciente
@@ -65,12 +66,14 @@ public class ReadReadValidacionServiceImpl implements ReadValidacionService {
 
             if (result.equals("")){
                 result=pacienteSaveFinal.Paciente(idEnfermedad,mapPaciente,claveArchivo);
-                //eliminacionPacientePaso.setEliminarPacientePaso(nomTablaPaso,idPaciente);
+                eliminacionPacientePaso.setEliminarPacientePaso(nomTablaPaso,idPaciente);
             }
             else{
                 errores.guardarErrores(nomTablaPaso,idPaciente,result);
             }
         }catch (NullPointerException e){
+            result="Error fechas o campos mal digitados";
+            errores.guardarErrores(nomTablaPaso,idPaciente,result);
             logger.error("Error "+e.getMessage());
         }
 

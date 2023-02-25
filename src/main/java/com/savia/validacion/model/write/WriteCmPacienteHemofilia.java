@@ -313,10 +313,6 @@ public class WriteCmPacienteHemofilia implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2)
-    private String novedades;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 2)
     @Column(name = "causa_muerte")
     private String causaMuerte;
     @Basic(optional = false)
@@ -343,7 +339,7 @@ public class WriteCmPacienteHemofilia implements Serializable {
         this.id = id;
     }
 
-    public WriteCmPacienteHemofilia(int ocupacionUsuario, int grupoPoblacional, String estadoGestacionUsuario, String usuaProgPlan, int edadUsuarioConsulta, String motivoPruebaDiagnostico, Date fechaDiagnostico, BigInteger codiValiHabiIps, String tipoDefiDiag, String clasSeveNiveFact, float actividadCoagulanteFactor, String anteFamiAsocHemo, String factReciPrimTrat, String esquemaPrimerTratamiento, Date fechInicPrimTrat, Integer factReciActuTrat, String esquemaActualTratamiento, float pesoUsuario, float dosis, String frecuenciaSemana, int numeroDosisTotalesPeriodo, Integer numeApliTotaPeri, String modaApliTrat, String viaAdministracion, String cum1, String cum2, String cum3, String cum4, long codigoHabilitacionEps, String hermartrosis, Integer numeHermEspoUltiAño, Integer numeHermTrauUltiAño, int hemorragiaIliopsoas, int hemorragiaMuscular, int hemorragiaIntracraneal, int hemorragiaCuello, int hemorragiaOral, Integer hemoOtraLoca, Integer hemoOtraDifeHemaEspo, Integer hemoOtraDifeHemaTrau, Integer hemoAsocProcDifeHema, String presInhiFechCort, Date fechDeteTituInhi, String recibidoItiUsuario, String recibioItiPeriodo, int tiempoUsuarioIti, String artropatiaHemofilicaCronica, Integer numArtiComp, String usuarioInfectadoVhc, String usuarioInfectadoVhb, String usuarioInfectadoVih, String pseudotumores, String fracturas, String anafilaxis, String factorAnacfiliactica, int reemplazoArticularesVida, int reemplazoArticularesPeriodo, String profesionalAtencionUsuario, Integer consPresHema, Integer consPresOrto, Integer inteProfEnfe, int consultasOdontologo, int consultaNutricionista, int intervencionTrabajoSocial, int consultaFisiatria, int consultaPsicologia, Integer inteQuimFarm, int intervencionFisioterapia, String primNombMediPrin, String seguNombMediPrin, String primApelMediPrin, String seguApelMediPrin, Integer numeAtenServUrgeHemo, Integer numeEvenHospHemo, double costoTotalUnidadesFactor, double costosAgentePuente, double costosCoagulopatia, Double costIncaCoag, String novedades, String causaMuerte, Date fechaMuerte, Long bdua, Date fechaCorte, WriteCmPaciente idPaciente) {
+    public WriteCmPacienteHemofilia(int ocupacionUsuario, int grupoPoblacional, String estadoGestacionUsuario, String usuaProgPlan, int edadUsuarioConsulta, String motivoPruebaDiagnostico, Date fechaDiagnostico, BigInteger codiValiHabiIps, String tipoDefiDiag, String clasSeveNiveFact, float actividadCoagulanteFactor, String anteFamiAsocHemo, String factReciPrimTrat, String esquemaPrimerTratamiento, Date fechInicPrimTrat, Integer factReciActuTrat, String esquemaActualTratamiento, float pesoUsuario, float dosis, String frecuenciaSemana, int numeroDosisTotalesPeriodo, Integer numeApliTotaPeri, String modaApliTrat, String viaAdministracion, String cum1, String cum2, String cum3, String cum4, long codigoHabilitacionEps, String hermartrosis, Integer numeHermEspoUltiAño, Integer numeHermTrauUltiAño, int hemorragiaIliopsoas, int hemorragiaMuscular, int hemorragiaIntracraneal, int hemorragiaCuello, int hemorragiaOral, Integer hemoOtraLoca, Integer hemoOtraDifeHemaEspo, Integer hemoOtraDifeHemaTrau, Integer hemoAsocProcDifeHema, String presInhiFechCort, Date fechDeteTituInhi, String recibidoItiUsuario, String recibioItiPeriodo, int tiempoUsuarioIti, String artropatiaHemofilicaCronica, Integer numArtiComp, String usuarioInfectadoVhc, String usuarioInfectadoVhb, String usuarioInfectadoVih, String pseudotumores, String fracturas, String anafilaxis, String factorAnacfiliactica, int reemplazoArticularesVida, int reemplazoArticularesPeriodo, String profesionalAtencionUsuario, Integer consPresHema, Integer consPresOrto, Integer inteProfEnfe, int consultasOdontologo, int consultaNutricionista, int intervencionTrabajoSocial, int consultaFisiatria, int consultaPsicologia, Integer inteQuimFarm, int intervencionFisioterapia, String primNombMediPrin, String seguNombMediPrin, String primApelMediPrin, String seguApelMediPrin, Integer numeAtenServUrgeHemo, Integer numeEvenHospHemo, double costoTotalUnidadesFactor, double costosAgentePuente, double costosCoagulopatia, Double costIncaCoag, String causaMuerte, Date fechaMuerte, Long bdua, Date fechaCorte, WriteCmPaciente idPaciente) {
         this.ocupacionUsuario = ocupacionUsuario;
         this.grupoPoblacional = grupoPoblacional;
         this.estadoGestacionUsuario = estadoGestacionUsuario;
@@ -422,7 +418,6 @@ public class WriteCmPacienteHemofilia implements Serializable {
         this.costosAgentePuente = costosAgentePuente;
         this.costosCoagulopatia = costosCoagulopatia;
         this.costIncaCoag = costIncaCoag;
-        this.novedades = novedades;
         this.causaMuerte = causaMuerte;
         this.fechaMuerte = fechaMuerte;
         this.bdua = bdua;
@@ -430,7 +425,7 @@ public class WriteCmPacienteHemofilia implements Serializable {
         this.idPaciente = idPaciente;
     }
 
-    public WriteCmPacienteHemofilia(Long id, int ocupacionUsuario, int grupoPoblacional, String estadoGestacionUsuario, int edadUsuarioConsulta, String motivoPruebaDiagnostico, Date fechaDiagnostico, float actividadCoagulanteFactor, String esquemaPrimerTratamiento, String esquemaActualTratamiento, float pesoUsuario, float dosis, String frecuenciaSemana, int numeroDosisTotalesPeriodo, String viaAdministracion, String cum1, String cum2, String cum3, String cum4, long codigoHabilitacionEps, String hermartrosis, int hemorragiaIliopsoas, int hemorragiaMuscular, int hemorragiaIntracraneal, int hemorragiaCuello, int hemorragiaOral, String recibidoItiUsuario, String recibioItiPeriodo, int tiempoUsuarioIti, String artropatiaHemofilicaCronica, String usuarioInfectadoVhc, String usuarioInfectadoVhb, String usuarioInfectadoVih, String pseudotumores, String fracturas, String anafilaxis, String factorAnacfiliactica, int reemplazoArticularesVida, int reemplazoArticularesPeriodo, String profesionalAtencionUsuario, int consultasOdontologo, int consultaNutricionista, int intervencionTrabajoSocial, int consultaFisiatria, int consultaPsicologia, int intervencionFisioterapia, double costoTotalUnidadesFactor, double costosAgentePuente, double costosCoagulopatia, String novedades, String causaMuerte, Date fechaMuerte, @NotNull Long bdua, Date fechaCorte) {
+    public WriteCmPacienteHemofilia(Long id, int ocupacionUsuario, int grupoPoblacional, String estadoGestacionUsuario, int edadUsuarioConsulta, String motivoPruebaDiagnostico, Date fechaDiagnostico, float actividadCoagulanteFactor, String esquemaPrimerTratamiento, String esquemaActualTratamiento, float pesoUsuario, float dosis, String frecuenciaSemana, int numeroDosisTotalesPeriodo, String viaAdministracion, String cum1, String cum2, String cum3, String cum4, long codigoHabilitacionEps, String hermartrosis, int hemorragiaIliopsoas, int hemorragiaMuscular, int hemorragiaIntracraneal, int hemorragiaCuello, int hemorragiaOral, String recibidoItiUsuario, String recibioItiPeriodo, int tiempoUsuarioIti, String artropatiaHemofilicaCronica, String usuarioInfectadoVhc, String usuarioInfectadoVhb, String usuarioInfectadoVih, String pseudotumores, String fracturas, String anafilaxis, String factorAnacfiliactica, int reemplazoArticularesVida, int reemplazoArticularesPeriodo, String profesionalAtencionUsuario, int consultasOdontologo, int consultaNutricionista, int intervencionTrabajoSocial, int consultaFisiatria, int consultaPsicologia, int intervencionFisioterapia, double costoTotalUnidadesFactor, double costosAgentePuente, double costosCoagulopatia, String causaMuerte, Date fechaMuerte, @NotNull Long bdua, Date fechaCorte) {
         this.id = id;
         this.ocupacionUsuario = ocupacionUsuario;
         this.grupoPoblacional = grupoPoblacional;
@@ -480,7 +475,6 @@ public class WriteCmPacienteHemofilia implements Serializable {
         this.costoTotalUnidadesFactor = costoTotalUnidadesFactor;
         this.costosAgentePuente = costosAgentePuente;
         this.costosCoagulopatia = costosCoagulopatia;
-        this.novedades = novedades;
         this.causaMuerte = causaMuerte;
         this.fechaMuerte = fechaMuerte;
         this.bdua = bdua;
@@ -1117,14 +1111,6 @@ public class WriteCmPacienteHemofilia implements Serializable {
 
     public void setCostIncaCoag(Double costIncaCoag) {
         this.costIncaCoag = costIncaCoag;
-    }
-
-    public String getNovedades() {
-        return novedades;
-    }
-
-    public void setNovedades(String novedades) {
-        this.novedades = novedades;
     }
 
     public String getCausaMuerte() {

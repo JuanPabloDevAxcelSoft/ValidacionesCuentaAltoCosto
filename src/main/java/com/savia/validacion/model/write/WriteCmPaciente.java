@@ -53,11 +53,18 @@ public class WriteCmPaciente implements Serializable {
     @Column(name = "fecha_nacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
+    @Column(name = "fecha_afiliacion")
+    @Temporal(TemporalType.DATE)
+    private Date fechaAfilicion;
     private Character sexo;
     @Column(name = "codigo_pertenencia_etnica")
     private Character codigoPertenenciaEtnica;
     @Column(name = "clave_archivo")
     private String claveArchvio;
+    @Column(name = "nombre_archivo_original")
+    private String nombreArchivoOriginal;
+
+    private String novedades;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
     private List<WriteCmPacienteCancer> writeCmPacienteCancerList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
@@ -88,7 +95,7 @@ public class WriteCmPaciente implements Serializable {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 
-    public WriteCmPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacion, String numeroIdentificacion, Date fechaNacimiento, Character sexo, Character codigoPertenenciaEtnica, String claveArchvio) {
+    public WriteCmPaciente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String tipoIdentificacion, String numeroIdentificacion, Date fechaNacimiento, Date fechaAfilicion, Character sexo, Character codigoPertenenciaEtnica, String claveArchvio, String nombreArchivoOriginal, String novedades) {
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
@@ -96,9 +103,12 @@ public class WriteCmPaciente implements Serializable {
         this.tipoIdentificacion = tipoIdentificacion;
         this.numeroIdentificacion = numeroIdentificacion;
         this.fechaNacimiento = fechaNacimiento;
+        this.fechaAfilicion = fechaAfilicion;
         this.sexo = sexo;
         this.codigoPertenenciaEtnica = codigoPertenenciaEtnica;
         this.claveArchvio = claveArchvio;
+        this.nombreArchivoOriginal = nombreArchivoOriginal;
+        this.novedades = novedades;
     }
 
     public Long getId() {
@@ -163,6 +173,14 @@ public class WriteCmPaciente implements Serializable {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Date getFechaAfilicion() {
+        return fechaAfilicion;
+    }
+
+    public void setFechaAfilicion(Date fechaAfilicion) {
+        this.fechaAfilicion = fechaAfilicion;
     }
 
     public Character getSexo() {
@@ -259,6 +277,22 @@ public class WriteCmPaciente implements Serializable {
 
     public void setCmPacienteHepatitisUnoList(List<WriteCmPacienteHepatitisUno> writeCmPacienteHepatitisUnoList) {
         this.writeCmPacienteHepatitisUnoList = writeCmPacienteHepatitisUnoList;
+    }
+
+    public String getNombreArchivoOriginal() {
+        return nombreArchivoOriginal;
+    }
+
+    public void setNombreArchivoOriginal(String nombreArchivoOriginal) {
+        this.nombreArchivoOriginal = nombreArchivoOriginal;
+    }
+
+    public String getNovedades() {
+        return novedades;
+    }
+
+    public void setNovedades(String novedades) {
+        this.novedades = novedades;
     }
 
     @Override

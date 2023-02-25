@@ -14,17 +14,21 @@ public class PacienteFind {
     @PersistenceContext
     private EntityManager entityManager;
     public  Object getPacienteObj(String nombClaseValidacion, int idPaciente){
+        Object objectPaciente = null;
         Long id= Long.valueOf(idPaciente);
         String message = "";
         Class<?> claseEntity= null;
         try {
             if (!nombClaseValidacion.equals("")){
                 claseEntity=Class.forName(nombClaseValidacion);
+                objectPaciente= entityManager.find(claseEntity,id);
             }
         } catch (ClassNotFoundException e) {
             message= e.getMessage();
+        }catch (StringIndexOutOfBoundsException e){
+            message= e.getMessage();
         }
         this.logger.info(message);
-        return entityManager.find(claseEntity,id);
+        return objectPaciente ;
     }
 }

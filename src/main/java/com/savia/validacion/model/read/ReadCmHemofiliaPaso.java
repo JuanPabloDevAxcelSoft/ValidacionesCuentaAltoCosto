@@ -408,6 +408,8 @@ public class ReadCmHemofiliaPaso implements Serializable {
     private String claveArchvio;
     @Column(name = "error_validacion")
     private String errorValidacion;
+    @Column(name = "nombre_archivo_original")
+    private String nombreArchivoOriginal;
 
     public ReadCmHemofiliaPaso() {
     }
@@ -1294,24 +1296,12 @@ public class ReadCmHemofiliaPaso implements Serializable {
         this.errorValidacion = errorValidacion;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idHemofilia != null ? idHemofilia.hashCode() : 0);
-        return hash;
+    public String getNombreArchivoOriginal() {
+        return nombreArchivoOriginal;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        
-        if (!(object instanceof ReadCmHemofiliaPaso)) {
-            return false;
-        }
-        ReadCmHemofiliaPaso other = (ReadCmHemofiliaPaso) object;
-        if ((this.idHemofilia == null && other.idHemofilia != null) || (this.idHemofilia != null && !this.idHemofilia.equals(other.idHemofilia))) {
-            return false;
-        }
-        return true;
+    public void setNombreArchivoOriginal(String nombreArchivoOriginal) {
+        this.nombreArchivoOriginal = nombreArchivoOriginal;
     }
 
     @Override
