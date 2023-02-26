@@ -20,7 +20,6 @@ public class TranferObjectoMap {
             Map<String, Object> result = (Map<String, Object>) mapper.readValue(JSON_SOURCE, HashMap.class);
             return result;
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
             return null;
         }
     }

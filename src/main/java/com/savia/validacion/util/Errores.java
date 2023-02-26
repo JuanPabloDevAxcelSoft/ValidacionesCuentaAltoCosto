@@ -34,7 +34,6 @@ public class Errores {
             message = "Actualizacion de errores completado";
         } catch (Exception e) {
             message = "Ocurrion un error : 'Exception' : " + e.getMessage();
-            e.printStackTrace();
         }
         this.logger.info(message);
     }

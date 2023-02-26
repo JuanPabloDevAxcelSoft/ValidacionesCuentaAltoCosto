@@ -16,7 +16,6 @@ public class ReadCmVihPasoServiceImpl implements ReadCmVihPasoService {
         try {
             return readCmVihPasoRepository.findById(id).get();
         }catch (Exception e){
-            e.printStackTrace();
             return null;
         }
     }

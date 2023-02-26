@@ -1,6 +1,5 @@
 package com.savia.validacion.util;
 
-import com.savia.validacion.service.callDirect.impl.CallDirectImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,8 +25,8 @@ public class RequestHttp {
             String ruta = server + uri +((metodo)? "":"/?clave="+parametro);
             HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
             ResponseEntity<String> responseEntity = rest.exchange(ruta,(metodo)? HttpMethod.POST:HttpMethod.GET, requestEntity, String.class);
-            String response = responseEntity.getBody();
-            this.logger.info(response);
+            responseEntity.getBody();
+            // this.logger.info(response);
         } catch (Exception e) {
             this.logger.info("Error al momento de realizar el llamado al servicio de directo : " + e.getMessage());
         }

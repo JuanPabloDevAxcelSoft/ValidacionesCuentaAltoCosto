@@ -37,13 +37,13 @@ public class SacarNombreClaseValidacion {
                     HttpResponse.BodyHandlers.ofString());
             message= stringHttpResponse.body();
         } catch (IOException e) {
-            message = "Ocurrion un error : 'IOException 1' : " + e.getMessage();
-            e.printStackTrace();
+            message = "Ocurrion un error : 'IOException' : " + e.getMessage();
+            this.logger.info(message);
         } catch (InterruptedException e) {
             message = "Ocurrion un error : 'InterruptedException' : " + e.getMessage();
-            e.printStackTrace();
+            this.logger.info(message);
         }
-        this.logger.info(message);
+        
         return message;
     }
 

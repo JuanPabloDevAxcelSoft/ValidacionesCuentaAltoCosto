@@ -47,7 +47,6 @@ public class ReflectorImpl implements Reflector {
                     logger.error("ERROR en Reflector illegalAccessException " + e.getMessage());
                 } catch (InvocationTargetException e) {
                     logger.error("ERROR en Reflector invocation " + e.getMessage());
-                    e.printStackTrace();
                 }
             }
         }
